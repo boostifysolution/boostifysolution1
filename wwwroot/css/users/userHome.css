@@ -1,0 +1,119 @@
+.wallet-title-holder {
+    display: flex;
+    background-color: var(--background-primary);
+    color: white;
+    border-radius: 6px;
+    padding: 8px 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.wallet-title-holder>h5 {
+    margin-bottom: 0;
+}
+
+.task-status-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary);
+    color: white;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 0.9rem;
+    width: 100px;
+    font-weight: bold;
+}
+
+.completed-task-status-holder {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary);
+    margin-bottom: 5px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    width: 100px;
+    font-weight: bold;
+}
+
+.tasks-holder {
+    display: flex;
+    flex-direction: column;
+}
+
+.task {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: -3px 3px 3px 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 500ms;
+}
+
+.task:hover,
+.task:focus {
+    transform: translate(0px, -2px) !important;
+    box-shadow: -3px 3px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.earn-title {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+}
+
+.task-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.profile-image-holder>img {
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
+    object-fit: contain;
+    object-position: center;
+    margin-right: 10px;
+}
+
+.username {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.task-holder {
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: -3px 3px 3px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    transition: all ease 500ms;
+    margin-bottom: 1.5rem;
+}
+
+.task-holder > div{
+    width: 100%;
+}
+
+.task-holder:hover {
+    box-shadow: -3px 3px 4px 2px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 767px){
+    .task-holder {
+        padding: 1rem;
+    }
+}

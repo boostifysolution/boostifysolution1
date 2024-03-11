@@ -1,0 +1,151 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+ViewData["Title"] = "Home | Project India";
+Layout = "/Views/Users/_Layout.cshtml";
+}
+
+<link type="text/css" rel="stylesheet" href="~/css/users/userHome.css" />
+<script src="~/js/users/userHome.js" asp-append-version="true"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        userHome.initialize();
+    });
+</script>
+
+<div class="container mt-3 mb-3 mt-md-0 mb-md-0">
+    <div class="d-flex flex-row align-items-center mt-3 mb-3">
+        <div class="profile-image-holder">
+            <img src="~/images/users/avatar.png">
+        </div>
+        <div class="d-flex flex-column">
+            <span>Hello,</span>
+            <span class="username" data-bind="text: userName"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-12">
+            <div class="card-holder">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <img class="card-title-icon" src="~/images/users/checklist.png">
+                    <span class="fw-bold title">@localizer["NewTasks"]</span>
+                </div>
+                <!-- ko if: userTasks().length > 0 -->
+                <div class="d-flex flex-column" data-bind="foreach: userTasks">
+                    <div class="task-holder">
+                        <div class="d-flex flex-column">
+                            <div class="task-status-holder">
+                                <span>@localizer["Incomplete"]</span>
+                            </div>
+                            <span class="task-title" data-bind="text: taskTitle"></span>
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <span class="earn-title">@localizer["Earn"] <span
+                                        data-bind="text: taskAmount"></span><span>
+                                        @localizer["Commission"]</span></span>
+                                <button class="primary-button button"
+                                    data-bind="click: $parent.startTaskClick.bind($data)">@localizer["StartTask"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: userTasks().length == 0 -->
+                <div class="task-holder">
+                    <span class="fw-bold">@localizer["NoTaskYet"]</span>
+                </div>
+                <!-- /ko -->
+            </div>
+
+            <div class="card-holder">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <img class="card-title-icon" src="~/images/users/submitted.png">
+                    <span class="fw-bold title">@localizer["PendingTasks"]</span>
+                </div>
+                <!-- ko if: userSubmittedTasks().length > 0 -->
+                <div class="d-flex flex-column" data-bind="foreach: userSubmittedTasks">
+                    <div class="task-holder">
+                        <div class="d-flex flex-column">
+                            <div class="completed-task-status-holder">
+                                <span data-bind="text: status"></span>
+                            </div>
+                            <span class="task-title" data-bind="text: taskTitle"></span>
+                            <div class="d-flex flex-row justify-content-between align-items-center">
+                                <span class="earn-title">@localizer["Earn"] <span
+                                        data-bind="text: taskAmount"></span><span>
+                                        @localizer["Commission"]</span></span>
+                                <button class="primary-button button"
+                                    data-bind="click: $parent.startTaskClick.bind($data)">@localizer["StartTask"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: userSubmittedTasks().length == 0 -->
+                <div class="task-holder">
+                    <span class="fw-bold">@localizer["NoPendingTasks"]</span>
+                </div>
+                <!-- /ko -->
+            </div>
+
+            <div class="card-holder">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <img class="card-title-icon" src="~/images/users/completed.png">
+                    <span class="fw-bold title">@localizer["CompletedTasks"]</span>
+                </div>
+                <!-- ko if: completedUserTasks().length > 0 -->
+                <div class="d-flex flex-column" data-bind="foreach: completedUserTasks">
+                    <div class="task-holder">
+                        <div class="d-flex flex-column">
+                            <!-- ko if: status == "Approved" -->
+                            <div class="approved-task">
+                                <span>@localizer["Approved"]</span>
+                            </div>
+                            <!-- /ko -->
+                            <!-- ko if: status == "Rejected" -->
+                            <div class="rejected-task">
+                                <span>@localizer["Rejected"]</span>
+                            </div>
+                            <!-- /ko -->
+                            <span class="task-title" data-bind="text: taskTitle"></span>
+                            <span class="earn-title">@localizer["Earned"] <span
+                                    data-bind="text: taskAmount"></span><span> @localizer["Commission"]</span></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: completedUserTasks().length == 0 -->
+                <div class="task-holder">
+                    <span class="fw-bold">@localizer["NoCompletedTasks"]</span>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <div class="col-md-1 d-none d-md-flex">
+
+        </div>
+        <hr class="d-block d-md-none" />
+        <div class="col-md-5 col-12 mt-md-0 mt-3">
+            <div class="card-holder">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <img class="card-title-icon" src="~/images/users/wallet.png">
+                    <span class="fw-bold title">@localizer["Wallet"]</span>
+                </div>
+                <div class="wallet-holder">
+                    <div class="d-flex flex-column">
+                        <span class="fw-bold">
+                            @localizer["BoostifySolutionWallet"]
+                        </span>
+                        <span class="wallet-amount" data-bind="text: walletAmount"></span>
+                        <span class="wallet-last-updated" data-bind="text: walletLastUpdated"></span>
+                    </div>
+                    <div class="d-flex flex-column justify-content-end">
+                        <a data-bind="attr: { href: '/users/wallet?culture=' + language  }">
+                            <button class="button secondary-button">@localizer["ViewWalletDetails"]</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

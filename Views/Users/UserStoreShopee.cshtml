@@ -1,0 +1,293 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+ViewData["Title"] = "Shopee | Project India";
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<link type="text/css" rel="stylesheet" href="~/css/users/userStoreShopee.css" />
+<script src="~/js/users/userMaster.js" asp-append-version="true"></script>
+<script src="~/js/users/userStoreShopee.js" asp-append-version="true"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        userMaster.masterInitialize();
+
+        var jsResx = {
+            failedToLoadTask: "@localizer["FailedToLoadTask"]",
+            addToCartNotAvailable: "@localizer["AddToCartNotAvailable"]",
+            useBuyNow: "@localizer["UseBuyNow"]",
+            disabledNavigation: "@localizer["DisabledNavigation"]",
+            switchPage: "@localizer["SwitchPage"]",
+            buyNowConfirmation: "@localizer["BuyNowConfirmation"]",
+            buyNow: "@localizer["BuyNow"]",
+            selectBuyNow: "@localizer["SelectBuyNow"]",
+            successfullyPurchaseProduct: "@localizer["SuccessfullyPurchaseProduct"]",
+            contactSupport: "@localizer["ContactSupport"]",
+            failedBuyNow: "@localizer["FailedBuyNow"]"
+        };
+
+        userStoreShopee.initialize(jsResx);
+    });
+</script>
+
+<div class="shopee-header d-none d-md-block pt-3 pb-3">
+    <div class="container">
+        <div class="d-flex flex-column">
+            <div class="d-flex flex-row justify-content-between mb-3">
+                <span data-bind="click: disabledNavigation">Seller Centre | @localizer["StartSelling"] |
+                    @localizer["Download"]</span>
+                <div class="d-flex flex-row" data-bind="click: disabledNavigation">
+                    <span class="me-3">@localizer["Notification"] | @localizer["Help"]</span>
+                    <span class="fw-bold">@localizer["SignUp"] | @localizer["Login"]</span>
+                </div>
+            </div>
+            <div class="d-flex flex-row align-items-center w-100">
+                <img class="shopee-logo" src="~/images/logos/shopee-logo.webp">
+                <div class="search-bar">
+                    <span>@localizer["SignUpAnd"]</span>
+                    <div class="search-button" data-bind="click: disabledNavigation">
+                        <img src="~/images/users/search-icon.png">
+                    </div>
+                </div>
+                <img class="shopping-cart-icon" src="~/images/users/shopping-cart-icon.png"
+                    data-bind="click: disabledNavigation">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container product-container">
+    <div class="d-none d-md-flex flex-row mt-3 mb-3">
+        <span class="breadcrumbs" data-bind="click: disabledNavigation">Shopee &gt; Preferred Store &gt; </span>
+        <span class="breadcrumb-product-name" data-bind="text: productName"></span>
+    </div>
+    <div class="product-details-container">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <div class="product-image-holder">
+                    <img class="product-main-image" data-bind="attr: { src: productMainImageURL}">
+                    <div class="d-flex flex-row" data-bind="foreach: productImagesURL">
+                        <img class="product-sub-images"
+                            data-bind="attr: { src: $data}, click: $parent.productImageHover.bind($data), event: {mouseover: $parent.productImageHover.bind($data)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-12 mt-3 mt-md-0">
+                <div class="d-flex flex-column">
+                    <div class="product-name-holder">
+                        <div class="preferred-holder">
+                            Preferred
+                        </div>
+                        <span class="product-name" data-bind="text: productName">
+                        </span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <span class="star-rating me-1" data-bind="text: productRating"></span>
+                        <img class="star" src="~/images/users/star-full.png">
+                        <img class="star" src="~/images/users/star-full.png">
+                        <img class="star" src="~/images/users/star-full.png">
+                        <img class="star" src="~/images/users/star-full.png">
+                        <img class="star" src="~/images/users/star-partial.png">
+                        <span class="divider">|</span>
+                        <span class="product-rating-number" data-bind="text: productRatingCount"></span>
+                        <span class="product-rating-description">@localizer["Rating"]</span>
+                        <span class="divider">|</span>
+                        <span class="product-rating-number" data-bind="text: productSoldCount"></span>
+                        <span class="product-rating-description">@localizer["Sold"]</span>
+                    </div>
+                    <div class="price-holder">
+                        <span class="price" data-bind="text: productPrice"></span>
+                        <div class="d-flex flex-row">
+                            <img class="shopee-guarantee" src="~/images/users/shopee-guarantee.png">
+                            <div class="d-flex flex-column">
+                                <span class="shopee-guarantee-title">
+                                    @localizer["AuthenticGuarantee"]
+                                </span>
+                                <span class="shopee-guarantee-secondary">
+                                    @localizer["GuaranteeAuthentic"]
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-3 col-md-2">
+                            <span class="secondary-title">@localizer["ShopVouchers"]</span>
+                        </div>
+                        <div class="col-9 col-md-10">
+                            <div class="d-flex flex-row" data-bind="foreach: vouchers">
+                                <div class="voucher-holder">
+                                    <span data-bind="text: $data"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-3 col-md-2">
+                            <span class="secondary-title">@localizer["Shipping"]</span>
+                        </div>
+                        <div class="col-9 col-md-10">
+                            <div class="d-flex flex-column w-100">
+                                <div class="d-flex flex-row mb-3">
+                                    <img class="shipping-icon" src="~/images/users/free-shipping.png">
+                                    <span>@localizer["FreeShipping"]</span>
+                                </div>
+                                <div class="d-flex flex-row w-100">
+                                    <img class="shipping-icon" src="~/images/users/plane.png">
+                                    <div class="d-flex flex-column w-100">
+                                        <div class="row mb-2">
+                                            <div class="col-3">
+                                                <span class="secondary-title">@localizer["ShippingFrom"]</span>
+                                            </div>
+                                            <div class="col-9">
+                                                <span>Mainland China</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3 ">
+                                                <span class="secondary-title">@localizer["ShippingFee"]</span>
+                                            </div>
+                                            <div class="col-9">
+                                                <span data-bind="text: shippingFee"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-3 col-md-2">
+                            <span class="secondary-title">@localizer["Variation"]</span>
+                        </div>
+                        <div class="col-9 col-md-10">
+                            <div class="variation-holder" data-bind="click: variationClick, css: {'active' : active()}">
+                                <span>Standard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-3 col-md-2">
+                            <span class="secondary-title">@localizer["Quantity"]</span>
+                        </div>
+                        <div class="col-9 col-md-10">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="quantity-holder">
+                                    <span class="quantity-control" data-bind="click:minusQuantity">-</span>
+                                    <span class="quantity" data-bind="text: productQuantity"></span>
+                                    <span class="quantity-control" data-bind="click:plusQuantity">+</span>
+                                </div>
+                                <span class="secondary-title me-1" data-bind="text: quantityRemaining"></span>
+                                <span class="secondary-title">pieces available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <button class="add-to-cart-button"
+                            data-bind="click: addToCartUnavailable">@localizer["AddToCart"]</button>
+                        <button class="buy-now-button" data-bind="click: buyNowClick">@localizer["BuyNow"]</button>
+                    </div>
+                    <hr />
+                    <div class="d-flex flex-row">
+                        <img class="shopee-guarantee" src="~/images/users/shopee-guarantee.png">
+                        <span class="me-2">@localizer["ShopeeGuarantee"]</span>
+                        <span class="secondary-title">@localizer["GuaranteeDescription"]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-details-container">
+        <div class="d-flex flex-row">
+            <div class="store-details-holder">
+                <img class="store-logo-holder" data-bind="attr: {src: storeThumbnailURL}">
+                <div class="d-flex flex-column">
+                    <span class="store-name" data-bind="text: storeName"></span>
+                    <span class="secondary-title">Active 15 minutes Ago</span>
+                    <button class="view-shop-button"
+                        data-bind="click: disabledNavigation">@localizer["ViewShop"]</button>
+                </div>
+            </div>
+            <div class="shop-rating-holder">
+                <div class="d-flex flex-row me-5">
+                    <span class="secondary-title me-5">
+                        @localizer["Products"]
+                    </span>
+                    <span class="primary-title me-5">
+                        155
+                    </span>
+                </div>
+                <div class="d-flex flex-row me-5">
+                    <span class="secondary-title me-5">
+                        @localizer["Rating"]
+                    </span>
+                    <span class="primary-title me-5">
+                        4.9
+                    </span>
+                </div>
+                <div class="d-flex flex-row me-5">
+                    <span class="secondary-title me-5">
+                        @localizer["ResponseTime"]
+                    </span>
+                    <span class="primary-title me-5">
+                        within hours
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-details-container">
+        <div class="price-holder">
+            <span class="title">@localizer["ProductDescription"]</span>
+        </div>
+        <div data-bind="html: productDescription"></div>
+    </div>
+    <div class="product-details-container">
+        <div class="d-flex flex-column">
+            <span class="title mb-3">@localizer["ProductRatings"]</span>
+            <div class="product-rating-holder">
+                <div class="d-flex flex-column me-4">
+                    <div class="d-flex flex-row align-items-end mb-3">
+                        <span class="rating" data-bind="text: productRating"></span>
+                        <span class="primary-title pb-1">out of 5</span>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <img class="product-rating-star" src="~/images/users/star-full.png">
+                        <img class="product-rating-star" src="~/images/users/star-full.png">
+                        <img class="product-rating-star" src="~/images/users/star-full.png">
+                        <img class="product-rating-star" src="~/images/users/star-full.png">
+                        <img class="product-rating-star" src="~/images/users/star-partial.png">
+                    </div>
+                </div>
+                <div class="d-flex flex-row align-items-center flex-wrap">
+                    <button class="view-shop-button active me-2">All</button>
+                    <button class="view-shop-button me-2">5 Stars</button>
+                    <button class="view-shop-button me-2">4 Stars</button>
+                    <button class="view-shop-button me-2">3 Stars</button>
+                    <button class="view-shop-button me-2">2 Stars</button>
+                    <button class="view-shop-button me-2">1 Stars</button>
+                </div>
+            </div>
+            <div class="d-flex flex-column" data-bind="foreach: productReviewsList">
+
+                <div class="comment-holder">
+                    <div class="d-flex flex-row">
+                        <img class="comment-avatar" src="~/images/users/avatar-sm.png">
+                        <div class="d-flex flex-column">
+                            <span data-bind="text: reviewerName"></span>
+                            <div class="star-ratings">
+                                <div class="fill-ratings" data-bind="style: {width: rating }">
+                                    <span>★★★★★</span>
+                                </div>
+                                <div class="empty-ratings">
+                                    <span>★★★★★</span>
+                                </div>
+                            </div>
+                            <span class="secondary-title mb-3" data-bind="text: dateAdded"></span>
+                            <p data-bind="text: comment"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

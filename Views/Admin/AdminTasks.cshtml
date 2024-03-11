@@ -1,0 +1,230 @@
+@{
+ViewData["Title"] = "Tasks | Admin";
+Layout = "/Views/Admin/_Layout.cshtml";
+}
+
+<!-- CKEditor -->
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+<!-- jsGrid -->
+<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+<link type="text/css" rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+
+
+<link type="text/css" rel="stylesheet" href="~/css/admin/adminTasks.css" />
+<script src="~/js/admin/adminTasks.js" asp-append-version="true"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        adminTasks.initialize();
+    });
+</script>
+
+<div class="container">
+    <h4 class="fw-bold mt-3">Tasks</h4>
+    <div class="filters-holder">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>Task Title</label>
+                    <input class="form-control" type="text" data-bind="value: filterTaskTitle" />
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>Product Name</label>
+                    <input class="form-control" type="text" data-bind="value: filterProductName" />
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>Task Category</label>
+                    <select class="form-control form-select"
+                        data-bind="value: filterTaskCategory, options: taskCategoryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select task category', valueAllowUnset: true"></select>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>Language</label>
+                    <select class="form-control form-select"
+                        data-bind="value: filterLanguage, options: languageOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select language', valueAllowUnset: true"></select>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>Task Status</label>
+                    <select class="form-control form-select"
+                        data-bind="value: filterTaskStatus, options: taskStatusOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select task status', valueAllowUnset: true"></select>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row align-items-end flex-wrap">
+            <button class="button primary-button me-3 mb-3 mb-md-0" data-bind="click: applyFilters">Apply
+                Filters</button>
+            <button class="button grey-button me-3 mb-3 mb-md-0" data-bind="click: clearFilters">Clear
+                Filters</button>
+            <button class="button primary-button me-3" data-bind="click: addNewTaskClick">Add New
+                Task</button>
+        </div>
+    </div>
+    <div class="mb-3 grid" id="tasksGrid"></div>
+</div>
+
+<div class="modal micromodal-slide" id="task-details-modal" aria-hidden="true">
+    <div class="modal-overlay" tabindex="1">
+        <div class="modal-container large-modal-container" role="dialog" aria-modal="true"
+            aria-labelledby="modal-1-title">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="fw-bold mb-0">Task Details</h5>
+                    <div class="modal-close-button" data-micromodal-close>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0">Task Details</h5>
+                        <div class="d-flex flex-row">
+                            <!-- ko if: taskId() > 0 -->
+                            <button class="primary-button button me-2" data-bind="click: viewStoreClick">View
+                                Store</button>
+                            <!-- /ko -->
+                            <button class="primary-button button" data-bind="click: saveTaskDetails">Save</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Task Title*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: taskTitle">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Task Category*
+                                </label>
+                                <select class="form-control form-select"
+                                    data-bind="value: taskCategory, options: taskCategoryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select task category', valueAllowUnset: true"></select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Task Platform*
+                                </label>
+                                <select class="form-control form-select"
+                                    data-bind="value: platform, options: platformOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select task platform', valueAllowUnset: true"></select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Language*
+                                </label>
+                                <select class="form-control form-select"
+                                    data-bind="value: language, options: languageOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select language', valueAllowUnset: true"></select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Country*
+                                </label>
+                                <select class="form-control form-select"
+                                    data-bind="value: country, options: countryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select country', valueAllowUnset: true"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Product Details</h5>
+                    <div class="row mb-3">
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Product Name*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: productName">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Product Price* (RM/Rupee)
+                                </label>
+                                <input type="number" class="form-control" data-bind="value: productPrice">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Product Rating* (Stars)
+                                </label>
+                                <input type="number" class="form-control" data-bind="value: productRating">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-holder">
+                                <label>Product Description</label>
+                                <div id="productDescriptionEditor">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Product Main Image URL*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: productMainImageURL">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8">
+                            <div class="input-holder">
+                                <label>
+                                    Product Images URL* (Comma seperated)
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: productImagesURL">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap">
+                            <div class="product-image-holder">
+                                <img data-bind="attr: { src: productMainImageURL}">
+                            </div>
+                            <div class="product-image-holder" data-bind="foreach: productImagesArray">
+                                <img data-bind="attr: { src: $data}">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Store Details</h5>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Store Name*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: storeName">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Store Thumbnail URL*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: storeThumbnailURL">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row flex-wrap">
+                            <div class="store-thumbnail-image-holder">
+                                <img data-bind="attr: { src: storeThumbnailURL}">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<!-- micromodal -->
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js" asp-append-version="true"></script>
+
+
+<script src="~/js/users/userMaster.js" asp-append-version="true"></script>
+<link type="text/css" rel="stylesheet" href="~/css/users/userMaster.css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        userMaster.masterInitialize();
+    });
+</script>
+
+<div class="navbar navbar-toggleable-sm d-block d-md-none">
+    <div class="container">
+        <a href="/users/home" class="navbar-brand">
+            <img src="~/images/logos/project-india-logo.svg">
+        </a>
+        <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+            aria-controls="navbarSupportedContent" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+    <div class="navbar-collapse collapse justify-content-end">
+        <div class="container">
+            <div class="d-flex flex-column pt-2 pb-2">
+                <a class="nav-item" data-bind="attr: { href: '/users/home?culture=' + language  }">
+                    @localizer["Home"]
+                </a>
+                <a class="nav-item" data-bind="attr: { href: '/users/wallet?culture=' + language  }">
+                    @localizer["Wallet"]
+                </a>
+                <a class="nav-item" data-bind="attr: { href: '/users/profile?culture=' + language  }">
+                    @localizer["Profile"]
+                </a>
+                <a class="nav-item" data-bind="click: signOutClick">
+                    @localizer["Sign Out"]
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar d-none d-md-block">
+    <div class="container">
+        <a class="navbar-brand" asp-area="" data-bind="attr: { href: '/users/home?culture=' + language  }">
+            <img src="~/images/logos/project-india-logo.svg">
+        </a>
+        <div class="d-flex flex-row desktop-navbar">
+            <a class="nav-item" data-bind="attr: { href: '/users/home?culture=' + language  }">
+                Home
+            </a>
+            <a class="nav-item" data-bind="attr: { href: '/users/wallet?culture=' + language  }">
+                Wallet
+            </a>
+            <a class="nav-item" data-bind="attr: { href: '/users/profile?culture=' + language  }">
+                Profile
+            </a>
+            <a class="nav-item" data-bind="click: signOutClick">
+                Sign Out
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="users-body">
+    @RenderBody()
+</div>
+<footer class="footer footer-holder">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-3 ps-0 pe-0 mb-4 mb-md-0">
+                <img class="footer-logo" src="~/images/logos/project-india-logo-white.svg">
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="d-flex align-items-center h-100">
+                    © 2020–2023 Project India
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+@section Scripts {
+@RenderSection("Scripts", required: false)
+}

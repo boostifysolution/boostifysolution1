@@ -1,0 +1,51 @@
+@{
+ViewData["Title"] = "Sign Up";
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<script src="~/js/admin/adminSignUp.js" asp-append-version="true"></script>
+
+<div class="d-flex flex-column" style="background-color: var(--background-grey); height: 100vh;">
+    <div class="signin-content-holder">
+        <div class="signin-modal-holder">
+            <div class="d-flex flex-column">
+                <div class="text-center d-flex flex-column align-items-center">
+                    <img class="signin-logo" src="~/images/logos/project-india-logo.svg">
+                </div>
+                <div class="h-100 d-flex flex-column text-start">
+                    <span class="text-center mb-3 fw-bold">Register today to start earning</span>
+                    <div class="input-holder">
+                        <label>
+                            Your Name*
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: name">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            Phone Number*
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: phoneNumber">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            Email*
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: email">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            Country*
+                        </label>
+                        <select class="form-control form-select"
+                            data-bind="value: country, options: countryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Country', valueAllowUnset: true"></select>
+                    </div>
+                    <button class="primary-button button w-100 mt-2 mb-3" data-bind="click: signUpClick">
+                        Sign Up
+                    </button>
+                    <hr>
+                    <span class="text-center">Already have an account? <a href="/users/signin">Log In Here</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

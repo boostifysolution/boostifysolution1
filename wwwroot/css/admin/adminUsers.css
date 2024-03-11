@@ -1,0 +1,22 @@
+.view-type-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+    background: white;
+    color: var(--grey);
+    cursor: pointer;
+    height: 40px;
+}
+
+.active {
+    border: 2px solid black;
+    background-color: var(--primary);
+    color: white;
+}
+
+.pretty.p-switch.p-fill input:checked~.state:before {
+    border-color: var(--primary) !important;
+    background-color: var(--primary) !important;
+}

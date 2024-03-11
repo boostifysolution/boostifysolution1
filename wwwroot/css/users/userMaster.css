@@ -1,0 +1,103 @@
+body {
+    background: linear-gradient(135deg, #184872 0%, #0c253a 100%);
+    color: white;
+}
+
+.navbar {
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1061;
+}
+
+.wallet-holder {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: linear-gradient(90deg, rgba(24, 72, 114, 1) 0%, rgba(82, 98, 188, 1) 100%);
+    border-radius: 6px;
+    color: white;
+    padding: 1rem;
+    height: 116px;
+    margin-bottom: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    box-shadow: -3px 3px 3px 2px rgba(0, 0, 0, 0.3);
+}
+
+.wallet-amount {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.wallet-holder>img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+}
+
+.wallet-last-updated {
+    font-size: 0.9rem;
+    opacity: 0.5;
+}
+
+.users-body {
+    min-height: 84vh;
+}
+
+.card-holder {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-holder .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.card-title-icon {
+    height: 23px;
+    width: 23px;
+    object-position: center;
+    object-fit: contain;
+    margin-right: 8px;
+}
+
+.approved-task {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-darker-text);
+    margin-bottom: 5px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    width: 100px;
+    font-weight: bold;
+}
+
+.rejected-task {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--red);
+    margin-bottom: 5px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    width: 100px;
+    font-weight: bold;
+}
+
+.form-control:disabled{
+    background-color: var(--grey);
+}

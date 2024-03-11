@@ -1,0 +1,200 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+ViewData["Title"] = "Wallet | Project India";
+Layout = "/Views/Users/_Layout.cshtml";
+}
+
+<link type="text/css" rel="stylesheet" href="~/css/users/userWallet.css" />
+<script src="~/js/users/userWallet.js" asp-append-version="true"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        userWallet.initialize();
+    });
+</script>
+
+<div class="container mt-3 mb-3 mt-md-0 mb-md-0">
+    <div class="row mt-4">
+        <div class="col-md-5 col-12">
+            <div class="card-holder">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <img class="card-title-icon" src="~/images/users/wallet.png">
+                    <span class="fw-bold title">@localizer["Wallet"]</span>
+                </div>
+                <div class="wallet-holder">
+                    <div class="d-flex flex-column">
+                        <span class="fw-bold">
+                            @localizer["BoostifySolutionWallet"]
+                        </span>
+                        <span class="wallet-amount" data-bind="text: walletAmount"></span>
+                        <span class="wallet-last-updated" data-bind="text: walletLastUpdated"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <a class="quick-wallet-button-holder" data-bind="click: withdrawClick">
+                            <span class="quick-wallet-title">
+                                @localizer["Withdraw"]
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a class="quick-wallet-button-holder" data-bind="click: depositClick">
+                            <span class="quick-wallet-title">
+                                @localizer["Deposit"]
+                            </span>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a class="quick-wallet-button-holder" data-bind="attr: { href: '/users/home?culture=' + language  }">
+                            <span class="quick-wallet-title">
+                                @localizer["MoreTask"]
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 d-none d-md-block">
+
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="card-holder">
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <img class="card-title-icon" src="~/images/users/cash-flow.png">
+                    <span class="fw-bold title">@localizer["Transactions"]</span>
+                </div>
+                <div class="d-flex flex-column" data-bind="foreach: walletTransactions">
+                    <div class="transactions-holder" data-bind="click: $parent.walletTransactionClick.bind($data)">
+                        <div class="d-flex flex-row mb-2">
+                            <div class="wallet-transaction-type-holder"
+                                data-bind="css: { 'withdraw-type': type == 'Withdraw' }">
+                                <!-- ko if: type == "Withdraw"-->
+                                <span>@localizer["Withdraw"]</span>
+                                <!-- /ko -->
+                                <!-- ko if: type == "Commission" -->
+                                <span>@localizer["Commission"]</span>
+                                <!-- /ko -->
+                                <!-- ko if: type == "Deposit"-->
+                                <span>@localizer["Deposit"]</span>
+                                <!-- /ko -->
+
+                            </div>
+                            <div class="wallet-transaction-status-holder"
+                                data-bind="css: { 'pending-status': status == 'Pending' }">
+                                <!-- ko if: status == "Pending" -->
+                                <span>@localizer["Pending"]</span>
+                                <!-- /ko -->
+                                <!-- ko if: status == "Successful"-->
+                                <span>@localizer["Successful"]</span>
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                        <span class="transaction-amount-text" data-bind="text: amount"></span>
+                        <span class="transaction-date-added-text" data-bind="text: dateAdded"></span>
+                    </div>
+                </div>
+                <!-- ko if: walletTransactions().length == 0 -->
+                <div class="transactions-holder justify-content-center align-items-center">
+                    <span>@localizer["NoTransactionsYet"]</span>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="wallet-withdraw-modal" aria-hidden="true">
+    <div class="modal-overlay" tabindex="1">
+        <div class="modal-container small-modal-container" role="dialog" aria-modal="true"
+            aria-labelledby="modal-1-title">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h4 class="fw-bold mb-0">@localizer["WalletWithdraw"]</h4>
+                    <div class="modal-close-button" data-micromodal-close>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <div class="input-holder mb-1">
+                            <label>
+                                @localizer["WalletAmount"]
+                            </label>
+                            <input type="number" class="form-control" data-bind="value: withdrawAmount">
+                        </div>
+                        <span class="mb-3 secondary-text me-1">@localizer["WithdrawUpTo"]<span
+                                data-bind="text: walletAmount"></span></span>
+                        <div class="input-holder">
+                            <label>
+                                @localizer["BankName"]
+                            </label>
+                            <input type="text" class="form-control" data-bind="value: bankName">
+                        </div>
+                        <div class="input-holder">
+                            <label>
+                                @localizer["BankAccountNumber"]
+                            </label>
+                            <input type="text" class="form-control" data-bind="value: bankAccountNumber">
+                        </div>
+                        <div class="input-holder">
+                            <label>
+                                @localizer["AccountHolderName"]
+                            </label>
+                            <input type="text" class="form-control" data-bind="value: accountHolderName">
+                        </div>
+                        <!-- ko if: currency() == 1-->
+                        <div class="input-holder">
+                            <label>
+                                ISFC Code*
+                            </label>
+                            <input type="text" class="form-control" data-bind="value: isfcCode">
+                        </div>
+                        <!-- /ko -->
+                        <span>@localizer["PleaseMakeSureWithdraw"]</span>
+                        <button class="primary-button button mt-3 w-100"
+                            data-bind="click: submitWithdrawClick">@localizer["SubmitWithdraw"]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal micromodal-slide" id="wallet-deposit-modal" aria-hidden="true">
+    <div class="modal-overlay" tabindex="1">
+        <div class="modal-container small-modal-container" role="dialog" aria-modal="true"
+            aria-labelledby="modal-1-title">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h4 class="fw-bold mb-0">@localizer["WalletDeposit"]</h4>
+                    <div class="modal-close-button" data-micromodal-close>
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-column">
+                        <div class="input-holder ">
+                            <label>
+                                @localizer["DepositMethodType"]
+                            </label>
+                            <select class="form-control form-select"
+                                data-bind="value: depositMethod, options: depositMethodTypes, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select method', valueAllowUnset: true"></select>
+                        </div>
+                        <div class="input-holder">
+                            <label>
+                                @localizer["DepositAmount"]
+                            </label>
+                            <input type="number" class="form-control" data-bind="value: depositAmount">
+                        </div>
+                        <img class="deposit-image" src="~/images/users/deposit.png">
+                        <span>@localizer["PleaseMakeSureDeposit"]</span>
+                        <button class="primary-button button mt-3 w-100"
+                            data-bind="click: submitDepositClick">@localizer["SubmitDeposit"]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

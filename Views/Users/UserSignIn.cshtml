@@ -1,0 +1,42 @@
+@{
+ViewData["Title"] = "Sign In | Project India";
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<script src="~/js/users/userSignin.js" asp-append-version="true"></script>
+
+<div class="d-flex flex-column" style="background-color: var(--background-grey); height: 100vh;">
+    <div class="signin-content-holder">
+        <div class="signin-modal-holder">
+            <div class="d-flex flex-column">
+                <div class="text-center d-flex flex-column align-items-center">
+                    <img class="signin-logo" src="~/images/logos/project-india-logo.svg">
+                </div>
+                <div class="h-100 d-flex flex-column text-start">
+                    <span class="text-center mb-3 fw-bold">Log in to your account</span>
+                    <div class="mb-2">
+                        <p class="text-danger" data-bind="text: errorMessage, css: errorMessageClass"></p>
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            Email*
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: username">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            Password*
+                        </label>
+                        <input id="userPassword" class="form-control" type="password" placeholder="Password"
+                            data-bind="value: password, event: { keyup: passwordEnter }" />
+                    </div>
+                    <button class="primary-button button w-100 mt-2 mb-3" data-bind="click: signInClick">
+                        Sign In
+                    </button>
+                    <hr>
+                    <span class="text-center">Don't have an account yet? <a href="/users/signup">Sign Up Here</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

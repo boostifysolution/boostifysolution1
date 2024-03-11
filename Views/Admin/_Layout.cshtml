@@ -1,0 +1,75 @@
+@{
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<!-- micromodal -->
+<script src="https://unpkg.com/micromodal/dist/micromodal.min.js" asp-append-version="true"></script>
+
+
+<script src="~/js/admin/adminMaster.js" asp-append-version="true"></script>
+<link type="text/css" rel="stylesheet" href="~/css/admin/adminMaster.css" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        adminMaster.masterInitialize();
+    });
+</script>
+
+<div class="admin-nav-bar navbar navbar-toggleable-sm d-block d-md-none">
+    <div class="container">
+        <a href="/admin/merchants" class="navbar-brand">
+            <img src="~/images/logos/project-india-logo.svg">
+        </a>
+        <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+            aria-controls="navbarSupportedContent" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </div>
+    <div class="navbar-collapse collapse justify-content-end">
+        <div class="container">
+            <div class="d-flex flex-column pt-2 pb-2">
+                <a class="nav-item" href="/admin/users">
+                    Users
+                </a>
+                <a class="nav-item" href="/admin/tasks">
+                    Tasks
+                </a>
+                <a class="nav-item" href="/admin/adminstaffs">
+                    Admins
+                </a>
+                <a class="nav-item" data-bind="click: signOutClick">
+                    Sign Out
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar d-none d-md-block">
+    <div class="container">
+        <a class="navbar-brand" asp-area="" href="/admin/users">
+            <img src="~/images/logos/project-india-logo.svg">
+        </a>
+        <div class="d-flex flex-row desktop-navbar">
+            <a class="nav-item" href="/admin/users">
+                Users
+            </a>
+            <a class="nav-item" href="/admin/tasks">
+                Tasks
+            </a>
+            <a class="nav-item" href="/admin/adminstaffs">
+                Admins
+            </a>
+            <a class="nav-item" data-bind="click: signOutClick">
+                Sign Out
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="admin-body">
+    @RenderBody()
+</div>
+
+@section Scripts {
+@RenderSection("Scripts", required: false)
+}

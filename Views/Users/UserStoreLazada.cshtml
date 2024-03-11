@@ -1,0 +1,571 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+ViewData["Title"] = "Lazada | Project India";
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<link type="text/css" rel="stylesheet" href="~/css/users/userStoreLazada.css" />
+<script src="~/js/users/userMaster.js" asp-append-version="true"></script>
+<script src="~/js/users/userStoreLazada.js" asp-append-version="true"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        userMaster.masterInitialize();
+
+        var jsResx = {
+            failedToLoadTask: "@localizer["FailedToLoadTask"]",
+            addToCartNotAvailable: "@localizer["AddToCartNotAvailable"]",
+            useBuyNow: "@localizer["UseBuyNow"]",
+            disabledNavigation: "@localizer["DisabledNavigation"]",
+            switchPage: "@localizer["SwitchPage"]",
+            buyNowConfirmation: "@localizer["BuyNowConfirmation"]",
+            buyNow: "@localizer["BuyNow"]",
+            selectBuyNow: "@localizer["SelectBuyNow"]",
+            successfullyPurchaseProduct: "@localizer["SuccessfullyPurchaseProduct"]",
+            contactSupport: "@localizer["ContactSupport"]",
+            failedBuyNow: "@localizer["FailedBuyNow"]",
+            useBuyNowMobile: "@localizer["UseBuyNowMobile"]" 
+        };
+
+        userStoreLazada.initialize(jsResx);
+    });
+</script>
+
+<div class="lazada-header d-none d-md-block pb-3">
+    <div class="lazada-header-navigation-holder">
+        <div class="container">
+            <span style="color: #F0F;" data-bind="click: disabledNavigation">@localizer["FEEDBACK"]</span>
+            <span class="lazada-blue" data-bind="click: disabledNavigation">@localizer["SaveMoreOnApp"]</span>
+            <span class="lazada-blue" data-bind="click: disabledNavigation">@localizer["SellOnLazada"]</span>
+            <span style="color: #9e9e9e;" data-bind="click: disabledNavigation">@localizer["CustomerCare"]</span>
+            <span style="color: #9e9e9e;" data-bind="click: disabledNavigation">@localizer["TrackMyOrder"]</span>
+            <span style="color: #9e9e9e;" data-bind="click: disabledNavigation">@localizer["Login"]</span>
+            <span style="color: #9e9e9e;" data-bind="click: disabledNavigation">@localizer["Signup"]</span>
+            <span style="color: #9e9e9e;" data-bind="click: disabledNavigation">@localizer["ChangeLanguage"]</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="d-flex flex-column pt-2 pb-2">
+            <div class="d-flex flex-row align-items-center w-100 mb-1">
+                <img class="lazada-logo mb-3" src="~/images/logos/lazada-logo.png">
+                <div class="d-flex flex-column w-100">
+                    <div class="d-flex flex-row">
+                        <div class="search-bar">
+                            <span>@localizer["SearchInLazada"]</span>
+                        </div>
+                        <div class="search-button" data-bind="click: disabledNavigation">
+                            <img src="~/images/users/search-icon.png">
+                        </div>
+                    </div>
+
+                    <span style="color: #757575;"> kancil sport rim cap | loreal hair shampoo for colour hair | oneplus
+                        10 pro lcd | workout tee
+                        men | wurkkos wk04</span>
+                </div>
+                <img class="shopping-cart-icon mb-3" src="~/images/users/shopping-cart-icon-black.png"
+                    data-bind="click: disabledNavigation">
+                <img class="lazada-wallet-logo mb-3" src="~/images/logos/lazada-wallet-logo.png"
+                    data-bind="click: disabledNavigation">
+            </div>
+        </div>
+        <div class="d-flex flex-row align-items-center">
+            <span style="font-size: 1rem;" class="lazada-blue fw-bold ms-4 me-3">@localizer["Category"]</span>
+            <i style="margin-right: 80px !important;" class="fa-solid fa-angle-down fw-bold"></i>
+            <div class="lazada-header-shortcut-holder">
+                <img src="~/images/logos/laz-mall-logo.png">
+                <span class="lazada-blue">LazMall</span>
+            </div>
+            <div class="lazada-header-shortcut-holder">
+                <img src="~/images/logos/lazada-free-shipping-logo.png">
+                <span class="lazada-blue">@localizer["FreeShipping"]</span>
+            </div>
+            <div class="lazada-header-shortcut-holder">
+                <img src="~/images/logos/lazada-all-below-logo.png">
+                <span class="lazada-blue">@localizer["AllBelow"]</span>
+            </div>
+            <div class="lazada-header-shortcut-holder">
+                <img src="~/images/logos/lazada-top-up-logo.png">
+                <span class="lazada-blue">@localizer["TopUpAndEStore"]</span>
+            </div>
+            <div class="lazada-header-shortcut-holder">
+                <img src="~/images/logos/lazada-voucher-logo.png">
+                <span class="lazada-blue">@localizer["Voucher"]</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="d-none d-md-flex flex-row mt-3 mb-3">
+        <span class="breadcrumbs me-2" data-bind="click: disabledNavigation">LazMall &gt; Preferred Store &gt;</span>
+        <span class="breadcrumb-product-name" data-bind="text: productName"></span>
+    </div>
+</div>
+
+<div class="container product-container">
+    <div class="d-flex d-md-none flex-column product-details-container p-0">
+        <div class="product-image-holder mb-3">
+            <img class="product-main-image" data-bind="attr: { src: productMainImageURL}">
+            <div class="d-flex flex-row ps-3 pe-3" data-bind="foreach: productImagesURL">
+                <img class="product-sub-images"
+                    data-bind="attr: { src: $data}, click: $parent.productImageHover.bind($data), event: {mouseover: $parent.productImageHover.bind($data)}">
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-between p-3">
+            <div class="d-flex flex-row align-items-end">
+                <span class="price-mobile" data-bind="text: productPrice"></span>
+                <span class="grey-text text-decoration-line-through me-1" data-bind="text: beforeDiscountPrice"></span>
+                <span class="discount-mobile" data-bind="text: discountPercentage"></span>
+            </div>
+            <img class="lazada-share-img" data-bind="click: disabledNavigation" src="~/images/users/lazada-share.png">
+        </div>
+        <div class="d-flex flex-column pe-3 ps-3">
+            <div class="d-inline mb-3">
+                <img class="laz-mall-logo"
+                    src="https://img.lazcdn.com/g/tps/imgextra/i1/O1CN01JUOYif22N3Uu7JX4R_!!6000000007107-2-tps-162-48.png">
+                <span class="product-name" data-bind="text: productName"></span>
+            </div>
+            <div class="d-flex flex-row align-items-center mb-4">
+                <div class="star-ratings">
+                    <div class="fill-ratings" data-bind="style: {width: productRatingWidth }">
+                        <span>★★★★★</span>
+                    </div>
+                    <div class="empty-ratings">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                <span class="product-rating-mobile me-1" data-bind="text: productRating"></span>
+                <span class="product-rating-mobile">(<span data-bind="text: productRatingCount"></span>)</span>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex d-md-none flex-row product-details-container">
+        <div class="row">
+            <div class="col-2">
+                <span class="grey-text">@localizer["Vouchers"]</span>
+            </div>
+            <div class="col-10">
+                <div class="d-flex flex-row" data-bind="foreach: vouchers">
+                    <div class="voucher-holder">
+                        <span data-bind="text: $data"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex d-md-none flex-row product-details-container">
+        <div class="row">
+            <div class="col-2">
+                <span class="grey-text">@localizer["Delivery"]</span>
+            </div>
+            <div class="col-10">
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-row mb-2">
+                        <img class="lazada-details-icon" src="~/images/users/delivery-to.svg">
+                        <span> @localizer["SetDeliveryAddress"]
+                        </span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                        <div class="d-flex flex-column">
+                            <span>@localizer["StandardDelivery"]</span>
+                            <span class="grey-text">@localizer["GetIn"]</span>
+                        </div>
+                        <span class="fw-bold">RM4.90</span>
+                    </div>
+                    <span class="grey-text">@localizer["GetFreeShippingWith"]</span>
+                </div>
+            </div>
+            <hr />
+            <div class="col-2">
+                <span class="grey-text">@localizer["Services"]</span>
+            </div>
+            <div class="col-10">
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <img class="lazada-details-icon" src="~/images/users/approved-lazada.png">
+                        <span>@localizer["Authentic"]</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <img class="lazada-details-icon" src="~/images/users/approved-lazada.png">
+                        <span>@localizer["DaysReturn"]</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <img class="lazada-details-icon" src="~/images/users/warranty.svg">
+                        <span>@localizer["WarrantyNotAvailable"]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex d-md-none flex-column product-details-container">
+        <span class="grey-text mb-3">@localizer["RatingsReviews"]</span>
+        <div class="d-flex flex-column" data-bind="foreach: productReviewsList">
+            <div class="comment-holder">
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="d-flex flex-row date-added mb-3">
+                            <span data-bind="text: reviewerName"></span>
+                            <span class="me-1 ms-1">-</span>
+                            <span class="date-added" data-bind="text: dateAdded"></span>
+                        </div>
+                        <div class="star-ratings">
+                            <div class="fill-ratings" data-bind="style: {width: rating }">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p data-bind="text: comment"></p>
+                <span class="grey-text">Variation: Standard</span>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex d-md-none flex-column product-details-container">
+        <span class="grey-text mb-3">@localizer["Description"]</span>
+        <div data-bind="html: productDescription"></div>
+    </div>
+    <div class="d-flex d-md-none flex-column mobile-padding">
+
+    </div>
+    <div class="d-flex d-md-none mobile-cta">
+        <div class="shortcut-holder" data-bind="click: disabledNavigation">
+            <img src="https://img.lazcdn.com/g/tps/tfs/TB1vfkMjrvpK1RjSZFqXXcXUVXa-78-78.png_80x80q80.png_.webp">
+            <span>@localizer["Store"]</span>
+        </div>
+        <div class="shortcut-holder" data-bind="click: disabledNavigation">
+            <img src="https://img.lazcdn.com/g/tps/tfs/TB14FIGjwHqK1RjSZFPXXcwapXa-78-78.png_80x80q80.png_.webp">
+            <span>@localizer["Chat"]</span>
+        </div>
+        <div class="mobile-cta-buttons-holder">
+            <div class="mobile-cta-buttons-inner">
+                <div class="mobile-cta-button buy-now">
+                    <span class="mobile-cta-button-inner" data-bind="click: buyNowClickMobile">
+                        @localizer["BuyNow"]
+                    </span>
+                </div>
+                <div class="mobile-cta-button" data-bind="click: addToCartUnavailable">
+                    <span class="mobile-cta-button-inner">
+                        @localizer["AddToCart"]
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="d-none d-md-flex product-details-container mb-3">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <div class="product-image-holder">
+                    <img class="product-main-image" data-bind="attr: { src: productMainImageURL}">
+                    <div class="d-flex flex-row" data-bind="foreach: productImagesURL">
+                        <img class="product-sub-images"
+                            data-bind="attr: { src: $data}, click: $parent.productImageHover.bind($data), event: {mouseover: $parent.productImageHover.bind($data)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-12">
+                <div class="d-flex flex-column mt-3 mt-md-0">
+                    <img class="lazmall-icon"
+                        src="https://img.lazcdn.com/g/tps/imgextra/i1/O1CN01JUOYif22N3Uu7JX4R_!!6000000007107-2-tps-162-48.png">
+                    <span class="product-name" data-bind="text: productName"></span>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <div class="star-ratings">
+                            <div class="fill-ratings" data-bind="style: {width: productRating }">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <span class="product-rating-number" data-bind="text: productRatingCount"></span>
+                        <span class="product-rating-description">@localizer["Rating"]</span>
+                    </div>
+                    <div class="d-flex flex-row mb-4">
+                        <span class="grey-text me-1">Brand:</span>
+                        <span class="brand">LAZMALL | @localizer["MoreProductsFromLazMall"]</span>
+                    </div>
+                    <span class="price" data-bind="text: productPrice"></span>
+                    <div class="d-flex flex-row mb-5">
+                        <span class="grey-text text-decoration-line-through me-1"
+                            data-bind="text: beforeDiscountPrice"></span>
+                        <span data-bind="text: discountPercentage"></span>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-3 col-md-2">
+                            <span class="grey-text">@localizer["Promotions"]</span>
+                        </div>
+                        <div class="col-9 col-md-10">
+                            <div class="d-flex flex-row" data-bind="foreach: vouchers">
+                                <div class="voucher-holder">
+                                    <span data-bind="text: $data"></span>
+                                </div>
+                            </div>©˝
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-3 col-md-2">
+                            <span class="grey-text">@localizer["Quantity"]</span>
+                        </div>
+                        <div class="col-9 col-md-10">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="quantity-holder">
+                                    <span class="quantity-control" data-bind="click:minusQuantity">-</span>
+                                    <span class="quantity" data-bind="text: productQuantity"></span>
+                                    <span class="quantity-control" data-bind="click:plusQuantity">+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-md-flex d-none flex-row">
+                        <button class="buy-now-button" data-bind="click: buyNowClick">@localizer["BuyNow"]</button>
+                        <button class="add-to-cart-button"
+                            data-bind="click: addToCartUnavailable">@localizer["AddToCart"]</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-12 lazada-details d-none d-md-block">
+                <div class="lazada-details-right-holder">
+                    <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+                        <span class="lazada-details-title">
+                            @localizer["DeliveryOptions"]
+                        </span>
+                        <img class="lazada-details-title-icon" src="~/images/users/info-button.svg">
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <img class="lazada-details-icon" src="~/images/users/delivery-to.svg">
+                        <span> @localizer["SetDeliveryAddress"]
+                        </span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <img class="lazada-details-icon" src="~/images/users/fulfilled-lazada.svg">
+                        <span> @localizer["FulfilledByLazada"]
+                        </span>
+                    </div>
+                    <hr />
+                    <div class="d-flex flex-row mb-3">
+                        <img class="lazada-details-icon" src="~/images/users/standard-delivery.svg">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex flex-row align-items-center justify-content-between mb-2">
+                                <div class="d-flex flex-column">
+                                    <span>@localizer["StandardDelivery"]</span>
+                                    <span class="grey-text">@localizer["GetIn"]</span>
+                                </div>
+                                <span class="fw-bold">RM4.90</span>
+                            </div>
+                            <div class="free-shipping-holder">
+                                <span>@localizer["GetFreeShippingWith"]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <img class="lazada-details-icon" src="~/images/users/lazada-money.svg">
+                        <span>@localizer["CashOnDeliveryAvailable"]</span>
+                    </div>
+                    <hr />
+                    <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+                        <span class="lazada-details-title">
+                            @localizer["ReturnWarranty"]
+                        </span>
+                        <img class="lazada-details-title-icon" src="~/images/users/info-button.svg">
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <img class="lazada-details-icon" src="~/images/users/approved-lazada.png">
+                        <span>@localizer["Authentic"]</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <img class="lazada-details-icon" src="~/images/users/change-of-mind.png">
+                        <span>@localizer["ChangeOfMind"]</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <img class="lazada-details-icon" src="~/images/users/approved-lazada.png">
+                        <span>@localizer["DaysReturn"]</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <img class="lazada-details-icon" src="~/images/users/warranty.svg">
+                        <span>@localizer["WarrantyNotAvailable"]</span>
+                    </div>
+                </div>
+                <div class="lazada-details-right-holder pb-0">
+                    <div class="d-flex flex-row justify-content-between align-items-center">
+                        <div class="d-flex flex-column">
+                            <span class="grey-text">@localizer["SoldBy"]</span>
+                            <span data-bind="text: storeName"></span>
+                            <div class="d-flex flex-row">
+                                <img class="lazmall-icon-large" src="~/images/users/flagship-store.png">
+                            </div>
+                        </div>
+                        <span class="product-rating-description">@localizer["Chat"]</span>
+                    </div>
+                </div>
+                <div class="sellers-holder">
+                    <div class="seller-rating-holder">
+                        <span class="grey-text mb-5">@localizer["SellerRatings"]</span>
+                        <span class="seller-ratings-score">95%</span>
+                    </div>
+                    <div class="seller-rating-holder">
+                        <span class="grey-text mb-5">@localizer["ShipOnTime"]</span>
+                        <span class="seller-ratings-score">96%</span>
+                    </div>
+                    <div class="seller-rating-holder">
+                        <span class="grey-text mb-5">@localizer["SellerRatings"]</span>
+                        <span class="seller-ratings-score">100%</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <span class="text-center product-rating-description">@localizer["GoToStore"]</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-description-holder mb-4 d-none d-md-block">
+        <div class="product-description-title-holder">
+            <span class="me-2">@localizer["ProductDetailsOf"]</span>
+            <span data-bind="text: productName"></span>
+        </div>
+        <div class="d-flex p-3">
+            <div data-bind="html: productDescription"></div>
+        </div>
+    </div>
+    <div class="product-description-holder d-none d-md-flex">
+        <div class="product-description-title-holder">
+            <span class="me-2">@localizer["RatingsReviewsOf"]</span>
+            <span data-bind="text: productName"></span>
+        </div>
+        <div class="d-flex flex-column p-3">
+            <div class="ratings-holder">
+                <div class="d-flex flex-column justify-content-center me-5">
+                    <div class="d-flex flex-row align-items-end">
+                        <span class="rating-score-title" data-bind="text: productRating"></span>
+                        <span class="rating-score-five">/5</span>
+                    </div>
+                    <div class="large-star-ratings">
+                        <div class="fill-ratings" data-bind="style: {width: productRating }">
+                            <span>★★★★★</span>
+                        </div>
+                        <div class="empty-ratings">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <span class="grey-text me-1" data-bind="text: productRatingCount"></span>
+                        <span class="grey-text">@localizer["Rating"]</span>
+                    </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="d-flex flex-row mb-2 align-items-center">
+                        <div class="star-ratings">
+                            <div class="fill-ratings" style="width: 100%">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                style="width:80%">
+                            </div>
+                        </div>
+                        <span>10</span>
+                    </div>
+                    <div class="d-flex flex-row mb-2 align-items-center">
+                        <div class="star-ratings">
+                            <div class="fill-ratings" style="width: 80%">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                style="width:15%">
+                            </div>
+                        </div>
+                        <span>5</span>
+                    </div>
+                    <div class="d-flex flex-row mb-2 align-items-center">
+                        <div class="star-ratings">
+                            <div class="fill-ratings" style="width: 60%">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                style="width:15%">
+                            </div>
+                        </div>
+                        <span>0</span>
+                    </div>
+                    <div class="d-flex flex-row mb-2 align-items-center">
+                        <div class="star-ratings">
+                            <div class="fill-ratings" style="width: 40%">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                style="width:0%">
+                            </div>
+                        </div>
+                        <span>0</span>
+                    </div>
+                    <div class="d-flex flex-row mb-3">
+                        <div class="star-ratings">
+                            <div class="fill-ratings" style="width: 20%">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                style="width:5%">
+                            </div>
+                        </div>
+                        <span>1</span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <span>@localizer["ProductReviews"]</span>
+            <hr />
+            <div class="d-flex flex-column" data-bind="foreach: productReviewsList">
+                <div class="comment-holder">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="star-ratings">
+                                <div class="fill-ratings" data-bind="style: {width: rating }">
+                                    <span>★★★★★</span>
+                                </div>
+                                <div class="empty-ratings">
+                                    <span>★★★★★</span>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row">
+                                <span class="date-added" data-bind="text: dateAdded"></span>
+                                <span class="grey-text"> | Variation: Standard </span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="mb-3 grey-text" data-bind="text: reviewerName"></span>
+                    <p data-bind="text: comment"></p>
+                    <div class="d-flex flex-row align-items-center">
+                        <img class="thumbsup-icon" src="~/images/users/thumbs-up-lazada.png">
+                        <span class="grey-text">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

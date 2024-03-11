@@ -1,0 +1,34 @@
+@{
+ViewData["Title"] = "Log In | Admin";
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<script src="~/js/admin/adminSignIn.js" asp-append-version="true"></script>
+
+<div class="d-flex flex-column" style="background-color: var(--background-grey); height: 100vh;">
+    <div class="signin-content-holder">
+        <div class="signin-modal-holder">
+            <div class="d-flex flex-column">
+                <div class="text-center d-flex flex-column align-items-center mb-4">
+                    <img class="signin-logo" src="~/images/logos/project-india-logo.svg">
+                </div>
+                <div class="h-100 d-flex flex-column justify-content-center align-content-center">
+                    <div>
+                        <p class="text-danger" data-bind="text: errorMessage, css: errorMessageClass"></p>
+                    </div>
+                    <div class="input-holder">
+                        <input id="adminUsername" class="form-control" type="text" placeholder="Username"
+                            data-bind="value: username" />
+                    </div>
+                    <div class="input-holder">
+                        <input id="adminPassword" class="form-control" type="password" placeholder="Password"
+                            data-bind="value: password, event: { keyup: passwordEnter }" />
+                    </div>
+                    <button class="primary-button button w-100 mb-3" data-bind="click: signInClick">
+                        Log In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

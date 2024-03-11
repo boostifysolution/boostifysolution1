@@ -1,0 +1,22 @@
+body {
+    background: #f4f4f4;
+    position: relative;
+    color: var(--black);
+}
+
+.navbar {
+    background: white;
+
+}
+
+.button {
+    font-size: 0.9rem;
+}
+
+/* .internal-grid .jsgrid-cell {
+    font-size: 0.9rem;
+}
+
+.internal-grid .jsgrid-header-cell {
+    font-size: 0.9rem;
+} */

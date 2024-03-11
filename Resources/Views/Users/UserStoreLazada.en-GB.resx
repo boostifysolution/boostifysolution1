@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddToCart" xml:space="preserve">
+    <value>Add To Cart</value>
+  </data>
+  <data name="AddToCartNotAvailable" xml:space="preserve">
+    <value>Add To Cart not available</value>
+  </data>
+  <data name="AllBelow" xml:space="preserve">
+    <value>All Below RM9.90</value>
+  </data>
+  <data name="Authentic" xml:space="preserve">
+    <value>Authentic</value>
+  </data>
+  <data name="BuyNow" xml:space="preserve">
+    <value>Buy Now</value>
+  </data>
+  <data name="BuyNowConfirmation" xml:space="preserve">
+    <value>Buy Now Confirmation</value>
+  </data>
+  <data name="CashOnDeliveryAvailable" xml:space="preserve">
+    <value>Cash on Delivery Available</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>TUKAR BAHASA</value>
+  </data>
+  <data name="ChangeOfMind" xml:space="preserve">
+    <value>Change Of Mind</value>
+  </data>
+  <data name="ChatResponse" xml:space="preserve">
+    <value>Chat Response</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>Kindly contact your support staff to complete your task. You will now be redirected back to Project India</value>
+  </data>
+  <data name="CustomerCare" xml:space="preserve">
+    <value>CUSTOMER CARE</value>
+  </data>
+  <data name="DaysReturn" xml:space="preserve">
+    <value>15 days return</value>
+  </data>
+  <data name="DeliveryOptions" xml:space="preserve">
+    <value>Delivery Options</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DisabledNavigation" xml:space="preserve">
+    <value>Disabled Navigation</value>
+  </data>
+  <data name="FailedBuyNow" xml:space="preserve">
+    <value>Failed to complete buy now</value>
+  </data>
+  <data name="FailedToLoadTask" xml:space="preserve">
+    <value>Failed to load store task details</value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>FEEDBACK</value>
+  </data>
+  <data name="FreeShipping" xml:space="preserve">
+    <value>Free Shipping</value>
+  </data>
+  <data name="FulfilledByLazada" xml:space="preserve">
+    <value>Fulfilled by Lazada</value>
+  </data>
+  <data name="GetFreeShippingWith" xml:space="preserve">
+    <value>Get Free Shipping Discount with min purchase RM160.00</value>
+  </data>
+  <data name="GetIn" xml:space="preserve">
+    <value>Get in 2-3 Days</value>
+  </data>
+  <data name="GoToStore" xml:space="preserve">
+    <value>GO TO STORE</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="MoreProductsFromLazMall" xml:space="preserve">
+    <value>More Products From LAZMALL</value>
+  </data>
+  <data name="ProductDetailsOf" xml:space="preserve">
+    <value>Product details of</value>
+  </data>
+  <data name="ProductReviews" xml:space="preserve">
+    <value>Product Reviews</value>
+  </data>
+  <data name="Promotions" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="RatingsReviews" xml:space="preserve">
+    <value>Ratings and Reviews</value>
+  </data>
+  <data name="RatingsReviewsOf" xml:space="preserve">
+    <value>Ratings &amp; Reviews of</value>
+  </data>
+  <data name="ReturnWarranty" xml:space="preserve">
+    <value>Return &amp; Warranty</value>
+  </data>
+  <data name="SaveMoreOnApp" xml:space="preserve">
+    <value>SAVE MORE ON APP</value>
+  </data>
+  <data name="SearchInLazada" xml:space="preserve">
+    <value>Search in Lazada</value>
+  </data>
+  <data name="SelectBuyNow" xml:space="preserve">
+    <value>Please select Buy Now to confirm purchase</value>
+  </data>
+  <data name="SelectBuyNowMobile" xml:space="preserve">
+    <value>Please enter the purchase quantity and Buy Now to confirm purchase</value>
+  </data>
+  <data name="SellOnLazada" xml:space="preserve">
+    <value>SELL ON LAZADA</value>
+  </data>
+  <data name="SellerRatings" xml:space="preserve">
+    <value>Seller Ratings</value>
+  </data>
+  <data name="SetDeliveryAddress" xml:space="preserve">
+    <value>Set your delivery address</value>
+  </data>
+  <data name="ShipOnTime" xml:space="preserve">
+    <value>Ship On Time</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>SIGNUP</value>
+  </data>
+  <data name="SoldBy" xml:space="preserve">
+    <value>Sold By</value>
+  </data>
+  <data name="StandardDelivery" xml:space="preserve">
+    <value>Standard Delivery</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>Store</value>
+  </data>
+  <data name="SuccessfullyPurchaseProduct" xml:space="preserve">
+    <value>Successfully Purchase Product</value>
+  </data>
+  <data name="SwitchPage" xml:space="preserve">
+    <value>Switching pages is disabled while completing task</value>
+  </data>
+  <data name="TopUpAndEStore" xml:space="preserve">
+    <value>Top up &amp; eStore</value>
+  </data>
+  <data name="TrackMyOrder" xml:space="preserve">
+    <value>TRACK MY ORDER</value>
+  </data>
+  <data name="UseBuyNow" xml:space="preserve">
+    <value>Use Buy Now to complete task</value>
+  </data>
+  <data name="UseBuyNowMobile" xml:space="preserve">
+    <value>UseBuyNow</value>
+  </data>
+  <data name="Voucher" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
+  <data name="WarrantyNotAvailable" xml:space="preserve">
+    <value>Warranty not available</value>
+  </data>
+</root>

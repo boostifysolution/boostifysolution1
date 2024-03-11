@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddToCart" xml:space="preserve">
+    <value>加入购物车</value>
+  </data>
+  <data name="AddToCartNotAvailable" xml:space="preserve">
+    <value>添加到购物车不可用</value>
+  </data>
+  <data name="AuthenticGuarantee" xml:space="preserve">
+    <value>100% 正品保证</value>
+  </data>
+  <data name="BuyNow" xml:space="preserve">
+    <value>直接购买</value>
+  </data>
+  <data name="BuyNowConfirmation" xml:space="preserve">
+    <value>立即购买确认</value>
+  </data>
+  <data name="ContactSupport" xml:space="preserve">
+    <value>请联系您的支持人员以完成您的任务。您现在将被重定向回</value>
+  </data>
+  <data name="DisabledNavigation" xml:space="preserve">
+    <value> 禁用页面导航</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="FailedBuyNow" xml:space="preserve">
+    <value>无法完成立即购买</value>
+  </data>
+  <data name="FailedToLoadTask" xml:space="preserve">
+    <value>无法加载商店任务详细信息</value>
+  </data>
+  <data name="FreeShipping" xml:space="preserve">
+    <value>免运费</value>
+  </data>
+  <data name="GuaranteeAuthentic" xml:space="preserve">
+    <value>保证正品或退款</value>
+  </data>
+  <data name="GuaranteeDescription" xml:space="preserve">
+    <value>获取您订购的商品或退款。</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>帮助中心</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="PiecesAvailable" xml:space="preserve">
+    <value>还剩</value>
+  </data>
+  <data name="ProductDescription" xml:space="preserve">
+    <value>商品描述</value>
+  </data>
+  <data name="ProductRatings" xml:space="preserve">
+    <value>商品评价</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>商品</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>评分</value>
+  </data>
+  <data name="ResponseTime" xml:space="preserve">
+    <value>回应速度</value>
+  </data>
+  <data name="SelectBuyNow" xml:space="preserve">
+    <value>请选择立即购买以确认购买</value>
+  </data>
+  <data name="Shipping" xml:space="preserve">
+    <value>船运</value>
+  </data>
+  <data name="ShippingFee" xml:space="preserve">
+    <value>运输费用</value>
+  </data>
+  <data name="ShippingFrom" xml:space="preserve">
+    <value>发货自</value>
+  </data>
+  <data name="ShopVouchers" xml:space="preserve">
+    <value>商店优惠券</value>
+  </data>
+  <data name="ShopeeGuarantee" xml:space="preserve">
+    <value>Shopee 保证</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="SignUpAnd" xml:space="preserve">
+    <value>注册并获取折扣券</value>
+  </data>
+  <data name="Sold" xml:space="preserve">
+    <value> 卖</value>
+  </data>
+  <data name="StartSelling" xml:space="preserve">
+    <value>开始售卖</value>
+  </data>
+  <data name="SuccessfullyPurchaseProduct" xml:space="preserve">
+    <value>成功购买产品</value>
+  </data>
+  <data name="SwitchPage" xml:space="preserve">
+    <value>完成任务时禁用切换页面</value>
+  </data>
+  <data name="UseBuyNow" xml:space="preserve">
+    <value>使用立即购买来完成任务</value>
+  </data>
+  <data name="Variation" xml:space="preserve">
+    <value>种类</value>
+  </data>
+  <data name="ViewShop" xml:space="preserve">
+    <value>查看商店</value>
+  </data>
+  <data name="WithinHours" xml:space="preserve">
+    <value>几分钟之内</value>
+  </data>
+</root>

@@ -1,0 +1,26 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+@{
+ViewData["Title"] = "Amazon | Project India";
+Layout = "/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<link type="text/css" rel="stylesheet" href="~/css/users/userStoreAmazon.css" />
+<script src="~/js/users/userMaster.js" asp-append-version="true"></script>
+<script src="~/js/users/userStoreAmazon.js" asp-append-version="true"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        userStoreAmazon.initialize();
+    });
+</script>
+
+<div class="amazon-header">
+    <img>
+</div>
+<div class="amazon-secondary-header">
+
+</div>
+<div class="container">
+
+</div>

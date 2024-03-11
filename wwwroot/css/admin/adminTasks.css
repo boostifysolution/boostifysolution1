@@ -1,0 +1,19 @@
+.store-thumbnail-image-holder>img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid var(--grey);
+    object-fit: cover;
+    object-position: center;
+    margin-right: 1rem;
+}
+
+.product-image-holder>img {
+    height: 200px;
+    widtH: 200px;
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+    object-fit: cover;
+    object-position: center;
+    margin-right: 1rem;
+}

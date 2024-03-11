@@ -1,0 +1,721 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.css",
+      "PackagePath": "staticwebassets/css/bootstrap.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.js",
+      "PackagePath": "staticwebassets/js/bootstrap.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/.nuget/packages/bootstrap/5.3.2/contentFiles/any/any/wwwroot/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/admin/adminMaster.css",
+      "PackagePath": "staticwebassets/css/admin/adminMaster.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/admin/adminTasks.css",
+      "PackagePath": "staticwebassets/css/admin/adminTasks.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/admin/adminUsers.css",
+      "PackagePath": "staticwebassets/css/admin/adminUsers.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/landingPage/landingPageHome.css",
+      "PackagePath": "staticwebassets/css/landingPage/landingPageHome.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/landingPage/landingPageMaster.css",
+      "PackagePath": "staticwebassets/css/landingPage/landingPageMaster.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userHome.css",
+      "PackagePath": "staticwebassets/css/users/userHome.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userMaster.css",
+      "PackagePath": "staticwebassets/css/users/userMaster.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userProfile.css",
+      "PackagePath": "staticwebassets/css/users/userProfile.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userSignIn.css",
+      "PackagePath": "staticwebassets/css/users/userSignIn.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userStoreAmazon.css",
+      "PackagePath": "staticwebassets/css/users/userStoreAmazon.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userStoreLazada.css",
+      "PackagePath": "staticwebassets/css/users/userStoreLazada.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userStoreShopee.css",
+      "PackagePath": "staticwebassets/css/users/userStoreShopee.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/css/users/userWallet.css",
+      "PackagePath": "staticwebassets/css/users/userWallet.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/.DS_Store",
+      "PackagePath": "staticwebassets/images/.DS_Store"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/categorize-content.webp",
+      "PackagePath": "staticwebassets/images/landingPage/categorize-content.webp"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/hero-banner.webp",
+      "PackagePath": "staticwebassets/images/landingPage/hero-banner.webp"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/perform-surveys.webp",
+      "PackagePath": "staticwebassets/images/landingPage/perform-surveys.webp"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/rate-products.webp",
+      "PackagePath": "staticwebassets/images/landingPage/rate-products.webp"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/search-for-information.webp",
+      "PackagePath": "staticwebassets/images/landingPage/search-for-information.webp"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/laz-mall-logo.png",
+      "PackagePath": "staticwebassets/images/logos/laz-mall-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/lazada-all-below-logo.png",
+      "PackagePath": "staticwebassets/images/logos/lazada-all-below-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/lazada-free-shipping-logo.png",
+      "PackagePath": "staticwebassets/images/logos/lazada-free-shipping-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/lazada-logo.png",
+      "PackagePath": "staticwebassets/images/logos/lazada-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/lazada-top-up-logo.png",
+      "PackagePath": "staticwebassets/images/logos/lazada-top-up-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/lazada-voucher-logo.png",
+      "PackagePath": "staticwebassets/images/logos/lazada-voucher-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/lazada-wallet-logo.png",
+      "PackagePath": "staticwebassets/images/logos/lazada-wallet-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/project-india-logo-white.svg",
+      "PackagePath": "staticwebassets/images/logos/project-india-logo-white.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/project-india-logo.svg",
+      "PackagePath": "staticwebassets/images/logos/project-india-logo.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/shopee-logo.webp",
+      "PackagePath": "staticwebassets/images/logos/shopee-logo.webp"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/approved-lazada.png",
+      "PackagePath": "staticwebassets/images/users/approved-lazada.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/avatar-sm.png",
+      "PackagePath": "staticwebassets/images/users/avatar-sm.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/avatar.png",
+      "PackagePath": "staticwebassets/images/users/avatar.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/cash-flow.png",
+      "PackagePath": "staticwebassets/images/users/cash-flow.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/change-of-mind.png",
+      "PackagePath": "staticwebassets/images/users/change-of-mind.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/checklist.png",
+      "PackagePath": "staticwebassets/images/users/checklist.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/completed.png",
+      "PackagePath": "staticwebassets/images/users/completed.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/delivery-to.svg",
+      "PackagePath": "staticwebassets/images/users/delivery-to.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/deposit.png",
+      "PackagePath": "staticwebassets/images/users/deposit.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/flagship-store.png",
+      "PackagePath": "staticwebassets/images/users/flagship-store.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/free-shipping.png",
+      "PackagePath": "staticwebassets/images/users/free-shipping.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/fulfilled-lazada.svg",
+      "PackagePath": "staticwebassets/images/users/fulfilled-lazada.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/info-button.svg",
+      "PackagePath": "staticwebassets/images/users/info-button.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/lazada-money.svg",
+      "PackagePath": "staticwebassets/images/users/lazada-money.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/lazada-share.png",
+      "PackagePath": "staticwebassets/images/users/lazada-share.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/plane.png",
+      "PackagePath": "staticwebassets/images/users/plane.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/search-icon.png",
+      "PackagePath": "staticwebassets/images/users/search-icon.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/shopee-guarantee.png",
+      "PackagePath": "staticwebassets/images/users/shopee-guarantee.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/shopping-cart-icon-black.png",
+      "PackagePath": "staticwebassets/images/users/shopping-cart-icon-black.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/shopping-cart-icon.png",
+      "PackagePath": "staticwebassets/images/users/shopping-cart-icon.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/standard-delivery.svg",
+      "PackagePath": "staticwebassets/images/users/standard-delivery.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/star-full.png",
+      "PackagePath": "staticwebassets/images/users/star-full.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/star-partial.png",
+      "PackagePath": "staticwebassets/images/users/star-partial.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/submitted.png",
+      "PackagePath": "staticwebassets/images/users/submitted.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/thumbs-up-lazada.png",
+      "PackagePath": "staticwebassets/images/users/thumbs-up-lazada.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/wallet.png",
+      "PackagePath": "staticwebassets/images/users/wallet.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/users/warranty.svg",
+      "PackagePath": "staticwebassets/images/users/warranty.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminMaster.js",
+      "PackagePath": "staticwebassets/js/admin/adminMaster.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminSignIn.js",
+      "PackagePath": "staticwebassets/js/admin/adminSignIn.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminSignUp.js",
+      "PackagePath": "staticwebassets/js/admin/adminSignUp.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminStaffs.js",
+      "PackagePath": "staticwebassets/js/admin/adminStaffs.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminTasks.js",
+      "PackagePath": "staticwebassets/js/admin/adminTasks.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminUsers.js",
+      "PackagePath": "staticwebassets/js/admin/adminUsers.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userHome.js",
+      "PackagePath": "staticwebassets/js/users/userHome.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userMaster.js",
+      "PackagePath": "staticwebassets/js/users/userMaster.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userProfile.js",
+      "PackagePath": "staticwebassets/js/users/userProfile.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userSignIn.js",
+      "PackagePath": "staticwebassets/js/users/userSignIn.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userStoreAmazon.js",
+      "PackagePath": "staticwebassets/js/users/userStoreAmazon.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userStoreLazada.js",
+      "PackagePath": "staticwebassets/js/users/userStoreLazada.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userStoreShopee.js",
+      "PackagePath": "staticwebassets/js/users/userStoreShopee.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userWallet.js",
+      "PackagePath": "staticwebassets/js/users/userWallet.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.boostifysolution1.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.boostifysolution1.props",
+      "PackagePath": "build\\boostifysolution1.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.boostifysolution1.props",
+      "PackagePath": "buildMultiTargeting\\boostifysolution1.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.boostifysolution1.props",
+      "PackagePath": "buildTransitive\\boostifysolution1.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
