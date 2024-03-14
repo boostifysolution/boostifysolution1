@@ -12,7 +12,7 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/logos/project-india-logo.svg">
+                    <img src="~/images/logos/boostify.png">
                 </a>
                 <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,11 +41,16 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 ps-0 pe-0 mb-4 mb-md-0">
-                <img class="footer-logo" src="~/images/logos/project-india-logo-white.svg">
+                <img class="footer-logo" src="~/images/logos/boostify-white.png">
+                <div class="d-flex align-items-center mt-3">
+                    © 2020–2023 Boostify Solution
+                </div>
             </div>
             <div class="col-12 col-md-9">
-                <div class="d-flex align-items-center h-100">
-                    © 2020–2023 Project India
+                <div class="d-flex flex-column">
+                    <h5 class="fw-bold">Accounts</h5>
+                    <a class="fw-bold mb-2" style="color: white; text-decoration: underline;" href="/users/signin">Log In</a>
+                    <a class="fw-bold" style="color: white; text-decoration: underline;" href="/users/signup">Sign Up</a>
                 </div>
             </div>
         </div>

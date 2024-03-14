@@ -265,6 +265,14 @@
       "PackagePath": "staticwebassets/images/landingPage/search-for-information.webp"
     },
     {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/boostify-white.png",
+      "PackagePath": "staticwebassets/images/logos/boostify-white.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/boostify.png",
+      "PackagePath": "staticwebassets/images/logos/boostify.png"
+    },
+    {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/laz-mall-logo.png",
       "PackagePath": "staticwebassets/images/logos/laz-mall-logo.png"
     },

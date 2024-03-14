@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XueTmydhhPGYTUY4Yk6CQ/VE7Wa096dn7RubsllsUQI=",
+  "Hash": "irVgC3J3HsXw1LtmAX4FWJ7x2wa3CYKvPUa9eMmzwrU=",
   "Source": "boostifysolution1",
   "BasePath": "_content/boostifysolution1",
   "Mode": "Default",
@@ -2157,6 +2157,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/images/landingPage/search-for-information.webp"
+    },
+    {
+      "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/boostify-white.png",
+      "SourceId": "boostifysolution1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/",
+      "BasePath": "_content/boostifysolution1",
+      "RelativePath": "images/logos/boostify-white.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/logos/boostify-white.png"
+    },
+    {
+      "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/boostify.png",
+      "SourceId": "boostifysolution1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/",
+      "BasePath": "_content/boostifysolution1",
+      "RelativePath": "images/logos/boostify.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/logos/boostify.png"
     },
     {
       "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/logos/laz-mall-logo.png",

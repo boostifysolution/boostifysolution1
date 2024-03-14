@@ -20,7 +20,7 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 <div class="navbar navbar-toggleable-sm d-block d-md-none">
     <div class="container">
         <a href="/users/home" class="navbar-brand">
-            <img src="~/images/logos/project-india-logo.svg">
+            <img src="~/images/logos/boostify.png">
         </a>
         <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
             aria-controls="navbarSupportedContent" aria-expanded="false">
@@ -50,7 +50,7 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 <nav class="navbar d-none d-md-block">
     <div class="container">
         <a class="navbar-brand" asp-area="" data-bind="attr: { href: '/users/home?culture=' + language  }">
-            <img src="~/images/logos/project-india-logo.svg">
+            <img src="~/images/logos/boostify.png">
         </a>
         <div class="d-flex flex-row desktop-navbar">
             <a class="nav-item" data-bind="attr: { href: '/users/home?culture=' + language  }">
@@ -75,11 +75,15 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 ps-0 pe-0 mb-4 mb-md-0">
-                <img class="footer-logo" src="~/images/logos/project-india-logo-white.svg">
+                <img class="footer-logo" src="~/images/logos/boostify-white.png">
+                <div class="d-flex align-items-center mt-3">
+                    © 2020–2023 Boostify Solution
+                </div>
             </div>
             <div class="col-12 col-md-9">
-                <div class="d-flex align-items-center h-100">
-                    © 2020–2023 Project India
+                <div class="d-flex flex-column">
+                    <a href="/users/signin">Log In</a>
+                    <a href="/users/signup">Sign Up</a>
                 </div>
             </div>
         </div>
