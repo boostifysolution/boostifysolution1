@@ -55,7 +55,9 @@ namespace BoostifySolution.Global
                 [Description("RM")]
                 MYR = 0,
                 [Description("Rupee")]
-                Rupee = 1
+                Rupee = 1,
+                [Description("Rupiah")]
+                Rupiah = 2
             }
 
             public enum Languages
@@ -179,6 +181,14 @@ namespace BoostifySolution.Global
                 Indonesia = 1,
                 [Description("India")]
                 India = 2,
+            }
+
+            public enum LeadStatuses
+            {
+                [Description("Lead")]
+                Lead = 0,
+                [Description("Assigned")]
+                Assigned = 1
             }
         }
     }

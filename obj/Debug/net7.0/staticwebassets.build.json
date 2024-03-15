@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "irVgC3J3HsXw1LtmAX4FWJ7x2wa3CYKvPUa9eMmzwrU=",
+  "Hash": "bVLoOtMuzUCKqLGWu4SrLkpHZvZ+VaOOrZbBpik8oVM=",
   "Source": "boostifysolution1",
   "BasePath": "_content/boostifysolution1",
   "Mode": "Default",
@@ -2074,6 +2074,23 @@
       "OriginalItemSpec": "wwwroot/images/.DS_Store"
     },
     {
+      "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/common/hamburger.svg",
+      "SourceId": "boostifysolution1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/",
+      "BasePath": "_content/boostifysolution1",
+      "RelativePath": "images/common/hamburger.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/common/hamburger.svg"
+    },
+    {
       "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/categorize-content.webp",
       "SourceId": "boostifysolution1",
       "SourceType": "Discovered",
@@ -2856,23 +2873,6 @@
       "OriginalItemSpec": "wwwroot/js/admin/adminSignIn.js"
     },
     {
-      "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminSignUp.js",
-      "SourceId": "boostifysolution1",
-      "SourceType": "Discovered",
-      "ContentRoot": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/",
-      "BasePath": "_content/boostifysolution1",
-      "RelativePath": "js/admin/adminSignUp.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/js/admin/adminSignUp.js"
-    },
-    {
       "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminStaffs.js",
       "SourceId": "boostifysolution1",
       "SourceType": "Discovered",
@@ -2905,6 +2905,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/admin/adminTasks.js"
+    },
+    {
+      "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminUserLeads.js",
+      "SourceId": "boostifysolution1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/",
+      "BasePath": "_content/boostifysolution1",
+      "RelativePath": "js/admin/adminUserLeads.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/admin/adminUserLeads.js"
     },
     {
       "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminUsers.js",
@@ -3007,6 +3024,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/users/userSignIn.js"
+    },
+    {
+      "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userSignUp.js",
+      "SourceId": "boostifysolution1",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/",
+      "BasePath": "_content/boostifysolution1",
+      "RelativePath": "js/users/userSignUp.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/users/userSignUp.js"
     },
     {
       "Identity": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userStoreAmazon.js",

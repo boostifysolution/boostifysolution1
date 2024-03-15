@@ -84,7 +84,7 @@
     align-items: center;
     color: white;
     background: var(--primary);
-    background: linear-gradient(90deg, rgba(24,72,114,1) 0%, rgba(82,98,188,1) 100%);
+    background: linear-gradient(90deg, rgba(24, 72, 114, 1) 0%, rgba(82, 98, 188, 1) 100%);
 }
 
 .cta-holder>span:first-of-type {
@@ -92,12 +92,12 @@
     font-weight: bold;
 }
 
-.button{
+.button {
     height: 45px;
 }
 
-.why-project-india{
-    background: linear-gradient(90deg, rgba(24,72,114,1) 0%, rgba(82,98,188,1) 100%);
+.why-project-india {
+    background: linear-gradient(90deg, rgba(24, 72, 114, 1) 0%, rgba(82, 98, 188, 1) 100%);
     color: white;
 }
 
@@ -105,6 +105,24 @@
     fill: white;
 }
 
-.why-project-india .icon-holder{
+.why-project-india .icon-holder {
     margin-right: 5px;
+}
+
+@media (max-width: 767px) {
+    .hero-banner {
+        height: 350px;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-title {
+        top: unset;
+        width: 50%;
+    }
+
+    .hero-title>h1 {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
 }

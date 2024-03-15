@@ -245,6 +245,10 @@
       "PackagePath": "staticwebassets/images/.DS_Store"
     },
     {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/common/hamburger.svg",
+      "PackagePath": "staticwebassets/images/common/hamburger.svg"
+    },
+    {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/landingPage/categorize-content.webp",
       "PackagePath": "staticwebassets/images/landingPage/categorize-content.webp"
     },
@@ -429,16 +433,16 @@
       "PackagePath": "staticwebassets/js/admin/adminSignIn.js"
     },
     {
-      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminSignUp.js",
-      "PackagePath": "staticwebassets/js/admin/adminSignUp.js"
-    },
-    {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminStaffs.js",
       "PackagePath": "staticwebassets/js/admin/adminStaffs.js"
     },
     {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminTasks.js",
       "PackagePath": "staticwebassets/js/admin/adminTasks.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminUserLeads.js",
+      "PackagePath": "staticwebassets/js/admin/adminUserLeads.js"
     },
     {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/admin/adminUsers.js",
@@ -463,6 +467,10 @@
     {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userSignIn.js",
       "PackagePath": "staticwebassets/js/users/userSignIn.js"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userSignUp.js",
+      "PackagePath": "staticwebassets/js/users/userSignUp.js"
     },
     {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/js/users/userStoreAmazon.js",

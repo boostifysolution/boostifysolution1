@@ -18,6 +18,12 @@ namespace BoostifySolution.Controllers
             return View("AdminUsers");
         }
 
+        [HttpGet("UserLeads")]
+        public IActionResult UserLeads()
+        {
+            return View("AdminUserLeads");
+        }
+
         [HttpGet("Tasks")]
         public IActionResult Tasks()
         {

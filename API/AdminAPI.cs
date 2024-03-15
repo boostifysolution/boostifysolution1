@@ -14,6 +14,7 @@ using BoostifySolution.Global.Enums.Common;
 using BoostifySolution.Models.Admin;
 using BoostifySolution.Models.Global;
 using BoostifySolution.Models.Users;
+using boostifysolution1.Models.Admin;
 
 namespace BoostifySolution.API
 {
@@ -906,6 +907,252 @@ namespace BoostifySolution.API
             }
         }
 
+        [HttpGet("UserLeads")]
+        public async Task<IActionResult> GetUserLeads(int pageIndex, int pageSize, string sortField, string sortOrder, string? filterLeadName, int? filterLeadStatus, int? filterDateAdded, DateTime? filterDateAddedStart, DateTime? filterDateAddedEnd)
+        {
+            var ca = CurrentAdmin;
+
+            if (ca == null)
+            {
+                return ReturnUnauthorizedStatus();
+            }
+
+            var userLeadsQuery = _db.UserLeads
+            .OrderByDescending(x => x.DateAdded)
+            .AsQueryable();
+
+            switch (sortField)
+            {
+                case "leadName":
+                    if (sortOrder == "asc")
+                    {
+                        userLeadsQuery = userLeadsQuery.OrderBy(x => x.Name);
+                    }
+                    else
+                    {
+                        userLeadsQuery = userLeadsQuery.OrderBy(x => x.Name);
+                    }
+                    break;
+                case "leadStatus":
+                    if (sortOrder == "asc")
+                    {
+                        userLeadsQuery = userLeadsQuery.OrderBy(x => x.LeadStatus);
+                    }
+                    else
+                    {
+                        userLeadsQuery = userLeadsQuery.OrderBy(x => x.LeadStatus);
+                    }
+                    break;
+                case "dateAdded":
+                    if (sortOrder == "asc")
+                    {
+                        userLeadsQuery = userLeadsQuery.OrderBy(x => x.DateAdded);
+                    }
+                    else
+                    {
+                        userLeadsQuery = userLeadsQuery.OrderBy(x => x.DateAdded);
+                    }
+                    break;
+                default:
+                    userLeadsQuery = userLeadsQuery.OrderBy(x => x.DateAdded);
+                    break;
+            }
+
+            if (filterLeadName != null)
+            {
+                userLeadsQuery = userLeadsQuery.Where(x => x.Name.Contains(filterLeadName));
+            }
+
+            if (filterLeadStatus != null)
+            {
+                userLeadsQuery = userLeadsQuery.Where(x => x.LeadStatus == filterLeadStatus);
+            }
+
+            if (filterDateAdded != null)
+            {
+                var todayDate = DateTime.UtcNow.ToMalaysiaDateTime();
+                var startDate = todayDate.StartOfDay();
+                var endDate = todayDate.EndOfDay();
+
+                switch (filterDateAdded)
+                {
+                    case (int)DateFilters.Today:
+                        break;
+                    case (int)DateFilters.Yesterday:
+                        startDate = todayDate.AddDays(-1).StartOfDay();
+
+                        break;
+                    case (int)DateFilters.Last7Days:
+                        startDate = todayDate.AddDays(-6).StartOfDay(); // Start date is 7 days ago
+
+                        break;
+                    case (int)DateFilters.ThisMonth:
+                        startDate = startDate.AddDays(-1);
+
+                        break;
+                    case (int)DateFilters.LastMonth:
+                        var firstDayOfLastMonth = todayDate.AddMonths(-1).FirstDayOfTheMonth().StartOfDay();
+                        var lastDayOfLastMonth = todayDate.AddMonths(-1).LastDayOfTheMonth().EndOfDay();
+
+                        startDate = firstDayOfLastMonth;
+                        endDate = lastDayOfLastMonth;
+
+                        break;
+                    case (int)DateFilters.Custom:
+                        startDate = filterDateAddedStart.GetValueOrDefault(DateTime.UtcNow).StartOfDay();
+                        endDate = filterDateAddedEnd.GetValueOrDefault(DateTime.UtcNow).EndOfDay();
+
+                        break;
+                }
+
+                userLeadsQuery = userLeadsQuery.Where(x => x.DateAdded >= startDate.FromMalaysiaDateTimeToUTC() && x.DateAdded < endDate.FromMalaysiaDateTimeToUTC());
+            }
+
+            var userLeads = await userLeadsQuery.Skip((pageIndex - 1) * pageSize)
+                                    .Take(pageSize)
+                                    .ToListAsync();
+
+            var admins = await _db.AdminStaffs
+            .Where(x => x.Status == (int)AdminStaffStatuses.Active)
+            .OrderBy(x => x.FullName)
+            .ToListAsync();
+
+            var auld = new AdminUserLeadsList()
+            {
+                UserLeadsList = new List<AdminUserLeadsListDetails>(),
+                ItemsCount = await userLeadsQuery.CountAsync(),
+                DateAddedOptions = Utility.GetEnumAsDropdownOptions(typeof(DateFilters)),
+                LeadStatusOptions = Utility.GetEnumAsDropdownOptions(typeof(LeadStatuses)),
+                AdminOptions = new List<DropdownOptions>(),
+                LanguageOptions = Utility.GetEnumAsDropdownOptions(typeof(Languages))
+            };
+
+            foreach (var x in admins)
+            {
+                var ddo = new DropdownOptions()
+                {
+                    Id = x.AdminStaffId,
+                    Text = x.FullName
+                };
+
+                auld.AdminOptions.Add(ddo);
+            }
+
+            foreach (var x in userLeads)
+            {
+                var newUserListDetails = new AdminUserLeadsListDetails()
+                {
+                    UserLeadId = x.UserLeadId,
+                    Name = x.Name,
+                    PhoneNumber = x.PhoneNumber,
+                    Email = x.Email,
+                    DateAdded = x.DateAdded.ToMalaysiaDateTime().ToString("dd/MM/yyyy hh:mmtt"),
+                    Country = ((Countries)x.Country).GetDescription(),
+                    LeadStatus = ((LeadStatuses)x.LeadStatus).GetDescription()
+                };
+
+                auld.UserLeadsList.Add(newUserListDetails);
+            }
+
+            return Ok(new APIJsonReturnObject(auld));
+        }
+
+        [HttpPut("UserLeads/ConvertToUser")]
+        public async Task<IActionResult> ConvertLeadToUser([FromBody] AdminLeadConvertToUserRequest data)
+        {
+            try
+            {
+                var ca = CurrentAdmin;
+
+                if (ca == null)
+                {
+                    return ReturnUnauthorizedStatus();
+                }
+
+                var userLeads = await _db.UserLeads
+                .Where(x => data.UserLeadIds.Contains(x.UserLeadId))
+                .ToListAsync();
+
+                foreach (var userLead in userLeads)
+                {
+                    var existingLogin = await _um.FindByNameAsync(userLead.Email);
+
+                    if (existingLogin != null)
+                    {
+                        return StatusCode((int)HttpStatusCode.BadRequest, new APIJsonReturnObject("Login username has been used. Please use another."));
+                    }
+
+                    var newUser = new UserLogins
+                    {
+                        UserName = userLead.Email,
+                        Email = userLead.Email
+                    };
+
+                    var createdUser = await CreateNewUserLoginAsync(newUser, data.Password);
+
+                    await AddUserRoleAsync(newUser, UserRoles.User);
+
+                    var user = new Users()
+                    {
+                        UserLoginId = newUser.Id,
+                        FullName = userLead.Name,
+                        Email = userLead.Email,
+                        AccountStatus = (int)UserAccountStatuses.Active,
+                        WalletAmount = data.WalletAmount,
+                        DateAdded = DateTime.UtcNow,
+                        Language = data.Language,
+                        AdminStaffId = data.AdminStaffId,
+                        Country = userLead.Country
+                    };
+
+                    if (userLead.Country == (int)Countries.Malaysia)
+                    {
+                        user.Currency = (int)CurrencyTypes.MYR;
+                        user.Language = (int)Languages.English;
+                    }
+                    else if (userLead.Country == (int)Countries.Indonesia)
+                    {
+                        user.Currency = (int)CurrencyTypes.Rupiah;
+
+                    }
+                    else if (userLead.Country == (int)Countries.India)
+                    {
+                        user.Currency = (int)CurrencyTypes.Rupee;
+                    }
+
+
+                    _db.Users.Add(user);
+
+                    if (data.WalletAmount > 0)
+                    {
+                        var newWalletTransaction = new WalletTransactions()
+                        {
+                            User = user,
+                            Amount = data.WalletAmount,
+                            WalletTransactionType = (int)WalletTransactionTypes.Deposit,
+                            Status = (int)WalletTransactionStatuses.Successful,
+                            DateAdded = DateTime.UtcNow
+                        };
+
+                        _db.WalletTransactions.Add(newWalletTransaction);
+                    }
+
+                    userLead.LeadStatus = (int)LeadStatuses.Assigned;
+
+                    _db.UserLeads.Update(userLead);
+
+                    await _db.SaveChangesAsync();
+
+                }
+
+                return Ok(new APIJsonReturnObject(null));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to create a new user. Please refresh and try again."));
+            }
+        }
+
         [HttpPost("Users/{userId}/AddTask")]
         public async Task<IActionResult> AddUserTask(int userId, [FromBody] AdminAddTaskDetails data)
         {
@@ -1017,7 +1264,7 @@ namespace BoostifySolution.API
         }
 
         [HttpPost("Staffs")]
-        public async Task<IActionResult> AddNewStaff([FromBody] AdminStaffDetails data)
+        public async Task<IActionResult> AddNewStaff([FromBody] AdminNewStaffRequest data)
         {
             try
             {

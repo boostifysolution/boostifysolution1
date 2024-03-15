@@ -895,7 +895,7 @@ input::placeholder {
 
 .footer-holder {
   background: var(--primary);
-  padding: 1rem;
+  padding: 2rem 1rem;
   color: white;
 }
 
@@ -1024,11 +1024,11 @@ hr {
   }
 
   .navbar-collapse {
-    position: absolute;
     top: 60px;
     background: white;
     width: 100%;
     box-shadow: 1px 6px 10px -4px var(--background-grey);
+    z-index: 99;
   }
 }
 

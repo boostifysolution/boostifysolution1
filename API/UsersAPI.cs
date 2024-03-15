@@ -11,6 +11,9 @@ using BoostifySolution.Global;
 using BoostifySolution.Global.Enums.Common;
 using BoostifySolution.Models.Admin;
 using BoostifySolution.Models.Users;
+using boostifysolution1.Models.Users;
+using boostifysolution1.Entities;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BoostifySolution.API
 {
@@ -259,7 +262,7 @@ namespace BoostifySolution.API
                 PhoneNumber = user.PhoneNumber,
                 Email = user.Email,
                 Language = user.Language,
-                LanguageOptions = Utility.GetEnumAsDropdownOptions(typeof(Languages)),
+                LanguageOptions = Global.Utility.GetEnumAsDropdownOptions(typeof(Languages)),
                 Currency = ((CurrencyTypes)user.Currency).GetDescription(),
                 AccountStatus = ((UserAccountStatuses)user.AccountStatus).GetDescription(),
                 AccountAdmin = user.AdminStaff.FullName,
@@ -495,6 +498,31 @@ namespace BoostifySolution.API
             }
         }
 
+        [HttpPost("SignUp")]
+        public async Task<IActionResult> UserSignUp([FromBody] UserSignUpRequest data)
+        {
+            if (data.Name.IsNullOrEmpty() || data.PhoneNumber.IsNullOrEmpty() || data.Email.IsNullOrEmpty())
+            {
+                return BadRequest(new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.BadRequest, "Please make sure all fields are filled before submitting")));
+            }
+
+            var newUserLead = new UserLeads()
+            {
+                Name = data.Name,
+                Email = data.Email,
+                PhoneNumber = data.PhoneNumber,
+                Country = data.Country,
+                DateAdded = DateTime.UtcNow,
+                LeadStatus = (int)LeadStatuses.Lead
+            };
+
+            _db.UserLeads.Add(newUserLead);
+
+            await _db.SaveChangesAsync();
+
+            return Ok(new APIJsonReturnObject(null));
+
+        }
 
 
         //POST: api/Users/SignOut

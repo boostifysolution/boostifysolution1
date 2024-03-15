@@ -10,15 +10,14 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 <header>
     <div class="container">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
-            <div class="container-fluid">
+            <div class="container-fluid ps-0 pe-0">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logos/boostify.png">
                 </a>
-                <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <img src="~/images/common/hamburger.svg">
-                </div>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                <a class="d-flex d-md-none justify-content-center align-items-center" href="/users/signin">
+                    <button class="button primary-button">Log In</button>
+                </a>
+                <div class="navbar-collapse collapse justify-content-end">
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="/users/signin">LOG IN</a>
@@ -41,16 +40,20 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-3 ps-0 pe-0 mb-4 mb-md-0">
-                <img class="footer-logo" src="~/images/logos/boostify-white.png">
-                <div class="d-flex align-items-center mt-3">
-                    © 2020–2023 Boostify Solution
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img class="footer-logo" src="~/images/logos/boostify-white.png">
+                    <div class="d-flex align-items-center mt-3">
+                        © 2020–2023 Boostify Solution
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-9">
-                <div class="d-flex flex-column">
+                <div class="d-flex flex-column justify-content-center align-items-center">
                     <h5 class="fw-bold">Accounts</h5>
-                    <a class="fw-bold mb-2" style="color: white; text-decoration: underline;" href="/users/signin">Log In</a>
-                    <a class="fw-bold" style="color: white; text-decoration: underline;" href="/users/signup">Sign Up</a>
+                    <a class="fw-bold mb-2" style="color: white; text-decoration: underline;" href="/users/signin">Log
+                        In</a>
+                    <a class="fw-bold" style="color: white; text-decoration: underline;" href="/users/signup">Sign
+                        Up</a>
                 </div>
             </div>
         </div>

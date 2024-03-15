@@ -66,6 +66,7 @@ var adminSignIn = new function () {
     }
 
     vm.passwordEnter = function (data, event) {
+        
         if (event.keyCode == 13) {
             if (vm.password().length >= 8) {
                 vm.signInClick();

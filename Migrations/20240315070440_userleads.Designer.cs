@@ -4,6 +4,7 @@ using BoostifySolution.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace boostifysolution1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240315070440_userleads")]
+    partial class userleads
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -577,6 +580,7 @@ namespace boostifysolution1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserLeadId"));
 
                     b.Property<int?>("AdminStaffId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Country")
@@ -601,6 +605,8 @@ namespace boostifysolution1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserLeadId");
+
+                    b.HasIndex("AdminStaffId");
 
                     b.ToTable("UserLeads");
                 });
@@ -721,6 +727,17 @@ namespace boostifysolution1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("boostifysolution1.Entities.UserLeads", b =>
+                {
+                    b.HasOne("BoostifySolution.Entities.AdminStaffs", "AdminStaff")
+                        .WithMany()
+                        .HasForeignKey("AdminStaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdminStaff");
                 });
 #pragma warning restore 612, 618
         }

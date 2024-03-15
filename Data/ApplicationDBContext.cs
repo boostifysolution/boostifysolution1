@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using BoostifySolution.Entities;
+using boostifysolution1.Entities;
 
 namespace BoostifySolution.Data;
 
@@ -38,4 +39,6 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, Identit
     public DbSet<Tasks> Tasks { get; set; }
 
     public DbSet<UserTasks> UserTasks { get; set; }
+
+    public DbSet<UserLeads> UserLeads { get; set; }
 }
