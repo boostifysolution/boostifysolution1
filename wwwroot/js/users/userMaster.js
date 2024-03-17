@@ -10,6 +10,7 @@ var userMaster = new function () {
 
     vm.masterInitialize = function () {
         var url = new URL(window.location);
+        demo = url.searchParams.get("demo");
 
         var userJSON = window.localStorage.getItem("user");
         if (userJSON != null) {
@@ -19,7 +20,7 @@ var userMaster = new function () {
             vm.currency(userDetails.currency);
             vm.accountStatus(userDetails.accountStatus);
             vm.language(userDetails.language);
-        } else {
+        } else if (demo == null || demo != "true") {
             Swal.fire({
                 icon: "error",
                 title: "Session Expired",
