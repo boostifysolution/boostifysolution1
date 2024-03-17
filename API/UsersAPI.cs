@@ -350,8 +350,8 @@ namespace BoostifySolution.API
                 ProductMainImageURL = task.ProductMainImageURL,
                 ProductImagesURL = productImages,
                 ProductPrice = $"{currencySymbol}{task.ProductPrice:0.00}",
-                ProductRating = task.ProductRating * 100 / 5,
-                ProductRatingWidth = task.ProductRating,
+                ProductRating = task.ProductRating,
+                ProductRatingWidth = task.ProductRating * 100 / 5,
                 StoreName = task.StoreName,
                 StoreThumbnailURL = task.StoreThumbnailURL,
                 ProductReviewsList = new List<ProductReviewListDetails>(),
@@ -419,6 +419,8 @@ namespace BoostifySolution.API
                 user.ShowPopupMessage = true;
                 user.PopupMessageTitle = "Unable to access wallet";
                 user.PopupMessage = "There is a task that was not completed in the set time. Please contact your support admin.";
+
+                _db.Users.Update(user);
             }
             else if (userTask.Task.TaskCategory == (int)TaskCategories.FrozenAccount)
             {
@@ -427,7 +429,10 @@ namespace BoostifySolution.API
                 user.ShowPopupMessage = true;
                 user.PopupMessageTitle = "Your account has been suspended";
                 user.PopupMessage = "Your account has been frozen due to weird activity detected. Please contact your support admin.";
+
+                _db.Users.Update(user);
             }
+
 
             await _db.SaveChangesAsync();
 
