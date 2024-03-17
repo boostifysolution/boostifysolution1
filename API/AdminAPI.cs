@@ -48,9 +48,11 @@ namespace BoostifySolution.API
                 }
                 else if (ca.AdminStaffType == (int)AdminStaffTypes.Leader)
                 {
-                    var staffIds = await _db.LeaderAdminStaffs.Where(x => x.AdminStaffId == ca.AdminStaffType).Select(x => x.AssociatedAdminStaffId).ToListAsync();
+                    var staffIds = await _db.LeaderAdminStaffs.Where(x => x.AdminStaffId == ca.AdminStaffId).Select(x => x.AssociatedAdminStaffId).ToListAsync();
 
-                    userQuery = userQuery.Include(x => x.AdminStaff).Where(x => staffIds.Contains(x.AdminStaffId) || x.AdminStaffId == ca.AdminStaffId);
+                    staffIds.Add(ca.AdminStaffId);
+
+                    userQuery = userQuery.Include(x => x.AdminStaff).Where(x => staffIds.Contains(x.AdminStaffId));
                 }
 
 
