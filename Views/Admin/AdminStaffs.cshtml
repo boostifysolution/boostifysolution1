@@ -88,6 +88,7 @@ Layout = "/Views/Admin/_Layout.cshtml";
                                 </label>
                                 <input type="text" class="form-control" data-bind="value: password">
                             </div>
+                            <!-- ko if: adminStaffType() == 1 -->
                             <div class="input-holder">
                                 <label>
                                     Admin Type*
@@ -95,6 +96,7 @@ Layout = "/Views/Admin/_Layout.cshtml";
                                 <select class="form-control form-select"
                                     data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"></select>
                             </div>
+                            <!-- /ko -->
                             <!-- ko if: adminType() == 0 && adminStaffType() == 1 -->
                             <div class="input-holder">
                                 <label>

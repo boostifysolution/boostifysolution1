@@ -1359,9 +1359,17 @@ namespace BoostifySolution.API
                     FullName = data.Name,
                     Status = (int)AdminStaffStatuses.Active,
                     DateAdded = DateTime.UtcNow,
-                    AdminStaffType = data.AdminType,
                     RequirePasswordChange = true
                 };
+
+                if (ca.AdminStaffType == (int)AdminStaffTypes.FullAdmin)
+                {
+                    newAdminStaff.AdminStaffType = data.AdminType;
+                }
+                else
+                {
+                    newAdminStaff.AdminStaffType = (int)AdminStaffTypes.Staff;
+                }
 
                 _db.AdminStaffs.Add(newAdminStaff);
 
