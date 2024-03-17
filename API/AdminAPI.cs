@@ -1288,7 +1288,16 @@ namespace BoostifySolution.API
                 .Where(x => x.UserId == userId)
                 .FirstAsync();
 
-                user.WalletAmount = user.WalletAmount + data.Amount;
+                if (data.WalletTransactionType == (int)WalletTransactionTypes.Withdraw)
+                {
+                    user.WalletAmount = user.WalletAmount - data.Amount;
+                }
+                else
+                {
+                    user.WalletAmount = user.WalletAmount + data.Amount;
+                }
+
+
 
                 _db.Users.Update(user);
 
