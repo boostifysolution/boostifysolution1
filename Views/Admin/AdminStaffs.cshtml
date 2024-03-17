@@ -11,7 +11,7 @@ Layout = "/Views/Admin/_Layout.cshtml";
 
 
 <link type="text/css" rel="stylesheet" href="~/css/admin/adminStaffs.css" />
-<script src="~/js/admin/adminStaffs.js" asp-append-version="true"></script>
+<script src="~/js/admin/adminStaffs.js" asp-apadpend-version="true"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -20,148 +20,184 @@ Layout = "/Views/Admin/_Layout.cshtml";
 </script>
 
 <div class="container">
-    <h4 class="fw-bold mt-3">Staffs</h4>
-    <div class="d-flex flex-row align-items-end flex-wrap">
-        <button class="button primary-button me-3 mb-3" data-bind="click: addNewStaffClick">Add New
-            Staff</button>
+    <h4 class="fw-bold mt-3">Admin Staffs</h4>
+    <div class="filters-holder">
+        <!-- ko if: adminStaffType() == 1-->
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>
+                        Leader
+                    </label>
+                    <select class="form-control form-select"
+                        data-bind="value: filterAdminLeader, options: adminLeaderOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select leader', valueAllowUnset: true"></select>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <div class="input-holder">
+                    <label>
+                        Admin Type
+                    </label>
+                    <select class="form-control form-select"
+                        data-bind="value: filterAdminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"></select>
+                </div>
+            </div>
+        </div>
+        <!-- /ko -->
+        <div class="d-flex flex-row align-items-end flex-wrap">
+            <!-- ko if: adminStaffType() == 1-->
+            <button class="button primary-button me-3 mb-3 mb-md-0" data-bind="click: applyFilters">Apply
+                Filters</button>
+            <button class="button grey-button me-3 mb-3 mb-md-0" data-bind="click: clearFilters">Clear
+                Filters</button>
+            <!-- /ko -->
+            <button class="button primary-button me-3" data-bind="click: addNewStaffClick">Add New
+                Staff</button>
+        </div>
     </div>
     <div class="mb-3 grid" id="staffsGrid"></div>
-</div>
 
-<div class="modal micromodal-slide" id="new-staff-details-modal" aria-hidden="true">
-    <div class="modal-overlay" tabindex="1">
-        <div class="modal-container small-modal-container" role="dialog" aria-modal="true"
-            aria-labelledby="modal-1-title">
-            <div class="card">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h4 class="fw-bold mb-0">New Staff Account</h4>
-                    <div class="modal-close-button" data-micromodal-close>
-                        <i class="fas fa-times"></i>
+    <div class="modal micromodal-slide" id="new-staff-details-modal" aria-hidden="true">
+        <div class="modal-overlay" tabindex="1">
+            <div class="modal-container small-modal-container" role="dialog" aria-modal="true"
+                aria-labelledby="modal-1-title">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h4 class="fw-bold mb-0">New Staff Account</h4>
+                        <div class="modal-close-button" data-micromodal-close>
+                            <i class="fas fa-times"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex flex-column">
-                        <div class="input-holder">
-                            <label>
-                                Name*
-                            </label>
-                            <input type="text" class="form-control" data-bind="value: name">
-                        </div>
-                        <div class="input-holder">
-                            <label>
-                                Login Username*
-                            </label>
-                            <input type="text" class="form-control" data-bind="value: loginUsername">
-                        </div>
-                        <div class="input-holder">
-                            <label>
-                                Password*
-                            </label>
-                            <input type="text" class="form-control" data-bind="value: password">
-                        </div>
-                        <div class="input-holder">
-                            <label>
-                                Admin Type*
-                            </label>
-                            <select class="form-control form-select"
-                                data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"></select>
-                        </div>
-                        <div class="input-holder">
-                            <label>
-                                Country (leave empty if all countries)
-                            </label>
-                            <select class="form-control form-select"
-                                data-bind="value: country, options: countryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select country', valueAllowUnset: true"></select>
-                        </div>
-                        <button class="primary-button button mt-3 w-100"
-                            data-bind="click: saveNewStaffClick">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal micromodal-slide" id="staff-details-modal" aria-hidden="true">
-    <div class="modal-overlay" tabindex="1">
-        <div class="modal-container large-modal-container" role="dialog" aria-modal="true"
-            aria-labelledby="modal-1-title">
-            <div class="card">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="fw-bold mb-0">Staff Details</h5>
-                    <div class="modal-close-button" data-micromodal-close>
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-md-6 mb-3">
-                            <div class="d-flex flex-row justify-content-end align-items-center mb-3">
-                                <button class="primary-button button">Disable Account</button>
+                    <div class="card-body">
+                        <div class="d-flex flex-column">
+                            <div class="input-holder">
+                                <label>
+                                    Name*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: name">
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-md-4">
-                                    <div class="input-holder">
-                                        <label>
-                                            Staff Name
-                                        </label>
-                                        <input type="text" class="form-control" data-bind="value: name" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="input-holder">
-                                        <label>
-                                            Admin Type
-                                        </label>
-                                        <select class="form-control form-select"
-                                            data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"
-                                            disabled></select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="input-holder">
-                                        <label>
-                                            Country
-                                        </label>
-                                        <select class="form-control form-select"
-                                            data-bind="value: country, options: countryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select country', valueAllowUnset: true"
-                                            disabled></select>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="input-holder">
-                                        <label>
-                                            User Accounts
-                                        </label>
-                                        <input type="text" class="form-control" data-bind="value: accounts" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="input-holder">
-                                        <label>
-                                            Status
-                                        </label>
-                                        <input type="text" class="form-control" data-bind="value: status" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <div class="input-holder">
-                                        <label>
-                                            Login Username
-                                        </label>
-                                        <input type="text" class="form-control" data-bind="value: loginUsername"
-                                            disabled>
-                                    </div>
-                                </div>
+                            <div class="input-holder">
+                                <label>
+                                    Login Username*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: loginUsername">
                             </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <h5 class="fw-bold mb-3">User Accounts</h5>
-                            <div class="mb-3 grid" id="staffUsersGrid"></div>
+                            <div class="input-holder">
+                                <label>
+                                    Password*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: password">
+                            </div>
+                            <div class="input-holder">
+                                <label>
+                                    Admin Type*
+                                </label>
+                                <select class="form-control form-select"
+                                    data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"></select>
+                            </div>
+                            <!-- ko if: adminType() == 0 && adminStaffType() == 1 -->
+                            <div class="input-holder">
+                                <label>
+                                    Staff Leader*
+                                </label>
+                                <select class="form-control form-select"
+                                    data-bind="value: adminLeaderStaffId, options: adminLeaderOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select leader', valueAllowUnset: true"></select>
+                            </div>
+                            <!-- /ko -->
+                            <button class="primary-button button mt-3 w-100"
+                                data-bind="click: saveNewStaffClick">Save</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="modal micromodal-slide" id="staff-details-modal" aria-hidden="true">
+        <div class="modal-overlay" tabindex="1">
+            <div class="modal-container large-modal-container" role="dialog" aria-modal="true"
+                aria-labelledby="modal-1-title">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="fw-bold mb-0">Staff Details</h5>
+                        <div class="modal-close-button" data-micromodal-close>
+                            <i class="fas fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="d-flex flex-row justify-content-end align-items-center mb-3">
+                                    <!-- ko if: currentAdminStaffId() != adminStaffId()-->
+                                    <button class="primary-button button me-2"
+                                        data-bind="click: resetPasswordClick">Reset
+                                        Password</button>
+                                    <button class="primary-button button" data-bind="click: disableAccountClick">Disable
+                                        Account</button>
+                                    <!-- /ko -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Staff Name
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Leader
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: leader" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Admin Type
+                                            </label>
+                                            <select class="form-control form-select"
+                                                data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"
+                                                disabled></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                User Accounts
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: accounts"
+                                                disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Status
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: status" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Login Username
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: loginUsername"
+                                                disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h5 class="fw-bold mb-3">User Accounts</h5>
+                                <div class="mb-3 grid" id="staffUsersGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

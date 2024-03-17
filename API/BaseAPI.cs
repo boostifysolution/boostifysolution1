@@ -44,11 +44,11 @@ namespace BoostifySolution.API
         {
             get
             {
-                var sessionInfo = _cx.HttpContext.Session.GetString(Global.Constants.Common.CurrentAdminClaimKey);
+                var admin = HttpContext.User.Claims.Where(x => x.Type == Global.Constants.Common.CurrentAdminClaimKey).FirstOrDefault();
 
-                if (sessionInfo != null)
+                if (admin != null)
                 {
-                    return JsonConvert.DeserializeObject<CurrentAdminObj>(sessionInfo);
+                    return JsonConvert.DeserializeObject<CurrentAdminObj>(admin.Value);
                 }
                 else
                 {

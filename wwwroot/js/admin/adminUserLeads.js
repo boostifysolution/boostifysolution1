@@ -36,6 +36,10 @@ var adminUserLeads = new function () {
     var dataFilters;
 
     vm.initialize = function () {
+        dataFilters = {
+            filterLeadStatus: vm.filterLeadStatus()
+        };
+
         loadUserLeads();
     }
 
@@ -67,7 +71,7 @@ var adminUserLeads = new function () {
             filterDateAddedEnd: vm.filterDateAddedEnd(),
         };
 
-        $("#userLeadGrid").jsGrid("loadData");
+        $("#userLeadsGrid").jsGrid("loadData");
     }
 
     vm.clearFilters = function () {
@@ -116,44 +120,44 @@ var adminUserLeads = new function () {
                             })
                     },
                     align: "center",
-                    width: 50,
+                    width: 80,
                     sorting: false
                 },
                 {
                     name: "name",
                     type: "text",
                     title: "Lead Name",
-                    width: 100
+                    width: 150
                 },
                 {
                     name: "phoneNumber",
                     type: "text",
                     title: "Phone Number",
-                    width: 50
+                    width: 100
                 },
                 {
                     name: "email",
                     type: "text",
                     title: "Email",
-                    width: 100,
+                    width: 150,
                 },
                 {
                     name: "leadStatus",
                     type: "text",
                     title: "Lead Status",
-                    width: 50,
+                    width: 80,
                 },
                 {
                     name: "country",
                     type: "text",
                     title: "Country",
-                    width: 50,
+                    width: 80,
                 },
                 {
                     name: "dateAdded",
                     type: "text",
                     title: "Date Added",
-                    width: 50,
+                    width: 80,
                 }
 
             ],
@@ -207,7 +211,7 @@ var adminUserLeads = new function () {
             password: vm.password(),
             adminStaffId: vm.adminStaffId(),
             language: vm.language(),
-            walletAmount: vm.walletAmount(),            
+            walletAmount: vm.walletAmount(),
         }
 
         $.ajax({

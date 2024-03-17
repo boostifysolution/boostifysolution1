@@ -15,6 +15,7 @@ using BoostifySolution.Models.Admin;
 using BoostifySolution.Models.Global;
 using BoostifySolution.Models.Users;
 using boostifysolution1.Models.Admin;
+using boostifysolution1.Entities;
 
 namespace BoostifySolution.API
 {
@@ -38,15 +39,18 @@ namespace BoostifySolution.API
                 }
 
                 var userQuery = _db.Users
+                .Include(x => x.AdminStaff)
                 .AsQueryable();
 
                 if (ca.AdminStaffType == (int)AdminStaffTypes.Staff)
                 {
                     userQuery = userQuery.Where(x => x.AdminStaffId == ca.AdminStaffId);
                 }
-                else
+                else if (ca.AdminStaffType == (int)AdminStaffTypes.Leader)
                 {
-                    userQuery = userQuery.Include(x => x.AdminStaff);
+                    var staffIds = await _db.LeaderAdminStaffs.Where(x => x.AdminStaffId == ca.AdminStaffType).Select(x => x.AssociatedAdminStaffId).ToListAsync();
+
+                    userQuery = userQuery.Include(x => x.AdminStaff).Where(x => staffIds.Contains(x.AdminStaffId) || x.AdminStaffId == ca.AdminStaffId);
                 }
 
 
@@ -323,16 +327,34 @@ namespace BoostifySolution.API
         }
 
         [HttpGet("Staffs")]
-        public async Task<IActionResult> GetAdminStaffs(int pageIndex, int pageSize, string sortField, string sortOrder)
+        public async Task<IActionResult> GetAdminStaffs(int pageIndex, int pageSize, string sortField, string sortOrder, int? filterAdminLeader, int? filterAdminType)
         {
             var ca = CurrentAdmin;
 
-            if (ca == null || ca.AdminStaffType != (int)AdminStaffTypes.FullAdmin)
+            if (ca == null || ca.AdminStaffType == (int)AdminStaffTypes.Staff)
             {
                 return ReturnUnauthorizedStatus();
             }
 
-            var adminStaffQuery = _db.AdminStaffs.AsQueryable();
+            var adminStaffQuery = _db.AdminStaffs.Include(x => x.UserLogin).AsQueryable();
+
+            if (filterAdminLeader != null || ca.AdminStaffType == (int)AdminStaffTypes.Leader)
+            {
+                int leaderStaffId;
+
+                if (filterAdminLeader != null)
+                {
+                    leaderStaffId = filterAdminLeader.Value;
+                }
+                else
+                {
+                    leaderStaffId = ca.AdminStaffId;
+                }
+
+                var staffIds = await _db.LeaderAdminStaffs.Where(x => x.AdminStaffId == leaderStaffId).Select(x => x.AssociatedAdminStaffId).ToListAsync();
+
+                adminStaffQuery = adminStaffQuery.Where(x => staffIds.Contains(x.AdminStaffId));
+            }
 
             switch (sortField)
             {
@@ -381,6 +403,11 @@ namespace BoostifySolution.API
                     break;
             }
 
+            if (filterAdminType != null)
+            {
+                adminStaffQuery = adminStaffQuery.Where(x => x.AdminStaffType == filterAdminType);
+            }
+
             var adminStaffs = await adminStaffQuery.ToListAsync();
 
             var asl = new AdminStaffsList()
@@ -388,8 +415,16 @@ namespace BoostifySolution.API
                 StaffsList = new List<AdminStaffListDetails>(),
                 ItemsCount = adminStaffs.Count,
                 CountryOptions = Utility.GetEnumAsDropdownOptions(typeof(Countries)),
-                AdminTypeOptions = Utility.GetEnumAsDropdownOptions(typeof(AdminStaffTypes))
+                AdminTypeOptions = Utility.GetEnumAsDropdownOptions(typeof(AdminStaffTypes)),
+                AdminLeaderOptions = new List<DropdownOptions>()
             };
+
+            var adminStaffIds = adminStaffs.Select(x => x.AdminStaffId);
+
+            var leaderAdminStaffDict = await _db.LeaderAdminStaffs
+                .Include(x => x.AdminStaff)
+                .Where(x => adminStaffIds.Contains(x.AssociatedAdminStaffId))
+                .ToDictionaryAsync(x => x.AssociatedAdminStaffId, x => x);
 
             foreach (var x in adminStaffs)
             {
@@ -400,10 +435,31 @@ namespace BoostifySolution.API
                     Status = ((AdminStaffStatuses)x.Status).GetDescription(),
                     DateAdded = x.DateAdded.ToMalaysiaDateTime().ToString("dd/MM/yyyy"),
                     AdminType = ((AdminStaffTypes)x.AdminStaffType).GetDescription(),
-                    Country = x.Country != null ? ((Countries)x.Country).GetDescription() : "All"
+                    Email = x.UserLogin.Email
+                };
+
+                if (leaderAdminStaffDict.ContainsKey(x.AdminStaffId))
+                {
+                    asld.Leader = leaderAdminStaffDict[x.AdminStaffId].AdminStaff.FullName;
                 };
 
                 asl.StaffsList.Add(asld);
+            }
+
+            var leaders = await _db.AdminStaffs
+            .Where(x => x.Status == (int)AdminStaffStatuses.Active && x.AdminStaffType == (int)AdminStaffTypes.Leader)
+            .OrderBy(x => x.FullName)
+            .ToListAsync();
+
+            foreach (var x in leaders)
+            {
+                var ddo = new DropdownOptions()
+                {
+                    Id = x.AdminStaffId,
+                    Text = x.FullName
+                };
+
+                asl.AdminLeaderOptions.Add(ddo);
             }
 
             return Ok(new APIJsonReturnObject(asl));
@@ -428,6 +484,11 @@ namespace BoostifySolution.API
             .Where(x => x.AdminStaffId == staff.AdminStaffId)
             .ToListAsync();
 
+            var leader = await _db.LeaderAdminStaffs
+            .Include(x => x.AdminStaff)
+            .Where(x => x.AssociatedAdminStaffId == adminStaffId)
+            .FirstOrDefaultAsync();
+
             var asd = new AdminStaffDetails()
             {
                 Name = staff.FullName,
@@ -437,7 +498,7 @@ namespace BoostifySolution.API
                 Accounts = staffUsers.Count,
                 DateAdded = staff.DateAdded.ToMalaysiaDateTime().ToString("dd/MM/yyyy"),
                 UsersList = new List<AdminStaffUserListDetails>(),
-                Country = staff.Country
+                Leader = leader != null ? leader.AdminStaff.FullName : ""
             };
 
             foreach (var x in staffUsers)
@@ -1070,7 +1131,7 @@ namespace BoostifySolution.API
                 }
 
                 var userLeads = await _db.UserLeads
-                .Where(x => data.UserLeadIds.Contains(x.UserLeadId))
+                .Where(x => data.UserLeadIds.Contains(x.UserLeadId) && x.LeadStatus == (int)LeadStatuses.Lead)
                 .ToListAsync();
 
                 foreach (var userLead in userLeads)
@@ -1306,6 +1367,24 @@ namespace BoostifySolution.API
 
                 await _db.SaveChangesAsync();
 
+                var newLeaderAdminStaffs = new LeaderAdminStaffs()
+                {
+                    AssociatedAdminStaffId = newAdminStaff.AdminStaffId
+                };
+
+                if (data.AdminLeaderStaffId != null)
+                {
+                    newLeaderAdminStaffs.AdminStaffId = data.AdminLeaderStaffId.Value;
+                }
+                else
+                {
+                    newLeaderAdminStaffs.AdminStaffId = ca.AdminStaffId;
+                }
+
+                _db.LeaderAdminStaffs.Add(newLeaderAdminStaffs);
+
+                await _db.SaveChangesAsync();
+
                 return Ok(new APIJsonReturnObject(null));
             }
             catch (Exception ex)
@@ -1334,6 +1413,7 @@ namespace BoostifySolution.API
                         if (loginUser.Succeeded)
                         {
                             var adminStaff = await _db.AdminStaffs
+                            .Include(x => x.UserLogin)
                             .Where(x => x.UserLoginId == user.Id)
                                 .FirstAsync();
 
@@ -1342,10 +1422,9 @@ namespace BoostifySolution.API
                                 AdminStaffId = adminStaff.AdminStaffId,
                                 UserName = adminStaff.FullName,
                                 AdminStaffType = adminStaff.AdminStaffType,
-                                RequirePasswordChange = adminStaff.RequirePasswordChange
+                                RequirePasswordChange = adminStaff.RequirePasswordChange,
+                                AdminStaffEmail = adminStaff.UserLogin.Email
                             };
-
-                            _cx.HttpContext.Session.SetObject(Global.Constants.Common.CurrentAdminClaimKey, ca);
 
                             return Ok(new APIJsonReturnObject(ca));
                         }

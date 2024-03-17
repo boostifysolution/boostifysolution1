@@ -7,22 +7,44 @@ var adminStaffs = new function () {
     vm.password = ko.observable();
     vm.loginUsername = ko.observable();
     vm.adminType = ko.observable();
-    vm.adminTypeOptions = ko.observableArray([{ text: "Staff", id: 0 }, { text: "Full Admin", id: 1 }, { text: "Leader", id: 2 }]);
-    vm.countryOptions = ko.observableArray([{ text: "Malaysia", id: 0 }, { text: "Indonesia", id: 1 }, { text: "India", id: 2 }]);
+    vm.adminTypeOptions = ko.observableArray();
     vm.status = ko.observable();
     vm.accounts = ko.observable();
-    vm.country = ko.observable();
+    vm.adminLeaderOptions = ko.observableArray();
+    vm.adminLeaderStaffId = ko.observable();
+    vm.leader = ko.observable();
+
+    vm.filterAdminLeader = ko.observable();
+    vm.filterAdminType = ko.observable();
 
     var usersList;
+
+    var dataFilters;
 
     vm.initialize = function () {
         loadStaffs();
     }
 
+    vm.applyFilters = function () {
+        dataFilters = {
+            filterAdminLeader: vm.filterAdminLeader(),
+            filterAdminType: vm.filterAdminType()
+        };
+
+        $("#staffsGrid").jsGrid("loadData");
+    }
+
+    vm.clearFilters = function () {
+        vm.filterAdminLeader(null);
+        vm.filterAdminType(null);
+
+        vm.applyFilters();
+    }
+
     vm.addNewStaffClick = function () {
         vm.name(null);
         vm.loginUsername(null);
-        vm.password(null);
+        vm.password("tempPassword!23");
         vm.adminType(null);
 
         MicroModal.show("new-staff-details-modal");
@@ -35,7 +57,8 @@ var adminStaffs = new function () {
             name: vm.name(),
             loginUsername: vm.loginUsername(),
             password: vm.password(),
-            adminType: vm.adminType()
+            adminType: vm.adminType(),
+            adminLeaderStaffId: vm.adminLeaderStaffId()
         }
 
         $.ajax({
@@ -88,35 +111,52 @@ var adminStaffs = new function () {
                     name: "name",
                     type: "text",
                     title: "Name",
+                    width: 100
+                },
+                {
+                    name: "email",
+                    type: "text",
+                    title: "Email",
                     width: 150
+                },
+                {
+                    name: "leader",
+                    type: "text",
+                    title: "Leader",
+                    width: 100
                 },
                 {
                     name: "status",
                     type: "text",
                     title: "Status",
-                    width: 100
+                    width: 80
                 },
                 {
                     name: "adminType",
                     type: "text",
                     title: "Admin Type",
-                    width: 100,
+                    width: 80,
                 },
                 {
                     name: "dateAdded",
                     type: "text",
                     title: "Date Added",
-                    width: 100,
+                    width: 80,
                 }
             ],
             controller: {
                 loadData: function (gridFilters) {
                     var d = $.Deferred();
 
+                    var filters = {
+                        ...gridFilters,
+                        ...dataFilters,
+                    };
+
                     $.ajax({
                         url: "/api/Admin/Staffs",
                         dataType: "json",
-                        data: gridFilters,
+                        data: filters,
                         contentType: "application/json; charset=utf-8",
                         type: "GET",
                     })
@@ -125,6 +165,9 @@ var adminStaffs = new function () {
                                 data: response.data.staffsList,
                                 itemsCount: response.data.itemsCount,
                             };
+
+                            vm.adminLeaderOptions(response.data.adminLeaderOptions);
+                            vm.adminTypeOptions(response.data.adminTypeOptions);
 
                             d.resolve(da);
                             window.Global.HideLoadingSpinner();
@@ -176,7 +219,7 @@ var adminStaffs = new function () {
         vm.adminType(responseData.adminType);
         vm.status(responseData.status);
         vm.accounts(responseData.accounts);
-        vm.country(responseData.country);
+        vm.leader(responseData.leader);
 
         $("#staffUsersGrid").jsGrid({
             autoload: false,
@@ -212,6 +255,14 @@ var adminStaffs = new function () {
                 },
             ],
         });
+    }
+
+    vm.resetPasswordClick = function () {
+
+    }
+
+    vm.disableAccountClick = function () {
+
     }
 
     window.pageViewModel = vm;

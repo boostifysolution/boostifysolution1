@@ -20,5 +20,8 @@ namespace BoostifySolution.Models.Admin
 
     [JsonProperty("adminType")]
     public int AdminType { get; set; }
+
+    [JsonProperty("adminLeaderStaffId")]
+    public int? AdminLeaderStaffId { get; set; }
   }
 }

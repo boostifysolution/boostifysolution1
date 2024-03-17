@@ -20,6 +20,10 @@ namespace BoostifySolution.Models.Admin
 
         [JsonProperty("adminTypeOptions")]
         public List<DropdownOptions> AdminTypeOptions { get; set; }
+
+        [JsonProperty("adminLeaderOptions")]
+        public List<DropdownOptions> AdminLeaderOptions { get; set; }
+
     }
 
     public class AdminStaffListDetails
@@ -36,8 +40,11 @@ namespace BoostifySolution.Models.Admin
         [JsonProperty("adminType")]
         public string AdminType { get; set; }
 
-        [JsonProperty("country")]
-        public string Country { get; set; }
+        [JsonProperty("leader")]
+        public string Leader { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
 
         [JsonProperty("dateAdded")]
         public string DateAdded { get; set; }

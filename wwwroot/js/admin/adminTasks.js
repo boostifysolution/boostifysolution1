@@ -190,37 +190,37 @@ var adminTasks = new function () {
                     name: "category",
                     type: "text",
                     title: "Category",
-                    width: 50
+                    width: 100
                 },
                 {
                     name: "country",
                     type: "text",
                     title: "Country",
-                    width: 50
+                    width: 80
                 },
                 {
                     name: "language",
                     type: "text",
                     title: "Language",
-                    width: 50
+                    width: 80
                 },
                 {
                     name: "productPrice",
                     type: "text",
                     title: "Product Price",
-                    width: 50
+                    width: 100
                 },
                 {
                     name: "status",
                     type: "text",
                     title: "Status",
-                    width: 50,
+                    width: 80,
                 },
                 {
                     name: "dateAdded",
                     type: "text",
                     title: "Date Added",
-                    width: 50,
+                    width: 80,
                 },
             ],
             controller: {

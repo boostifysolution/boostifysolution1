@@ -17,9 +17,12 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 
 <div class="admin-nav-bar navbar navbar-toggleable-sm d-block d-md-none">
     <div class="container">
-        <a href="/admin/merchants" class="navbar-brand">
-            <img src="~/images/logos/boostify.png">
-        </a>
+        <div class="d-flex flex-row align-items-center">
+            <a href="/admin/users" class="navbar-brand">
+                <img src="~/images/logos/boostify.png">
+            </a>
+        </div>
+
         <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
             aria-controls="navbarSupportedContent" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
@@ -28,16 +31,19 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
     <div class="navbar-collapse collapse justify-content-end">
         <div class="container">
             <div class="d-flex flex-column pt-2 pb-2">
-                <a class="nav-item" href="/admin/users">
+                <span class="fw-bold mb-3" data-bind="text: adminStaffEmail"></span>
+                <a class="nav-item mb-3" href="/admin/users">
                     Users
                 </a>
-                <a class="nav-item" href="/admin/tasks">
+                <a class="nav-item mb-3" href="/admin/tasks">
                     Tasks
                 </a>
-                <a class="nav-item" href="/admin/adminstaffs">
-                    Admins
+                <!-- ko if: adminStaffType() != 0 -->
+                <a class="nav-item mb-3" href="/admin/adminstaffs">
+                    Admin Staffs
                 </a>
-                <a class="nav-item" href="/admin/userleads">
+                <!-- /ko -->
+                <a class="nav-item mb-3" href="/admin/userleads">
                     User Leads
                 </a>
                 <a class="nav-item" data-bind="click: signOutClick">
@@ -50,9 +56,13 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 
 <nav class="navbar d-none d-md-block">
     <div class="container">
-        <a class="navbar-brand" asp-area="" href="/admin/users">
-            <img src="~/images/logos/boostify.png">
-        </a>
+        <div class="d-flex flex-row align-items-center">
+            <a href="/admin/users" class="navbar-brand">
+                <img src="~/images/logos/boostify.png">
+            </a>
+            <span class="me-2 ms-2">•</span>
+            <span class="fw-bold" data-bind="text: adminStaffEmail"></span>
+        </div>
         <div class="d-flex flex-row desktop-navbar">
             <a class="nav-item" href="/admin/users">
                 Users
@@ -60,9 +70,11 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
             <a class="nav-item" href="/admin/tasks">
                 Tasks
             </a>
+            <!-- ko if: adminStaffType() != 0 -->
             <a class="nav-item" href="/admin/adminstaffs">
-                Admins
+                Admin Staffs
             </a>
+            <!-- /ko -->
             <a class="nav-item" href="/admin/userleads">
                 User Leads
             </a>

@@ -316,6 +316,24 @@ namespace BoostifySolution.Global
 
                     ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(Constants.Common.CurrentUserClaimKey, JsonConvert.SerializeObject(cu)));
                 }
+                else
+                {
+                    var adminStaff = await _db.AdminStaffs
+                           .Include(x => x.UserLogin)
+                           .Where(x => x.UserLoginId == user.Id)
+                               .FirstAsync();
+
+                    CurrentAdminObj ca = new()
+                    {
+                        AdminStaffId = adminStaff.AdminStaffId,
+                        UserName = adminStaff.FullName,
+                        AdminStaffType = adminStaff.AdminStaffType,
+                        RequirePasswordChange = adminStaff.RequirePasswordChange,
+                        AdminStaffEmail = adminStaff.UserLogin.Email
+                    };
+
+                    ((ClaimsIdentity)principal.Identity).AddClaim(new Claim(Constants.Common.CurrentAdminClaimKey, JsonConvert.SerializeObject(ca)));
+                }
 
                 return principal;
             }

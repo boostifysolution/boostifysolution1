@@ -2,8 +2,9 @@ var adminMaster = new function () { //rename this to the file name
     var vm = this;
 
     vm.pageType = ko.observable();
-    vm.adminStaffId = ko.observable();
+    vm.currentAdminStaffId = ko.observable();
     vm.adminStaffType = ko.observable();
+    vm.adminStaffEmail = ko.observable();
 
     vm.masterInitialize = function () {
         var url = new URL(window.location);
@@ -11,8 +12,9 @@ var adminMaster = new function () { //rename this to the file name
         var adminJSON = window.localStorage.getItem("admin");
         if (adminJSON != null) {
             var adminDetails = JSON.parse(adminJSON);
-            vm.adminStaffId(adminDetails.adminStaffId);
+            vm.currentAdminStaffId(adminDetails.adminStaffId);
             vm.adminStaffType(adminDetails.adminStaffType);
+            vm.adminStaffEmail(adminDetails.adminStaffEmail);
         } else {
             Swal.fire({
                 icon: "error",

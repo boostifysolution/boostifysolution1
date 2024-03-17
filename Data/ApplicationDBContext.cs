@@ -24,6 +24,9 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, Identit
         builder.Entity<IdentityRoleClaim<int>>().ToTable("UserRoleClaims").Property(p => p.Id).HasColumnName("UserRoleClaimId");
         builder.Entity<IdentityUserLogin<int>>().ToTable("User3rdPartyLogin").Property(p => p.UserId).HasColumnName("UserId");
         builder.Entity<IdentityUserToken<int>>().ToTable("UserTokens").Property(p => p.UserId).HasColumnName("UserId");
+
+        builder.Entity<LeaderAdminStaffs>()
+        .HasKey(x => new { x.AdminStaffId, x.AssociatedAdminStaffId });
     }
 
     public DbSet<AdminStaffs> AdminStaffs { get; set; }
@@ -41,4 +44,6 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, Identit
     public DbSet<UserTasks> UserTasks { get; set; }
 
     public DbSet<UserLeads> UserLeads { get; set; }
+
+    public DbSet<LeaderAdminStaffs> LeaderAdminStaffs { get; set; }
 }

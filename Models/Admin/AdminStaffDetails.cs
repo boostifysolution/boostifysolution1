@@ -30,8 +30,8 @@ namespace BoostifySolution.Models.Admin
     [JsonProperty("accounts")]
     public int Accounts { get; set; }
 
-    [JsonProperty("country")]
-    public int? Country { get; set; }
+    [JsonProperty("leader")]
+    public string Leader { get; set; }
 
     [JsonProperty("dateAdded")]
     public string DateAdded { get; set; }

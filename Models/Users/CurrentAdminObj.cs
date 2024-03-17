@@ -17,6 +17,9 @@ namespace BoostifySolution.Models.Users
         [JsonProperty("adminStaffType")]
         public int AdminStaffType { get; set; }
 
+        [JsonProperty("adminStaffEmail")]
+        public string AdminStaffEmail { get; set; }
+
         [JsonProperty("requiredPasswordChange")]
         public bool RequirePasswordChange { get; set; }
 

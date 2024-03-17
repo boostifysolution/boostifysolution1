@@ -561,8 +561,7 @@ input[type="file"] {
 }
 
 .navbar-brand>img {
-  height: 40px;
-  margin-right: 1rem;
+  height: 30px;
 }
 
 .navbar-toggler>img {
@@ -646,11 +645,9 @@ textarea {
 }
 
 .desktop-navbar>.nav-item {
-  background-color: var(--secondary);
   padding: 0 1rem;
   border-radius: 5px;
-  color: white !important;
-  box-shadow: -3px 3px 3px 1px rgba(0, 0, 0, 0.1);
+  color: var(--primary);
 }
 
 .desktop-navbar>.nav-item:last-of-type {
@@ -662,7 +659,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 42px;
+  height: 30px;
   color: #222 !important;
   font-weight: bold;
   font-size: 1.1rem;
@@ -800,7 +797,7 @@ input::placeholder {
 .dropdown:not(:checked)+label {
   position: relative;
   font-weight: bold;
-  height: 42px;
+  height: 30px;
   font-size: 1.1rem;
   transition: all 200ms linear;
   display: -webkit-inline-flex;
