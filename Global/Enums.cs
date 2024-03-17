@@ -159,8 +159,6 @@ namespace BoostifySolution.Global
                 Shopee = 0,
                 [Description("Lazada")]
                 Lazada = 1,
-                [Description("Amazon")]
-                Amazon = 2,
             }
 
             public enum Countries
@@ -169,8 +167,6 @@ namespace BoostifySolution.Global
                 Malaysia = 0,
                 [Description("Indonesia")]
                 Indonesia = 1,
-                [Description("India")]
-                India = 2,
             }
 
             public enum ShortFormCountries

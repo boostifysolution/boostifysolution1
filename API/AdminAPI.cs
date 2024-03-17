@@ -1178,11 +1178,6 @@ namespace BoostifySolution.API
                         user.Currency = (int)CurrencyTypes.Rupiah;
 
                     }
-                    else if (userLead.Country == (int)Countries.India)
-                    {
-                        user.Currency = (int)CurrencyTypes.Rupee;
-                    }
-
 
                     _db.Users.Add(user);
 
