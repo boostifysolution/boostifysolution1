@@ -1364,7 +1364,7 @@ namespace BoostifySolution.API
 
                 if (ca.AdminStaffType == (int)AdminStaffTypes.FullAdmin)
                 {
-                    newAdminStaff.AdminStaffType = data.AdminType;
+                    newAdminStaff.AdminStaffType = data.AdminType.Value;
                 }
                 else
                 {
