@@ -1520,7 +1520,7 @@ namespace BoostifySolution.API
             productImages.Add(task.ProductMainImageURL);
             productImages.AddRange(task.ProductImagesURL.Split(",").ToList());
 
-            var currencySymbol = Global.Utility.GetCurrencySymbol(CurrentUser.Currency);
+            var currencySymbol = Global.Utility.GetCurrencySymbol(task.Country == (int)Countries.Malaysia ? (int)CurrencyTypes.MYR : (int)CurrencyTypes.Rupee);
 
             var utd = new UserTaskDetails()
             {
