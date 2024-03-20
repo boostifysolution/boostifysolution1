@@ -1473,15 +1473,7 @@ namespace BoostifySolution.API
                     return ReturnUnauthorizedStatus();
                 }
 
-                var userQuery = _db.Users
-                .AsQueryable();
-
-                if (ca.AdminStaffType == (int)AdminStaffTypes.Staff)
-                {
-                    userQuery = userQuery.Where(x => x.AdminStaffId == ca.AdminStaffId);
-                }
-
-                var user = await userQuery.FirstOrDefaultAsync();
+                var user = await _db.Users.Where(x => x.UserId == userId).FirstOrDefaultAsync();
 
                 if (user == null)
                 {
@@ -1489,6 +1481,39 @@ namespace BoostifySolution.API
                 }
 
                 var userLogin = await _um.FindByIdAsync(user.UserLoginId.ToString());
+
+                var passwordResetToken = await _um.GeneratePasswordResetTokenAsync(userLogin);
+
+                var reset = await _um.ResetPasswordAsync(userLogin, passwordResetToken, "tempPassword123");
+
+                return Ok(new APIJsonReturnObject(null));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.InternalServerError, "A problem occured when trying to sign you in. Please refresh the page and try again.")));
+            }
+        }
+
+        [HttpPut("AdminStaffs/{adminStaffId}/ResetPassword")]
+        public async Task<IActionResult> ResetStaffPassword(int adminStaffId)
+        {
+            try
+            {
+                var ca = CurrentAdmin;
+
+                if (ca == null)
+                {
+                    return ReturnUnauthorizedStatus();
+                }
+
+                var adminStaff = await _db.AdminStaffs.Where(x => x.AdminStaffId == adminStaffId).FirstOrDefaultAsync();
+
+                if (adminStaff == null)
+                {
+                    return StatusCode((int)HttpStatusCode.BadRequest, new APIJsonReturnObject("User not found. Please select a different user."));
+                }
+
+                var userLogin = await _um.FindByIdAsync(adminStaff.UserLoginId.ToString());
 
                 var passwordResetToken = await _um.GeneratePasswordResetTokenAsync(userLogin);
 

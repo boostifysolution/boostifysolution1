@@ -258,7 +258,39 @@ var adminStaffs = new function () {
     }
 
     vm.resetPasswordClick = function () {
+        Swal.fire({
+            icon: "info",
+            title: "Are you sure you want to reset password?",
+            text: "Password will be set to: tempPassword123",
+            showConfirmButton: true,
+        }).then((result) => {
+            resetPassword();
+        })
+    }
 
+    function resetPassword() {
+        window.Global.ShowLoadingSpinner();
+
+        $.ajax({
+            url: "/api/Admin/AdminStaffs/" + vm.adminStaffId() + "/ResetPassword",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            type: 'PUT'
+        }).done(function (response) {
+            window.Global.HideLoadingSpinner();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Successfully reset password',
+                text: "The user can now login with new password",
+                showConfirmButton: true,
+            })
+
+        }).fail(function (response) {
+            window.Global.HideLoadingSpinner();
+
+            vm.errorHandling("Password Reset Failed", response);
+        });
     }
 
     vm.disableAccountClick = function () {
