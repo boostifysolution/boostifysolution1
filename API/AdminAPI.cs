@@ -16,6 +16,7 @@ using BoostifySolution.Models.Global;
 using BoostifySolution.Models.Users;
 using boostifysolution1.Models.Admin;
 using boostifysolution1.Entities;
+using Newtonsoft.Json;
 
 namespace BoostifySolution.API
 {
@@ -218,7 +219,14 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when loading users. Please refresh and try again."));
+                var inputParamDict = new Dictionary<string, string> {
+                    {"pageIndex", pageIndex.ToString()},
+                    {"pageSize", pageSize.ToString()}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to loading user. Please refresh and try again."));
             }
         }
 
@@ -324,6 +332,12 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId", userId.ToString()}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when loading the user details. Please refresh and try again."));
             }
         }
@@ -762,30 +776,59 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.InternalServerError, "There was a problem when trying to update task status. Please refresh and try again.")));
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId", userId.ToString()},
+                    {"userTaskId", userTaskId.ToString()},
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to update task status. Please refresh and try again."));
             }
         }
 
         [HttpPut("Users/{userId}/AddPopupMessage")]
         public async Task<IActionResult> AddPopupMessage(int userId, [FromBody] AdminAddPopupMessageDetails data)
         {
-            var user = await _db.Users.Where(x => x.UserId == userId).FirstAsync();
+            var ca = CurrentAdmin;
 
-            user.ShowPopupMessage = data.ShowPopupMessage;
-            user.PopupMessageTitle = data.PopupMessageTitle;
-            user.PopupMessage = data.PopupMessage;
-
-            if (!data.ShowPopupMessage)
+            if (ca == null)
             {
-                user.PopupMessageTitle = null;
-                user.PopupMessage = null;
+                return ReturnUnauthorizedStatus();
             }
 
-            _db.Users.Update(user);
+            try
+            {
+                var user = await _db.Users.Where(x => x.UserId == userId).FirstAsync();
 
-            await _db.SaveChangesAsync();
+                user.ShowPopupMessage = data.ShowPopupMessage;
+                user.PopupMessageTitle = data.PopupMessageTitle;
+                user.PopupMessage = data.PopupMessage;
 
-            return Ok(new APIJsonReturnObject(null));
+                if (!data.ShowPopupMessage)
+                {
+                    user.PopupMessageTitle = null;
+                    user.PopupMessage = null;
+                }
+
+                _db.Users.Update(user);
+
+                await _db.SaveChangesAsync();
+
+                return Ok(new APIJsonReturnObject(null));
+            }
+            catch (Exception ex)
+            {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId", userId.ToString()},
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when updating popup message. Please refresh and try again."));
+            }
         }
 
 
@@ -799,45 +842,59 @@ namespace BoostifySolution.API
                 return ReturnUnauthorizedStatus();
             }
 
-            var task = new Tasks();
-
-            if (taskId > 0)
+            try
             {
-                task = await _db.Tasks.Where(x => x.TaskId == taskId).FirstAsync();
+                var task = new Tasks();
 
+                if (taskId > 0)
+                {
+                    task = await _db.Tasks.Where(x => x.TaskId == taskId).FirstAsync();
+
+                }
+                else
+                {
+                    task.DateAdded = DateTime.UtcNow;
+                    task.Status = (int)TaskStatuses.Active;
+                }
+
+                task.TaskTitle = data.TaskTitle;
+                task.ProductName = data.ProductName;
+                task.ProductDescription = data.ProductDescription;
+                task.ProductMainImageURL = data.ProductMainImageURL;
+                task.ProductImagesURL = data.ProductImagesURL;
+                task.ProductPrice = data.ProductPrice;
+                task.ProductRating = data.ProductRating;
+                task.StoreName = data.StoreName;
+                task.StoreThumbnailURL = data.StoreThumbnailURL;
+                task.Language = data.Language;
+                task.TaskCategory = data.TaskCategory;
+                task.Platform = data.Platform;
+                task.Country = data.Country;
+
+                if (taskId > 0)
+                {
+                    _db.Tasks.Update(task);
+                }
+                else
+                {
+                    _db.Tasks.Add(task);
+                }
+
+                await _db.SaveChangesAsync();
+
+                return Ok(new APIJsonReturnObject(null));
             }
-            else
+            catch (Exception ex)
             {
-                task.DateAdded = DateTime.UtcNow;
-                task.Status = (int)TaskStatuses.Active;
+                var inputParamDict = new Dictionary<string, string> {
+                    {"taskId", taskId.ToString()},
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when saving task details. Please refresh and try again."));
             }
-
-            task.TaskTitle = data.TaskTitle;
-            task.ProductName = data.ProductName;
-            task.ProductDescription = data.ProductDescription;
-            task.ProductMainImageURL = data.ProductMainImageURL;
-            task.ProductImagesURL = data.ProductImagesURL;
-            task.ProductPrice = data.ProductPrice;
-            task.ProductRating = data.ProductRating;
-            task.StoreName = data.StoreName;
-            task.StoreThumbnailURL = data.StoreThumbnailURL;
-            task.Language = data.Language;
-            task.TaskCategory = data.TaskCategory;
-            task.Platform = data.Platform;
-            task.Country = data.Country;
-
-            if (taskId > 0)
-            {
-                _db.Tasks.Update(task);
-            }
-            else
-            {
-                _db.Tasks.Add(task);
-            }
-
-            await _db.SaveChangesAsync();
-
-            return Ok(new APIJsonReturnObject(null));
         }
 
 
@@ -861,9 +918,10 @@ namespace BoostifySolution.API
 
             foreach (var x in tasks)
             {
+
                 var ddo = new DropdownOptions()
                 {
-                    Text = $"({((ShortFormTaskCategories)x.TaskCategory).GetDescription()}-{((ShortFormCountries)x.Country).GetDescription()}-{((ShortFormLanguages)x.Language).GetDescription()}) {x.TaskTitle}",
+                    Text = $"({((ShortFormTaskCategories)x.TaskCategory).GetDescription()}-{((ShortFormLanguages)x.Language).GetDescription()}-{$"RM{x.ProductPrice:0.00}"}) {x.TaskTitle}",
                     Id = x.TaskId
                 };
 
@@ -883,22 +941,35 @@ namespace BoostifySolution.API
                 return ReturnUnauthorizedStatus();
             }
 
-            var users = await _db.Users.Where(x => x.UserId == userId).FirstAsync();
-
-            if (users.AccountStatus == ((int)UserAccountStatuses.Frozen))
+            try
             {
-                users.AccountStatus = (int)UserAccountStatuses.Active;
+                var users = await _db.Users.Where(x => x.UserId == userId).FirstAsync();
+
+                if (users.AccountStatus == ((int)UserAccountStatuses.Frozen))
+                {
+                    users.AccountStatus = (int)UserAccountStatuses.Active;
+                }
+                else
+                {
+                    users.AccountStatus = (int)UserAccountStatuses.Frozen;
+                }
+
+                _db.Users.Update(users);
+
+                await _db.SaveChangesAsync();
+
+                return Ok(new APIJsonReturnObject(null));
             }
-            else
+            catch (Exception ex)
             {
-                users.AccountStatus = (int)UserAccountStatuses.Frozen;
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userid", userId.ToString()}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to freeze account. Please refresh and try again."));
             }
-
-            _db.Users.Update(users);
-
-            await _db.SaveChangesAsync();
-
-            return Ok(new APIJsonReturnObject(null));
         }
 
         [HttpPost("Users")]
@@ -966,6 +1037,12 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to create a new user. Please refresh and try again."));
             }
         }
@@ -1207,6 +1284,12 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to create a new user. Please refresh and try again."));
             }
         }
@@ -1214,14 +1297,16 @@ namespace BoostifySolution.API
         [HttpPost("Users/{userId}/AddTask")]
         public async Task<IActionResult> AddUserTask(int userId, [FromBody] AdminAddTaskDetails data)
         {
+            var ca = CurrentAdmin;
+
+            if (ca == null)
+            {
+                return ReturnUnauthorizedStatus();
+            }
+
             try
             {
-                var ca = CurrentAdmin;
 
-                if (ca == null)
-                {
-                    return ReturnUnauthorizedStatus();
-                }
 
                 var task = await _db.Tasks.Where(x => x.TaskId == data.TaskId).FirstAsync();
 
@@ -1242,6 +1327,13 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId", userId.ToString()},
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to add task to user. Please refresh and try again."));
             }
         }
@@ -1249,27 +1341,49 @@ namespace BoostifySolution.API
         [HttpPut("Users/{userId}/Wallet/{walletTransactionId}/Update")]
         public async Task<IActionResult> UpdateWalletTransaction(int userId, int walletTransactionId, [FromBody] AdminUpdateStatusRequest data)
         {
-            var walletTransaction = await _db.WalletTransactions
-            .Include(x => x.User)
-            .Where(x => x.UserId == userId && x.WalletTransactionId == walletTransactionId)
-            .FirstAsync();
+            var ca = CurrentAdmin;
 
-            var user = walletTransaction.User;
-
-            walletTransaction.Status = data.NewStatus;
-
-            _db.WalletTransactions.Update(walletTransaction);
-
-            if (data.NewStatus == (int)WalletTransactionStatuses.Successful)
+            if (ca == null)
             {
-                user.WalletAmount = user.WalletAmount - walletTransaction.Amount;
-
-                _db.Users.Update(user);
+                return ReturnUnauthorizedStatus();
             }
 
-            await _db.SaveChangesAsync();
+            try
+            {
+                var walletTransaction = await _db.WalletTransactions
+                            .Include(x => x.User)
+                            .Where(x => x.UserId == userId && x.WalletTransactionId == walletTransactionId)
+                            .FirstAsync();
 
-            return Ok(new APIJsonReturnObject(null));
+                var user = walletTransaction.User;
+
+                walletTransaction.Status = data.NewStatus;
+
+                _db.WalletTransactions.Update(walletTransaction);
+
+                if (data.NewStatus == (int)WalletTransactionStatuses.Successful)
+                {
+                    user.WalletAmount = user.WalletAmount - walletTransaction.Amount;
+
+                    _db.Users.Update(user);
+                }
+
+                await _db.SaveChangesAsync();
+
+                return Ok(new APIJsonReturnObject(null));
+            }
+            catch (Exception ex)
+            {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId", userId.ToString()},
+                    {"walletTransactionId", walletTransactionId.ToString()},
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when updating wallet transaction. Please refresh and try again."));
+            }
         }
 
         [HttpPost("Users/{userId}/AddWalletCredit")]
@@ -1326,6 +1440,13 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId", userId.ToString()},
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to add credit to user. Please refresh and try again."));
             }
         }
@@ -1403,6 +1524,12 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"data", JsonConvert.SerializeObject(data)}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to add credit to user. Please refresh and try again."));
             }
         }
@@ -1490,7 +1617,13 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.InternalServerError, "A problem occured when trying to sign you in. Please refresh the page and try again.")));
+                var inputParamDict = new Dictionary<string, string> {
+                    {"userId",userId.ToString()}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when resetting user password. Please refresh and try again."));
             }
         }
 
@@ -1523,7 +1656,13 @@ namespace BoostifySolution.API
             }
             catch (Exception ex)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.InternalServerError, "A problem occured when trying to sign you in. Please refresh the page and try again.")));
+                var inputParamDict = new Dictionary<string, string> {
+                    {"adminStaffId",adminStaffId.ToString()}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when resetting staff password. Please refresh and try again."));
             }
         }
 
@@ -1537,60 +1676,73 @@ namespace BoostifySolution.API
                 return ReturnUnauthorizedStatus();
             }
 
-            var task = await _db.Tasks
-                .Where(x => x.TaskId == taskId)
-                .FirstAsync();
-
-
-            var comments = await _db.ProductReviews
-                .OrderBy(x => Guid.NewGuid())
-                .Take(10)
-                .ToListAsync();
-
-            Random rnd = new Random();
-
-            var productImages = new List<string>();
-
-            productImages.Add(task.ProductMainImageURL);
-            productImages.AddRange(task.ProductImagesURL.Split(",").ToList());
-
-            var currencySymbol = Global.Utility.GetCurrencySymbol(task.Country == (int)Countries.Malaysia ? (int)CurrencyTypes.MYR : (int)CurrencyTypes.Rupee);
-
-            var utd = new UserTaskDetails()
+            try
             {
-                TaskTitle = task.TaskTitle,
-                ProductName = task.ProductName,
-                ProductDescription = task.ProductDescription,
-                ProductMainImageURL = task.ProductMainImageURL,
-                ProductImagesURL = productImages,
-                ProductPrice = $"{currencySymbol}{task.ProductPrice:0.00}",
-                ProductRating = task.ProductRating,
-                StoreName = task.StoreName,
-                StoreThumbnailURL = task.StoreThumbnailURL,
-                ProductReviewsList = new List<ProductReviewListDetails>(),
-                ProductRatingCount = rnd.Next(80, 90),
-                ProductSoldCount = rnd.Next(100, 110),
-                ShippingFee = $"{currencySymbol}0.00",
-                Vouchers = new List<string>() { $"{currencySymbol}1.00 OFF", $"{currencySymbol}2.00 OFF", $"{currencySymbol}3.00 OFF" },
-                QuantityRemaining = rnd.Next(200, 300)
-            };
+                var task = await _db.Tasks
+                                .Where(x => x.TaskId == taskId)
+                                .FirstAsync();
 
-            var orderdComments = comments.OrderByDescending(x => x.DateAdded).ToList();
 
-            foreach (var x in orderdComments)
-            {
-                var nprd = new ProductReviewListDetails()
+                var comments = await _db.ProductReviews
+                    .OrderBy(x => Guid.NewGuid())
+                    .Take(10)
+                    .ToListAsync();
+
+                Random rnd = new Random();
+
+                var productImages = new List<string>();
+
+                productImages.Add(task.ProductMainImageURL);
+                productImages.AddRange(task.ProductImagesURL.Split(",").ToList());
+
+                var currencySymbol = Global.Utility.GetCurrencySymbol(task.Country == (int)Countries.Malaysia ? (int)CurrencyTypes.MYR : (int)CurrencyTypes.Rupee);
+
+                var utd = new UserTaskDetails()
                 {
-                    ReviewerName = x.ReviewerName,
-                    Rating = x.Rating * 100 / 5,
-                    Comment = x.Comment,
-                    DateAdded = $"{x.DateAdded.ToLocalTime().ToString("yyyy-MM-dd HH:mm")} | Variation: Standard",
+                    TaskTitle = task.TaskTitle,
+                    ProductName = task.ProductName,
+                    ProductDescription = task.ProductDescription,
+                    ProductMainImageURL = task.ProductMainImageURL,
+                    ProductImagesURL = productImages,
+                    ProductPrice = $"{currencySymbol}{task.ProductPrice:0.00}",
+                    ProductRating = task.ProductRating,
+                    StoreName = task.StoreName,
+                    StoreThumbnailURL = task.StoreThumbnailURL,
+                    ProductReviewsList = new List<ProductReviewListDetails>(),
+                    ProductRatingCount = rnd.Next(80, 90),
+                    ProductSoldCount = rnd.Next(100, 110),
+                    ShippingFee = $"{currencySymbol}0.00",
+                    Vouchers = new List<string>() { $"{currencySymbol}1.00 OFF", $"{currencySymbol}2.00 OFF", $"{currencySymbol}3.00 OFF" },
+                    QuantityRemaining = rnd.Next(200, 300)
                 };
 
-                utd.ProductReviewsList.Add(nprd);
-            }
+                var orderdComments = comments.OrderByDescending(x => x.DateAdded).ToList();
 
-            return Ok(new APIJsonReturnObject(utd));
+                foreach (var x in orderdComments)
+                {
+                    var nprd = new ProductReviewListDetails()
+                    {
+                        ReviewerName = x.ReviewerName,
+                        Rating = x.Rating * 100 / 5,
+                        Comment = x.Comment,
+                        DateAdded = $"{x.DateAdded.ToLocalTime().ToString("yyyy-MM-dd HH:mm")} | Variation: Standard",
+                    };
+
+                    utd.ProductReviewsList.Add(nprd);
+                }
+
+                return Ok(new APIJsonReturnObject(utd));
+            }
+            catch (Exception ex)
+            {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"taskId",taskId.ToString()}
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when loading demo task. Please refresh and try again."));
+            }
         }
 
         //PUT: api/Admin/UpdatePassword

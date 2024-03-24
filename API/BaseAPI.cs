@@ -88,6 +88,41 @@ namespace BoostifySolution.API
         {
             return StatusCode((int)HttpStatusCode.Unauthorized);
         }
+
+        protected async Task HandleException(Exception e, string dataString)
+        {
+            if (IsProductionEnvironment())
+            {
+                _db.ChangeTracker.Clear();
+
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var ne = new Exceptions()
+                {
+                    Data = dataString,
+                    ExceptionTitle = e.Message,
+                    ExceptionType = e.GetType().ToString(),
+                    ExceptionMessage = e.StackTrace,
+                    DateAdded = DateTime.UtcNow,
+                    UserId = 0
+                };
+
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    ne.UserId = Int32.Parse(userId);
+                }
+
+                _db.Exceptions.Add(ne);
+
+                await _db.SaveChangesAsync();
+            }
+        }
+
+        private bool IsProductionEnvironment()
+        {
+            var environment = Environment.GetEnvironmentVariable("APP_ENVIRONMENT");
+            return !string.IsNullOrEmpty(environment) && environment.Equals("Production", StringComparison.OrdinalIgnoreCase);
+        }
     }
 
 }

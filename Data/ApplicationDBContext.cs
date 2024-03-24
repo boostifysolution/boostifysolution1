@@ -46,4 +46,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, Identit
     public DbSet<UserLeads> UserLeads { get; set; }
 
     public DbSet<LeaderAdminStaffs> LeaderAdminStaffs { get; set; }
+
+    public DbSet<Exceptions> Exceptions { get; set; }
+
 }
