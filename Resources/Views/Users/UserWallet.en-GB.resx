@@ -126,6 +126,9 @@
   <data name="BankName" xml:space="preserve">
     <value>Bank Name*</value>
   </data>
+  <data name="BoostifySolutionWallet" xml:space="preserve">
+    <value>Boostify Solution Wallet</value>
+  </data>
   <data name="Commission" xml:space="preserve">
     <value>Commission</value>
   </data>
@@ -152,9 +155,6 @@
   </data>
   <data name="PleaseMakeSureWithdraw" xml:space="preserve">
     <value>Please make sure all information is correct before submitting withdraw</value>
-  </data>
-  <data name="BoostifySolutionWallet" xml:space="preserve">
-    <value>Boostify Solution Wallet</value>
   </data>
   <data name="SubmitWithdraw" xml:space="preserve">
     <value>Submit Withdraw</value>

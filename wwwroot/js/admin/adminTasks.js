@@ -126,7 +126,8 @@ var adminTasks = new function () {
             language: vm.language(),
             productDescription: productDescriptionEditor.getData(),
             taskCategory: vm.taskCategory(),
-            platform: vm.platform()
+            platform: vm.platform(),
+            country: vm.country()
         }
 
         $.ajax({
@@ -309,12 +310,19 @@ var adminTasks = new function () {
         vm.language(responseData.language);
         vm.platform(responseData.platform);
         vm.taskCategory(responseData.taskCategory);
+        vm.country(responseData.country);
 
         productDescriptionEditor.setData(responseData.productDescription);
     }
 
     vm.viewStoreClick = function () {
-        window.open("/users/shopee?tId=" + vm.taskId() + "&demo=true", "_blank");
+        if (vm.platform() == 0) {
+            window.open("/users/shopee?tId=" + vm.taskId() + "&demo=true", "_blank");
+        }else if(vm.platform() == 1){
+            window.open("/users/lazada?tId=" + vm.taskId() + "&demo=true", "_blank");
+        }else{
+            window.open("/users/amazon?tId=" + vm.taskId() + "&demo=true", "_blank");
+        }
     }
 
     window.pageViewModel = vm;

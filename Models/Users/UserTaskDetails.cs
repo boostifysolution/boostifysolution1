@@ -30,7 +30,7 @@ namespace BoostifySolution.Models.Admin
         [JsonProperty("productRating")]
         public double ProductRating { get; set; }
 
-         [JsonProperty("productRatingWidth")]
+        [JsonProperty("productRatingWidth")]
         public double ProductRatingWidth { get; set; }
 
         [JsonProperty("productRatingCount")]
@@ -62,6 +62,9 @@ namespace BoostifySolution.Models.Admin
 
         [JsonProperty("productReviewsList")]
         public List<ProductReviewListDetails> ProductReviewsList { get; set; }
+
+        [JsonProperty("supportItemsList")]
+        public List<SupportItemListDetails> SupportItemsList { get; set; }
     }
 
     public class ProductReviewListDetails
@@ -78,7 +81,29 @@ namespace BoostifySolution.Models.Admin
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
-         [JsonProperty("variation")]
+        [JsonProperty("variation")]
         public string Variation { get; set; }
+    }
+
+    public class SupportItemListDetails
+    {
+        [JsonProperty("productName")]
+        public string ProductName { get; set; }
+
+        [JsonProperty("productPrice")]
+        public string ProductPrice { get; set; }
+
+        [JsonProperty("productRating")]
+        public double ProductRating { get; set; }
+
+        [JsonProperty("productRatingWidth")]
+        public double ProductRatingWidth { get; set; }
+
+        [JsonProperty("productRatingCount")]
+        public int ProductRatingCount { get; set; }
+
+        [JsonProperty("productImageURL")]
+        public string ProductImageURL { get; set; }
+
     }
 }

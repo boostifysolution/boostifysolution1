@@ -21,6 +21,7 @@
     left: 5%;
     display: flex;
     flex-direction: column;
+    width: 50%;
 }
 
 .hero-title>h1 {
@@ -114,7 +115,6 @@
 
     .hero-title {
         top: unset;
-        width: 50%;
     }
 
     .hero-title>h1 {

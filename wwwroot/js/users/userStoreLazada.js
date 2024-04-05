@@ -50,7 +50,7 @@ var userStoreLazada = new function () {
         window.Global.ShowLoadingSpinner();
 
         $.ajax({
-            url: "/api/Admin/DemoTasks/" + taskId,
+            url: "/api/Admin/DemoTasks/" + userTaskId,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             type: "GET",

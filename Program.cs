@@ -43,7 +43,8 @@ builder.Services.AddMvc()
 var supportedCultures = new[] {
                 new CultureInfo("en-GB"),
                 new CultureInfo("zh"),
-                new CultureInfo("ms-MY")
+                new CultureInfo("ms-MY"),
+                new CultureInfo("ja-JP")
             };
 
 //Configs

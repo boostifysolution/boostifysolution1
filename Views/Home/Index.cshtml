@@ -1,3 +1,5 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
 Layout = "/Views/Home/_Layout.cshtml";
 ViewData["Title"] = "Boostify Solution";
@@ -10,18 +12,17 @@ ViewData["Title"] = "Boostify Solution";
     <div class="hero-banner mb-5">
         <img src="~/images/landingPage/hero-banner.webp">
         <div class="hero-title">
-            <h1>Get paid to do<br />short tasks online</h1>
-            <span>Earn money whenever and wherever you want.<br />All you need is a device connected to the
-                internet</span>
+            <h1>@localizer["HeroBannerTitle"]</h1>
+            <span>@localizer["HeroBannerSecondary"]</span>
             <a href="/users/signup">
-                <button class="primary-button button mt-5">START EARNING MONEY</button>
+                <button class="primary-button button mt-5">@localizer["StartEarningMoney"]</button>
             </a>
         </div>
     </div>
     <div class="row mb-5">
         <div class="col-12 col-md-6 mb-3 mb-md-0">
             <div class="landing-page-info-holder">
-                <h2 class="fw-bold mb-3">How it works</h2>
+                <h2 class="fw-bold mb-3">@localizer["HowItWorks"]</h2>
                 <div class="d-flex flex-row mb-2">
                     <div class="icon-holder">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +31,7 @@ ViewData["Title"] = "Boostify Solution";
                             </path>
                         </svg>
                     </div>
-                    <span class="ms-1">Sign Up an account with us. It's totally free!</span>
+                    <span class="ms-1">@localizer["SignUpAnAccount"]</span>
                 </div>
                 <div class="d-flex flex-row mb-2">
                     <div class="icon-holder">
@@ -40,8 +41,7 @@ ViewData["Title"] = "Boostify Solution";
                             </path>
                         </svg>
                     </div>
-                    <span class="ms-1">Instructions and training will be given by your account manager on how to do a
-                        particular
+                    <span class="ms-1">@localizer["InstructionsAndTraining"]
                         tasks</span>
                 </div>
                 <div class="d-flex flex-row mb-2">
@@ -52,7 +52,8 @@ ViewData["Title"] = "Boostify Solution";
                             </path>
                         </svg>
                     </div>
-                    <span class="ms-1">Pick the task you want to do</span>
+                    <span class="ms-1">@localizer["PickTask"]
+                        tasks</span>
                 </div>
                 <div class="d-flex flex-row mb-2">
                     <div class="icon-holder">
@@ -62,7 +63,8 @@ ViewData["Title"] = "Boostify Solution";
                             </path>
                         </svg>
                     </div>
-                    <span class="ms-1">Carefully read the instructions and complete the assigned tasks</span>
+                    <span class="ms-1">@localizer["CarefullyReadInstructions"]
+                        </span>
                 </div>
                 <div class="d-flex flex-row mb-2">
                     <div class="icon-holder">
@@ -72,7 +74,7 @@ ViewData["Title"] = "Boostify Solution";
                             </path>
                         </svg>
                     </div>
-                    <span class="ms-1">Earnings will be credited once you've complete the task</span>
+                    <span class="ms-1">@localizer["EarningWillBeCredited"]</span>
                 </div>
                 <div class="d-flex flex-row mb-2">
                     <div class="icon-holder">
@@ -82,14 +84,13 @@ ViewData["Title"] = "Boostify Solution";
                             </path>
                         </svg>
                     </div>
-                    <span class="ms-1">Withdraw your earning from Boostify Solution with one of our face and secure
-                        methods</span>
+                    <span class="ms-1">@localizer["WithdrawYourEarning"]</span>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-6">
             <div class="landing-page-info-holder why-project-india">
-                <h2 class="fw-bold mb-3">Why Boostify Solution</h2>
+                <h2 class="fw-bold mb-3">@localizer["WhyBoostifySolution"]</h2>
                 <div class="d-flex flex-row mb-2">
                     <div class="icon-holder">
                         <svg xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +100,7 @@ ViewData["Title"] = "Boostify Solution";
                         </svg>
                     </div>
                     <span class="ms-1">
-                        Opportunity. Open to anyone, no special skills needed
+                        @localizer["Opportunity"]
                     </span>
                 </div>
                 <div class="d-flex flex-row mb-2">
@@ -111,7 +112,7 @@ ViewData["Title"] = "Boostify Solution";
                         </svg>
                     </div>
                     <span class="ms-1">
-                        Flexibility. Make money on your free time
+                        @localizer["Flexibility"]
                     </span>
                 </div>
                 <div class="d-flex flex-row mb-2">
@@ -123,7 +124,7 @@ ViewData["Title"] = "Boostify Solution";
                         </svg>
                     </div>
                     <span class="ms-1">
-                        Get paid up to RM50 per task. Earn up to RM500 a day.
+                        @localizer["GetPaid"]
                     </span>
                 </div>
                 <div class="d-flex flex-row mb-2">
@@ -135,7 +136,7 @@ ViewData["Title"] = "Boostify Solution";
                         </svg>
                     </div>
                     <span class="ms-1">
-                        Our support team is here to guide you at every step
+                        @localizer["LocalSupport"]
                     </span>
                 </div>
                 <div class="d-flex flex-row mb-3">
@@ -147,46 +148,46 @@ ViewData["Title"] = "Boostify Solution";
                         </svg>
                     </div>
                     <span class="ms-1">
-                        Easy withdrawals through many methods and no minimum withdrawal
+                        @localizer["EasyWithdrawals"]
                     </span>
                 </div>
             </div>
         </div>
     </div>
     <div class="d-flex flex-column mb-3">
-        <h2 class="fw-bold mb-4">Types of task</h2>
+        <h2 class="fw-bold mb-4">@localizer["TypesOfTasks"]</h2>
         <div class="row">
             <div class="col-6 col-md-3 mb-3">
                 <div class="type-task-holder">
                     <img src="~/images/landingPage/rate-products.webp">
-                    <span>Rate Products</span>
+                    <span>@localizer["RateProducts"]</span>
                 </div>
             </div>
             <div class="col-6 col-md-3 mb-3">
                 <div class="type-task-holder">
                     <img src="~/images/landingPage/perform-surveys.webp">
-                    <span>Perform Surveys</span>
+                    <span>@localizer["PerformSurveys"]</span>
                 </div>
             </div>
             <div class="col-6 col-md-3 mb-3">
                 <div class="type-task-holder">
                     <img src="~/images/landingPage/search-for-information.webp">
-                    <span>Search for information</span>
+                    <span>@localizer["SearchInformation"]</span>
                 </div>
             </div>
             <div class="col-6 col-md-3 mb-3">
                 <div class="type-task-holder">
                     <img src="~/images/landingPage/categorize-content.webp">
-                    <span>Categorize products</span>
+                    <span>@localizer["CategorizeProducts"]</span>
                 </div>
             </div>
         </div>
     </div>
     <div class="cta-holder mt-5 mb-5">
-        <span>Get paid for completing short online tasks</span>
-        <span>Earn extra cash by doing tasks online anywhere, whether you're on the go or relaxing at home</span>
+        <span>@localizer["GetPaid"]</span>
+        <span>@localizer["EarnMoneyAnywhere"]</span>
         <a href="/users/signup">
-            <button class="primary-button button mt-4">START EARNING MONEY</button>
+            <button class="primary-button button mt-4">@localizer["StartEarningMoney"]</button>
         </a>
     </div>
 </div>

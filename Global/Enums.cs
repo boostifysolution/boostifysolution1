@@ -54,8 +54,8 @@ namespace BoostifySolution.Global
             {
                 [Description("RM")]
                 MYR = 0,
-                [Description("Rupee")]
-                Rupee = 1,
+                [Description("Yen")]
+                Yen = 1,
                 [Description("Rupiah")]
                 Rupiah = 2
             }
@@ -68,8 +68,8 @@ namespace BoostifySolution.Global
                 Malay = 1,
                 [Description("Chinese")]
                 Chinese = 2,
-                [Description("Hindi")]
-                Hindi = 3
+                [Description("Japanese")]
+                Japanese = 3
             }
 
             public enum ShortFormLanguages
@@ -80,8 +80,8 @@ namespace BoostifySolution.Global
                 Malay = 1,
                 [Description("Chi")]
                 Chinese = 2,
-                [Description("Hin")]
-                Hindi = 3
+                [Description("Jp")]
+                Japan = 3
             }
 
             public enum UserAccountStatuses
@@ -159,6 +159,8 @@ namespace BoostifySolution.Global
                 Shopee = 0,
                 [Description("Lazada")]
                 Lazada = 1,
+                [Description("Amazon")]
+                Amazon = 2,
             }
 
             public enum Countries
@@ -167,6 +169,8 @@ namespace BoostifySolution.Global
                 Malaysia = 0,
                 [Description("Indonesia")]
                 Indonesia = 1,
+                [Description("Japan")]
+                Japan = 2,
             }
 
             public enum ShortFormCountries
@@ -175,8 +179,8 @@ namespace BoostifySolution.Global
                 Malaysia = 0,
                 [Description("Indo")]
                 Indonesia = 1,
-                [Description("India")]
-                India = 2,
+                [Description("Jp")]
+                Japan = 2,
             }
 
             public enum LeadStatuses

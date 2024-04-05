@@ -15,12 +15,596 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
     });
 </script>
 
-<div class="amazon-header">
-    <img>
-</div>
-<div class="amazon-secondary-header">
+<div class="d-block d-md-none">
+    <div class="amazon-mobile-header">
+        <div class="d-flex flex-row justify-content-between mb-1">
+            <div class="d-flex flex-row align-items-center">
+                <img class="hamburger-icon me-2" src="~/images/amazon/hamburger.svg">
+                <img class="amazon-logo" src="~/images/amazon/amazon-jp-logo.png">
+            </div>
+            <div class="d-flex flex-row align-items-center">
+                <span class="me-2">
+                    ログイン ›
+                </span>
+                <img class="cart-icon" src="~/images/amazon/cart.svg">
+            </div>
+        </div>
+        <div class="search-bar">
+            <span>検索 Amazon.co.jp</span>
+            <div class="search-button" data-bind="click: disabledNavigation">
+                <img src="~/images/amazon/search-icon.png">
+            </div>
+        </div>
+    </div>
+    <div class="amazon-secondary-header mb-4">
+        <img class="amazon-pin me-2" src="~/images/amazon/pin.svg">
+        <span class="header-primary-text me-1">
+            @localizer["DeliverTo"]
+        </span>
+        <span class="header-primary-text">
+            @localizer["SelectLocation"]
+        </span>
+    </div>
+    <div class="container d-flex flex-column">
+        <div class="row">
+            <div class="col-8">
+                <span class="store-name" data-bind="text: storeName"></span>
+            </div>
+            <div class="col-4">
+                <div class="d-flex flex-row align-items-center">
+                    <span class="product-rating" data-bind="text: productRating"></span>
+                    <div class="star-ratings me-2">
+                        <div class="fill-ratings" data-bind="style: {width: productRatingWidth }">
+                            <span>★★★★★</span>
+                        </div>
+                        <div class="empty-ratings">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <span class="rating-text" data-bind="text: ratingCount"></span>
+                </div>
+            </div>
+        </div>
+        <span class="mb-2" data-bind="text: productName"></span>
+        <div class="product-image-holder">
+            <img class="product-main-image" data-bind="attr: { src: productMainImageURL}">
+            <div class="d-flex flex-row flex-wrap" data-bind="foreach: productImagesURL">
+                <img class="product-sub-images"
+                    data-bind="attr: { src: $data}, click: $parent.productImageHover.bind($data), event: {mouseover: $parent.productImageHover.bind($data)}">
+            </div>
+        </div>
+        <hr class="mt-2" />
+        <div class="limited-time-offer-holder mb-3">
+            <span>@localizer["LimitedTimeOffer"]</span>
+        </div>
+        <div class="d-flex flex-row align-items-start mb-3">
+            <span class="currency-symbol">¥</span>
+            <div class="d-flex flex-row align-items-center">
+                <span class="product-price me-2" data-bind="text: productPrice"></span>
+                <span>@localizer["TaxIncluded"]</span>
+            </div>
+        </div>
+        <span class="promo-text mb-3 pe-3"><b>Amazon Mastercard (年会費・入会費 永年無料)</b>は、Amazonでのお買い物で いつでも+2.0%ポイント
+            (プライム会員 限定) |
+            入会ポイントを見るにはログインしてください。詳しく見る</span>
+        <div class="d-flex mb-3">
+            <span>@localizer["FreeDelivery"] <span class="fw-bold"
+                    data-bind="text: deliveryDate"></span><span>にお届け</span></span>
 
+        </div>
+        <div class="d-flex flex-row align-items-center mb-3">
+            <img class="amazon-pin me-2" src="~/images/amazon/pin-black.svg">
+            <span class="store-name">
+                @localizer["DeliverToSelectLocation"]
+            </span>
+        </div>
+        <span class="delivery-within mb-3">通常4～5日以内に発送します。</span>
+        <div class="input-holder">
+            <select class="form-control form-select quantity-holder"
+                data-bind="value: quantity, options: quantityOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: '数量: 0', valueAllowUnset: true"></select>
+        </div>
+        <button class="amazon-primary-button button mb-3">@localizer["AddToCart"]</button>
+        <button class="amazon-secondary-button button mb-3">@localizer["BuyNow"]</button>
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column me-2 justify-content-center">
+                <span class="secondary-text mb-2">@localizer["ShipsFrom"]</span>
+                <span class="secondary-text mb-2">@localizer["SoldBy"]</span>
+                <span class="secondary-text mb-2">@localizer["Packaging"]</span>
+                <span class="secondary-text mb-2">@localizer["Payment"]</span>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <span class="shipping-info-text mb-2">Amazon</span>
+                <span class="shipping-info-text mb-2">Amazon</span>
+                <span class="shipping-info-text mb-2">@localizer["ShipsInProductPackaging"]</span>
+                <span class="shipping-info-text mb-2">@localizer["SecureTransaction"]</span>
+            </div>
+        </div>
+        <hr />
+        <div class="d-flex flex-row">
+            <div class="amazon-icons-holder me-2">
+                <img src="~/images/amazon/shipping.png">
+                <span>@localizer["ShipsFromAmazon"]</span>
+            </div>
+            <div class="amazon-icons-holder me-2">
+                <img src="~/images/amazon/worry-free.png">
+                <span>@localizer["WorryFreeShipping"]</span>
+            </div>
+            <div class="amazon-icons-holder">
+                <img src="~/images/amazon/secure-transaction.png">
+                <span>@localizer["SecureTransaction"]</span>
+            </div>
+        </div>
+        <hr />
+        <span class="fw-bold mb-2 about-this-item">@localizer["AboutThisItem"]</span>
+        <div data-bind="html: productDescription"></div>
+        <hr />
+        <div class="about-this-item mb-3">こちらもおすすめ</div>
+        <div class="d-flex flex-row" data-bind="foreach: supportItemsList">
+            <div class="d-flex flex-column me-3">
+                <div class="d-flex justify-content-center">
+                    <img class="support-item-product-image" data-bind="attr: {src: productImageURL}">
+                </div>
+                <span class="support-item-product-name" data-bind="text: productName"></span>
+                <div class="d-flex flex-row">
+                    <div class="star-ratings me-2">
+                        <div class="fill-ratings" data-bind="style: {width: productRatingWidth }">
+                            <span>★★★★★</span>
+                        </div>
+                        <div class="empty-ratings">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <span class="rating-text" data-bind="text: productRatingCount"></span>
+                </div>
+                <div class="d-flex flex-row justify-content-start">
+                    <span class="currency-symbol">¥</span>
+                    <span class="support-item-product-price" data-bind="text: productPrice"></span>
+                </div>
+                <span class="support-item-deliver">@localizer["FreeDelivery"] <span class="fw-bold"
+                        data-bind="text: $parent.deliveryDate"></span><span>にお届け</span></span>
+            </div>
+        </div>
+        <hr />
+        <div class="about-this-item mb-3">上位レビュー</div>
+        <div class="d-flex flex-column" data-bind="foreach: productReviewsList">
+            <div class="d-flex flex-column mb-4">
+                <div class="d-flex flex-row align-items-center mb-2">
+                    <img class="comment-customer-image" src="~/images/amazon/customer.jpeg">
+                    <span data-bind="text: reviewerName"></span>
+                </div>
+                <div class="star-ratings mb-1">
+                    <div class="fill-ratings" data-bind="style: {width: rating }">
+                        <span>★★★★★</span>
+                    </div>
+                    <div class="empty-ratings">
+                        <span>★★★★★</span>
+                    </div>
+                </div>
+                <span class="mb-1" data-bind="text: dateAdded"></span>
+                <span class="mb-2" data-bind="text: $parent.productName"></span>
+                <span class="mb-2" data-bind="text: comment"></span>
+                <div class="d-flex flex-row align-items-center">
+                    <div class="add-to-list-holder me-2">
+                        役に立った
+                    </div>
+                    <span>| レポート</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="amazon-footer">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-6 mb-3">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">Amazon Advertising</span>
+                        <span class="footer-secondary-text">商品の露出でお客様の関心と
+                            反応を引き出す</span>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">Audible（オーディブル）</span>
+                        <span class="footer-secondary-text">「聴く」読書
+                            <br />会員なら聴き放題</span>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">アマゾン ウェブ サービス（AWS）</span>
+                        <span class="footer-secondary-text">クラウドコンピューティング
+                            <br />サービス</span>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">Amazonアウトレット</span>
+                        <span class="footer-secondary-text">訳あり商品を
+                            <br />お手頃価格で販売
+                        </span>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">Amazonビジネス（法人購買）</span>
+                        <span class="footer-secondary-text">請求書払い
+                            <br />法人価格・数量割引</span>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">AmazonGlobal</span>
+                        <span class="footer-secondary-text">65か国/地域以上への
+                            <br />海外配送がより簡単に</span>
+                    </div>
+                </div>
+                <div class="col-6 mb-2">
+                    <div class="footer-content">
+                        <span class="footer-primary-text">Shopbop</span>
+                        <span class="footer-secondary-text">世界中の厳選された
+                            <br />ファッションアイテム
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column align-items-center w-100">
+                <span>利用規約 | プライバシー規約 | パーソナライズド広告規約 | 各種規約 | 特定商取引法に基づく表示</span>
+                <span>© 1996-2022, Amazon.com, Inc. or its affiliates</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="container">
 
+<div class="d-none d-md-block">
+    <div class="amazon-header">
+        <img class="amazon-logo me-3" src="~/images/amazon/amazon-jp-logo.png">
+        <div class="d-flex flex-row align-items-center w-100">
+            <img class="amazon-pin" src="~/images/amazon/pin.svg">
+            <div class="d-flex flex-column justify-content-center me-3 sign-in-holder">
+                <span class="header-secondary-text">
+                    @localizer["DeliverTo"]
+                </span>
+                <span class="header-primary-text">
+                    @localizer["SelectLocation"]
+                </span>
+            </div>
+            <div class="search-bar me-3">
+                <span>検索 Amazon.co.jp</span>
+                <div class="search-button" data-bind="click: disabledNavigation">
+                    <img src="~/images/amazon/search-icon.png">
+                </div>
+            </div>
+            <div class="d-flex flex-column justify-content-center me-3 sign-in-holder">
+                <span class="header-secondary-text">
+                    @localizer["HelloSignIn"]
+                </span>
+                <span class="header-primary-text">
+                    @localizer["AccountsList"]
+                </span>
+            </div>
+            <div class="d-flex flex-column justify-content-center return-holder me-3">
+                <span class="header-secondary-text">
+                    @localizer["Returns"]
+                </span>
+                <span class="header-primary-text">
+                    @localizer["Orders"]
+                </span>
+            </div>
+            <div class="d-flex flex-row align-items-center return-holder">
+                <img class="cart-icon" src="~/images/amazon/cart.svg">
+                <span>@localizer["Cart"]</span>
+            </div>
+        </div>
+    </div>
+    <div class="amazon-secondary-header">
+        <img class="hamburger-icon me-1" src="~/images/amazon/hamburger.svg">
+        <span class="fw-bold me-3">@localizer["All"]</span>
+        <span class="navigation-text me-4">@localizer["AmazonPointsCheck"]</span>
+        <span class="navigation-text me-4">@localizer["Help"]</span>
+        <span class="navigation-text me-4">@localizer["BestSellers"]</span>
+        <span class="navigation-text me-4">@localizer["AmazonBasics"]</span>
+        <span class="navigation-text me-4">@localizer["TodaysDeals"]</span>
+        <span class="navigation-text me-4">@localizer["PrimeVideo"]</span>
+        <span class="navigation-text me-4">@localizer["Music"]</span>
+        <span class="navigation-text">@localizer["NewReleases"]</span>
+    </div>
+    <div class="container">
+        <div class="d-flex flex-row mt-3 mb-4">
+            <span class="breadcrumbs" data-bind="click: disabledNavigation">@localizer["AmazonStore"] &gt;
+                @localizer["ConsumerElectronices"] &gt; </span>
+            <span class="breadcrumb-product-name" data-bind="text: productName"></span>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="product-image-holder">
+                    <img class="product-main-image" data-bind="attr: { src: productMainImageURL}">
+                    <div class="d-flex flex-row" data-bind="foreach: productImagesURL">
+                        <img class="product-sub-images"
+                            data-bind="attr: { src: $data}, click: $parent.productImageHover.bind($data), event: {mouseover: $parent.productImageHover.bind($data)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="d-flex flex-column">
+                    <span class="product-name" data-bind="text: productName"></span>
+                    <span class="store-name" data-bind="text: storeName"></span>
+                    <div class="d-flex flex-row align-items-center">
+                        <span class="product-rating" data-bind="text: productRating"></span>
+                        <div class="star-ratings me-4">
+                            <div class="fill-ratings" data-bind="style: {width: productRatingWidth }">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <span class="rating-text" data-bind="text: ratingCount"></span>
+                        <span class="rating-text">@localizer["Ratings"]</span>
+                    </div>
+                    <hr class="mt-2" />
+                    <div class="limited-time-offer-holder mb-3">
+                        <span>@localizer["LimitedTimeOffer"]</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-start mb-3">
+                        <span class="currency-symbol">¥</span>
+                        <div class="d-flex flex-row align-items-center">
+                            <span class="product-price me-2" data-bind="text: productPrice"></span>
+                            <span>@localizer["TaxIncluded"]</span>
+                        </div>
+                    </div>
+                    <span class="promo-text mb-3"><b>Amazon Mastercard (年会費・入会費 永年無料)</b>は、Amazonでのお買い物で いつでも+2.0%ポイント
+                        (プライム会員 限定) |
+                        入会ポイントを見るにはログインしてください。詳しく見る</span>
+                    <div class="d-flex flex-row">
+                        <div class="amazon-icons-holder me-2">
+                            <img src="~/images/amazon/shipping.png">
+                            <span>@localizer["ShipsFromAmazon"]</span>
+                        </div>
+                        <div class="amazon-icons-holder me-2">
+                            <img src="~/images/amazon/worry-free.png">
+                            <span>@localizer["WorryFreeShipping"]</span>
+                        </div>
+                        <div class="amazon-icons-holder">
+                            <img src="~/images/amazon/secure-transaction.png">
+                            <span>@localizer["SecureTransaction"]</span>
+                        </div>
+                    </div>
+                    <hr />
+                    <span class="fw-bold mb-2 about-this-item">@localizer["AboutThisItem"]</span>
+                    <div data-bind="html: productDescription"></div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="purchase-details-holder">
+                    <div class="d-flex flex-row align-items-start mb-3">
+                        <span class="currency-symbol">¥</span>
+                        <div class="d-flex flex-row align-items-center">
+                            <span class="product-price me-2" data-bind="text: productPrice"></span>
+                            <span>@localizer["TaxIncluded"]</span>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <span>@localizer["FreeDelivery"] <span class="fw-bold"
+                                data-bind="text: deliveryDate"></span><span>にお届け</span></span>
+
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <img class="amazon-pin me-2" src="~/images/amazon/pin-black.svg">
+                        <span class="store-name">
+                            @localizer["DeliverToSelectLocation"]
+                        </span>
+                    </div>
+                    <span class="delivery-within mb-3">通常4～5日以内に発送します。</span>
+                    <div class="input-holder">
+                        <select class="form-control form-select quantity-holder"
+                            data-bind="value: quantity, options: quantityOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: '数量: 0', valueAllowUnset: true"></select>
+                    </div>
+                    <button class="amazon-primary-button button mb-3">@localizer["AddToCart"]</button>
+                    <button class="amazon-secondary-button button mb-3">@localizer["BuyNow"]</button>
+                    <div class="d-flex flex-row">
+                        <div class="d-flex flex-column me-2 justify-content-center">
+                            <span class="secondary-text mb-2">@localizer["ShipsFrom"]</span>
+                            <span class="secondary-text mb-2">@localizer["SoldBy"]</span>
+                            <span class="secondary-text mb-2">@localizer["Packaging"]</span>
+                            <span class="secondary-text mb-2">@localizer["Payment"]</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                            <span class="shipping-info-text mb-2">Amazon</span>
+                            <span class="shipping-info-text mb-2">Amazon</span>
+                            <span class="shipping-info-text mb-2">@localizer["ShipsInProductPackaging"]</span>
+                            <span class="shipping-info-text mb-2">@localizer["SecureTransaction"]</span>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="add-to-list-holder">
+                        @localizer["AddToList"]
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="about-this-item mb-3">こちらもおすすめ</div>
+        <div class="d-flex flex-row" data-bind="foreach: supportItemsList">
+            <div class="d-flex flex-column me-3">
+                <div class="d-flex justify-content-center">
+                    <img class="support-item-product-image" data-bind="attr: {src: productImageURL}">
+                </div>
+                <span class="support-item-product-name" data-bind="text: productName"></span>
+                <div class="d-flex flex-row">
+                    <div class="star-ratings me-2">
+                        <div class="fill-ratings" data-bind="style: {width: productRatingWidth }">
+                            <span>★★★★★</span>
+                        </div>
+                        <div class="empty-ratings">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                    <span class="rating-text" data-bind="text: productRatingCount"></span>
+                </div>
+                <div class="d-flex flex-row justify-content-start">
+                    <span class="currency-symbol">¥</span>
+                    <span class="support-item-product-price" data-bind="text: productPrice"></span>
+                </div>
+                <span class="support-item-deliver">@localizer["FreeDelivery"] <span class="fw-bold"
+                        data-bind="text: $parent.deliveryDate"></span><span>にお届け</span></span>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-3">
+                <div class="d-flex flex-column">
+                    <span class="about-this-item mb-2">カスタマーレビュー</span>
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <div class="large-star-rating star-ratings me-3">
+                            <div class="fill-ratings" data-bind="style: {width: productRatingWidth }">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <span class="large-product-rating">5つのうち<span data-bind="text: ratingCount"></span>つ</span>
+                    </div>
+                    <span class="mb-3"><span data-bind="text:ratingCount"></span>グローバルレーティング</span>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <span class="me-2 rating-percentage-text">星5つ</span>
+                        <div role="progressbar" class="progress-bar me-2">
+                            <div class="inner-progress-bar" style="width:50%;">
+                            </div>
+                        </div>
+                        <span class="rating-percentage-text">50%</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <span class="me-2 rating-percentage-text">星4つ</span>
+                        <div role="progressbar" class="progress-bar me-2">
+                            <div class="inner-progress-bar" style="width:28%;">
+                            </div>
+                        </div>
+                        <span class="rating-percentage-text">28%</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <span class="me-2 rating-percentage-text">星3つ</span>
+                        <div role="progressbar" class="progress-bar me-2">
+                            <div class="inner-progress-bar" style="width:16%;">
+                            </div>
+                        </div>
+                        <span class="rating-percentage-text">16%</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <span class="me-2 rating-percentage-text">星2つ</span>
+                        <div role="progressbar" class="progress-bar me-2">
+                            <div class="inner-progress-bar" style="width:2%;">
+                            </div>
+                        </div>
+                        <span class="rating-percentage-text">2%</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <span class="me-2 rating-percentage-text">星1つ</span>
+                        <div role="progressbar" class="progress-bar me-2">
+                            <div class="inner-progress-bar" style="width:4%;">
+                            </div>
+                        </div>
+                        <span class="rating-percentage-text">4%</span>
+                    </div>
+                    <span class="store-name">評価はどのように計算されますか?</span>
+                    <hr />
+                    <span class="about-this-item mb-2">この商品をレビュー</span>
+                    <span class="mb-3">他のお客様にも意見を伝えましょう</span>
+                    <div class="add-to-list-holder">
+                        カスタマーレビューを書く
+                    </div>
+                </div>
+            </div>
+            <div class="col-1">
+            </div>
+            <div class="col-8">
+                <div class="about-this-item mb-3">上位レビュー</div>
+                <div class="d-flex flex-column" data-bind="foreach: productReviewsList">
+                    <div class="d-flex flex-column mb-4">
+                        <div class="d-flex flex-row align-items-center mb-2">
+                            <img class="comment-customer-image" src="~/images/amazon/customer.jpeg">
+                            <span data-bind="text: reviewerName"></span>
+                        </div>
+                        <div class="star-ratings mb-1">
+                            <div class="fill-ratings" data-bind="style: {width: rating }">
+                                <span>★★★★★</span>
+                            </div>
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
+                            </div>
+                        </div>
+                        <span class="mb-1" data-bind="text: dateAdded"></span>
+                        <span class="mb-2" data-bind="text: $parent.productName"></span>
+                        <span class="mb-2" data-bind="text: comment"></span>
+                        <div class="d-flex flex-row align-items-center">
+                            <div class="add-to-list-holder me-2">
+                                役に立った
+                            </div>
+                            <span>| レポート</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="amazon-footer">
+        <div class="row mb-4">
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">Amazon Advertising</span>
+                    <span class="footer-secondary-text">商品の露出でお客様の関心と
+                        反応を引き出す</span>
+                </div>
+            </div>
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">Audible（オーディブル）</span>
+                    <span class="footer-secondary-text">「聴く」読書
+                        <br />会員なら聴き放題</span>
+                </div>
+            </div>
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">アマゾン ウェブ サービス（AWS）</span>
+                    <span class="footer-secondary-text">クラウドコンピューティング
+                        <br />サービス</span>
+                </div>
+            </div>
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">Amazonアウトレット</span>
+                    <span class="footer-secondary-text">訳あり商品を
+                        <br />お手頃価格で販売
+                    </span>
+                </div>
+            </div>
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">Amazonビジネス（法人購買）</span>
+                    <span class="footer-secondary-text">請求書払い
+                        <br />法人価格・数量割引</span>
+                </div>
+            </div>
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">AmazonGlobal</span>
+                    <span class="footer-secondary-text">65か国/地域以上への
+                        <br />海外配送がより簡単に</span>
+                </div>
+            </div>
+            <div class="col-3 mb-2">
+                <div class="footer-content">
+                    <span class="footer-primary-text">Shopbop</span>
+                    <span class="footer-secondary-text">世界中の厳選された
+                        <br />ファッションアイテム
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column align-items-center w-100">
+            <span>利用規約 | プライバシー規約 | パーソナライズド広告規約 | 各種規約 | 特定商取引法に基づく表示</span>
+            <span>© 1996-2022, Amazon.com, Inc. or its affiliates</span>
+        </div>
+    </div>
 </div>

@@ -708,6 +708,7 @@ namespace BoostifySolution.API
                 Language = task.Language,
                 Platform = task.Platform,
                 TaskCategory = task.TaskCategory,
+                Country = task.Country
             };
 
             return Ok(new APIJsonReturnObject(atd));
@@ -1682,11 +1683,18 @@ namespace BoostifySolution.API
                                 .Where(x => x.TaskId == taskId)
                                 .FirstAsync();
 
+                var commentsQuery = _db.ProductReviews.AsQueryable();
 
-                var comments = await _db.ProductReviews
-                    .OrderBy(x => Guid.NewGuid())
-                    .Take(10)
-                    .ToListAsync();
+                if (task.Platform == (int)Platforms.Amazon)
+                {
+                    commentsQuery = commentsQuery.Where(x => x.Language == (int)Languages.Japanese);
+                }
+
+                commentsQuery = commentsQuery
+                .OrderBy(x => Guid.NewGuid())
+                .Take(10);
+
+                var comments = await commentsQuery.ToListAsync();
 
                 Random rnd = new Random();
 
@@ -1695,7 +1703,30 @@ namespace BoostifySolution.API
                 productImages.Add(task.ProductMainImageURL);
                 productImages.AddRange(task.ProductImagesURL.Split(",").ToList());
 
-                var currencySymbol = Global.Utility.GetCurrencySymbol(task.Country == (int)Countries.Malaysia ? (int)CurrencyTypes.MYR : (int)CurrencyTypes.Rupee);
+                var currentType = (int)CurrencyTypes.MYR;
+
+
+                switch (task.Country)
+                {
+                    case (int)Countries.Malaysia:
+                        currentType = (int)CurrencyTypes.MYR;
+                        break;
+                    case (int)Countries.Indonesia:
+                        currentType = (int)CurrencyTypes.Rupiah;
+                        break;
+                    case (int)Countries.Japan:
+                        currentType = (int)CurrencyTypes.Yen;
+                        break;
+                }
+
+                var currencySymbol = Global.Utility.GetCurrencySymbol(currentType);
+
+                var productPrice = $"{currencySymbol}{task.ProductPrice:0.00}";
+
+                if (task.Country == (int)Countries.Japan)
+                {
+                     productPrice = $"{task.ProductPrice:N0}";
+                }
 
                 var utd = new UserTaskDetails()
                 {
@@ -1704,7 +1735,8 @@ namespace BoostifySolution.API
                     ProductDescription = task.ProductDescription,
                     ProductMainImageURL = task.ProductMainImageURL,
                     ProductImagesURL = productImages,
-                    ProductPrice = $"{currencySymbol}{task.ProductPrice:0.00}",
+                    ProductPrice = productPrice,
+                    ProductRatingWidth = task.ProductRating * 100 / 5,
                     ProductRating = task.ProductRating,
                     StoreName = task.StoreName,
                     StoreThumbnailURL = task.StoreThumbnailURL,
@@ -1713,7 +1745,8 @@ namespace BoostifySolution.API
                     ProductSoldCount = rnd.Next(100, 110),
                     ShippingFee = $"{currencySymbol}0.00",
                     Vouchers = new List<string>() { $"{currencySymbol}1.00 OFF", $"{currencySymbol}2.00 OFF", $"{currencySymbol}3.00 OFF" },
-                    QuantityRemaining = rnd.Next(200, 300)
+                    QuantityRemaining = rnd.Next(200, 300),
+                    SupportItemsList = new List<SupportItemListDetails>()
                 };
 
                 var orderdComments = comments.OrderByDescending(x => x.DateAdded).ToList();
@@ -1729,6 +1762,29 @@ namespace BoostifySolution.API
                     };
 
                     utd.ProductReviewsList.Add(nprd);
+                }
+
+                if (task.Country == (int)Countries.Japan && task.Language == (int)Languages.Japanese)
+                {
+                    var supportItems = await _db.SupportItems
+                    .OrderBy(x => Guid.NewGuid())
+                    .Take(7)
+                    .ToListAsync();
+
+                    foreach (var x in supportItems)
+                    {
+                        var nsild = new SupportItemListDetails()
+                        {
+                            ProductName = x.ProductName,
+                            ProductImageURL = x.ProductImageURL,
+                            ProductRating = x.ProductRating,
+                            ProductRatingCount = x.ProductRatingCount,
+                            ProductRatingWidth = x.ProductRating * 100 / 5,
+                            ProductPrice = $"{currencySymbol}{x.ProductPrice:N0}",
+                        };
+
+                        utd.SupportItemsList.Add(nsild);
+                    }
                 }
 
                 return Ok(new APIJsonReturnObject(utd));

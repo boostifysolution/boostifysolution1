@@ -1,0 +1,429 @@
+.amazon-header {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #131921;
+    height: 60px;
+    color: white;
+    align-items: center;
+    padding: 10px;
+}
+
+.amazon-mobile-header {
+    display: flex;
+    flex-direction: column;
+    background-color: #131921;
+    padding: 10px;
+    color: white;
+}
+
+.amazon-logo {
+    width: 150;
+    object-fit: cover;
+    object-position: center;
+}
+
+.amazon-pin {
+    height: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.amazon-secondary-header {
+    display: flex;
+    background-color: #232f3e;
+    padding: 10px 15px;
+    color: white;
+}
+
+.amazon-secondary-header>span {
+    cursor: pointer;
+}
+
+.search-bar {
+    color: rgba(0, 0, 0, 0.3);
+    background-color: #eff0f5;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    padding-left: 2rem;
+    padding-right: 0;
+}
+
+.search-button {
+    background-color: #febd69;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.search-button>img {
+    height: 20px;
+    width: 20px;
+}
+
+.cart-icon {
+    height: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hamburger-icon {
+    height: 18px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.header-secondary-text {
+    font-size: 12px;
+    opacity: 0.8;
+    line-height: 14px;
+}
+
+.header-primary-text {
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.sign-in-holder {
+    width: 180px;
+}
+
+.return-holder {
+    width: 120px;
+}
+
+.product-main-image {
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+}
+
+.product-sub-images {
+    height: 82px;
+    width: 82px;
+    object-fit: contain;
+    object-position: center;
+    margin-right: 8px;
+}
+
+.product-sub-images:hover {
+    border: 2px solid #1196AB;
+}
+
+.product-name {
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.star-rating {
+    color: #FFA41C;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.star {
+    height: 13px;
+    width: 13px;
+    object-fit: contain;
+    object-position: center;
+}
+
+.store-name {
+    color: #007185;
+    cursor: pointer;
+}
+
+.product-rating {
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.star-ratings {
+    color: #fceced;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.fill-ratings {
+    color: #FFA41C;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    display: block;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.empty-ratings {
+    padding: 0;
+    display: block;
+    z-index: 0;
+}
+
+.rating-text {
+    color: #007185;
+}
+
+.limited-time-offer-holder {
+    background-color: #CC0C39;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: fit-content;
+}
+
+.currency-symbol {
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+.product-price {
+    font-size: 32px;
+    line-height: 32px;
+}
+
+.amazon-icons-holder {
+    display: flex;
+    flex-direction: column;
+    width: 95px;
+}
+
+.amazon-icons-holder>img {
+    height: 35px;
+    object-fit: contain;
+    object-position: center;
+    margin-bottom: 5px;
+}
+
+.amazon-icons-holder>span {
+    color: #007185;
+    text-align: center;
+    font-size: 14px;
+}
+
+.about-this-item {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.purchase-details-holder {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+}
+
+.promo-text {
+    color: #007185;
+    padding-left: 10px;
+
+}
+
+.delivery-within {
+    color: #B12704;
+    font-weight: bold;
+}
+
+.quantity-holder {
+    border-color: #D5D9D9;
+    border-radius: 8px;
+    color: #0F1111;
+    background: #F0F2F2;
+    height: 30px;
+    box-shadow: 0 2px 5px rgba(15, 17, 17, .15);
+}
+
+.amazon-primary-button {
+    background: #FFD814;
+    border-color: #FCD200;
+    border-radius: 100px;
+    width: 100%;
+    height: 31px;
+    box-shadow: none;
+}
+
+.amazon-secondary-button {
+    background: #FFA41C;
+    border-color: #FF8F00;
+    border-radius: 100px;
+    width: 100%;
+    height: 31px;
+    box-shadow: none;
+}
+
+.shipping-info-text {
+    font-size: 14px;
+}
+
+.secondary-text {
+    color: #565959;
+}
+
+.add-to-list-holder {
+    border: 1px solid #888C8C;
+    border-radius: 8px;
+    color: #0F1111;
+    padding: 3px 10px;
+    font-size: 13px;
+}
+
+.support-item-product-image {
+    height: 160px;
+    width: 160px;
+    object-fit: contain;
+    object-position: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.support-item-product-name {
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 100px;
+    word-wrap: break-word;
+    color: #007185;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.support-item-product-price {
+    font-size: 18px;
+}
+
+.support-item-deliver {
+    font-size: 14px;
+}
+
+.large-star-rating {
+    font-size: 1.5rem;
+}
+
+.large-product-rating {
+    font-size: 1.5rem;
+}
+
+.progress-bar {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px #BBBFBF;
+    background-color: #F0F2F2;
+    height: 20px;
+    width: 220px;
+}
+
+.inner-progress-bar {
+    border-radius: 4px;
+    box-shadow: inset -2px 0 0 -1px #F5961D, inset 0 0 0 1px #DE7921;
+    background-color: #FFA41C;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: 100%;
+}
+
+.rating-percentage-text {
+    font-size: 16px;
+    color: #007185;
+}
+
+.comment-customer-image {
+    height: 34px;
+    width: 34px;
+    object-fit: contain;
+    object-position: center;
+    margin-right: 10px;
+}
+
+.amazon-footer {
+    background-color: #131A22;
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.amazon-footer>div {
+    width: 1000px;
+    color: white;
+    font-size: 13px;
+}
+
+.footer-content {
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.footer-secondary-text {
+    color: #999;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        width: 1500px;
+        max-width: 1500px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hamburger-icon {
+        height: 24px;
+        width: 24px;
+    }
+
+    .amazon-logo {
+        height: 40px;
+    }
+
+    .cart-icon {
+        height: 24px;
+        width: 24px;
+    }
+
+    .star-ratings {
+        font-size: 0.9rem;
+        line-height: 0.9rem;
+    }
+
+    .amazon-primary-button{
+        height: 45px;
+    }
+
+    .amazon-secondary-button{
+        height: 45px;
+    }
+
+    .quantity-holder{
+        height: 45px;
+    }
+
+    .amazon-footer>div{
+        width: auto;
+    }
+}

@@ -31,6 +31,9 @@
           "en-GB/boostifysolution1.resources.dll": {
             "locale": "en-GB"
           },
+          "ja-JP/boostifysolution1.resources.dll": {
+            "locale": "ja-JP"
+          },
           "ms-MY/boostifysolution1.resources.dll": {
             "locale": "ms-MY"
           },

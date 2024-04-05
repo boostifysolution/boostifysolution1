@@ -120,6 +120,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Dilulus</value>
   </data>
+  <data name="BoostifySolutionWallet" xml:space="preserve">
+    <value>Dompet Boostify Solution</value>
+  </data>
   <data name="Commission" xml:space="preserve">
     <value>Komisen</value>
   </data>
@@ -133,7 +136,7 @@
     <value>Peroleh</value>
   </data>
   <data name="Earned" xml:space="preserve">
-    <value>Peroleh</value>
+    <value>Diperolehi</value>
   </data>
   <data name="Incomplete" xml:space="preserve">
     <value>Belum Selesai</value>
@@ -155,9 +158,6 @@
   </data>
   <data name="PendingTasks" xml:space="preserve">
     <value>Tugasan Dalam Proses</value>
-  </data>
-  <data name="BoostifySolutionWallet" xml:space="preserve">
-    <value>Dompet Boostify Solution</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Ditolak</value>

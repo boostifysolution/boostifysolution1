@@ -48,7 +48,7 @@ namespace BoostifySolution.API
                 case (int)CurrencyTypes.MYR:
                     currencySymbol = "RM";
                     break;
-                case (int)CurrencyTypes.Rupee:
+                case (int)CurrencyTypes.Yen:
                     currencySymbol = "₹";
                     break;
             }
@@ -324,12 +324,19 @@ namespace BoostifySolution.API
 
             await _db.SaveChangesAsync();
 
-            var comments = await _db.ProductReviews
-                .OrderBy(x => Guid.NewGuid())
-                .Take(10)
-                .ToListAsync();
+            var commentsQuery = _db.ProductReviews   
+                .Take(10);
 
             var task = userTask.Task;
+
+            if (task.Platform == (int)Platforms.Amazon)
+            {
+                commentsQuery = commentsQuery.Where(x => x.Language == (int)Languages.Japanese);
+            }
+
+            commentsQuery = commentsQuery.OrderBy(x => Guid.NewGuid());
+
+            var comments = await commentsQuery.ToListAsync();
 
             Random rnd = new Random();
 
@@ -340,6 +347,13 @@ namespace BoostifySolution.API
 
             var currencySymbol = Global.Utility.GetCurrencySymbol(CurrentUser.Currency);
 
+            var productPrice = $"{currencySymbol}{task.ProductPrice:0.00}";
+
+            if (task.Country == (int)Countries.Japan)
+            {
+                productPrice = $"{task.ProductPrice:N0}";
+            }
+
             var beforeDiscountPrice = task.ProductPrice / 0.75M;
 
             var utd = new UserTaskDetails()
@@ -349,7 +363,7 @@ namespace BoostifySolution.API
                 ProductDescription = task.ProductDescription,
                 ProductMainImageURL = task.ProductMainImageURL,
                 ProductImagesURL = productImages,
-                ProductPrice = $"{currencySymbol}{task.ProductPrice:0.00}",
+                ProductPrice = productPrice,
                 ProductRating = task.ProductRating,
                 ProductRatingWidth = task.ProductRating * 100 / 5,
                 StoreName = task.StoreName,
@@ -361,7 +375,8 @@ namespace BoostifySolution.API
                 Vouchers = new List<string>() { $"{currencySymbol}1.00 OFF", $"{currencySymbol}2.00 OFF", $"{currencySymbol}3.00 OFF" },
                 QuantityRemaining = rnd.Next(200, 300),
                 BeforeDiscountPrice = $"{currencySymbol}{beforeDiscountPrice:0.00}",
-                DiscountPercentage = "25%"
+                DiscountPercentage = "25%",
+                SupportItemsList = new List<SupportItemListDetails>()
             };
 
             var orderdComments = comments.OrderByDescending(x => x.DateAdded).ToList();
@@ -378,6 +393,29 @@ namespace BoostifySolution.API
                 };
 
                 utd.ProductReviewsList.Add(nprd);
+            }
+
+            if (task.Country == (int)Countries.Japan && task.Language == (int)Languages.Japanese)
+            {
+                var supportItems = await _db.SupportItems
+                .OrderBy(x => Guid.NewGuid())
+                .Take(7)
+                .ToListAsync();
+
+                foreach (var x in supportItems)
+                {
+                    var nsild = new SupportItemListDetails()
+                    {
+                        ProductName = x.ProductName,
+                        ProductImageURL = x.ProductImageURL,
+                        ProductRating = x.ProductRating,
+                        ProductRatingCount = x.ProductRatingCount,
+                        ProductRatingWidth = x.ProductRating * 100 / 5,
+                        ProductPrice = $"{currencySymbol}{x.ProductPrice:N0}",
+                    };
+
+                    utd.SupportItemsList.Add(nsild);
+                }
             }
 
             return Ok(new APIJsonReturnObject(utd));
@@ -479,6 +517,9 @@ namespace BoostifySolution.API
                                     break;
                                 case (int)Languages.Chinese:
                                     cu.Language = "zh";
+                                    break;
+                                case (int)Languages.Japanese:
+                                    cu.Language = "ja-JP";
                                     break;
                             }
 

@@ -245,6 +245,50 @@
       "PackagePath": "staticwebassets/images/.DS_Store"
     },
     {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/.DS_Store",
+      "PackagePath": "staticwebassets/images/amazon/.DS_Store"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/amazon-jp-logo.png",
+      "PackagePath": "staticwebassets/images/amazon/amazon-jp-logo.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/cart.svg",
+      "PackagePath": "staticwebassets/images/amazon/cart.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/customer.jpeg",
+      "PackagePath": "staticwebassets/images/amazon/customer.jpeg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/hamburger.svg",
+      "PackagePath": "staticwebassets/images/amazon/hamburger.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/pin-black.svg",
+      "PackagePath": "staticwebassets/images/amazon/pin-black.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/pin.svg",
+      "PackagePath": "staticwebassets/images/amazon/pin.svg"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/search-icon.png",
+      "PackagePath": "staticwebassets/images/amazon/search-icon.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/secure-transaction.png",
+      "PackagePath": "staticwebassets/images/amazon/secure-transaction.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/shipping.png",
+      "PackagePath": "staticwebassets/images/amazon/shipping.png"
+    },
+    {
+      "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/amazon/worry-free.png",
+      "PackagePath": "staticwebassets/images/amazon/worry-free.png"
+    },
+    {
       "Id": "/Users/gilbertwulff/Documents/GitHub/boostifysolution1/wwwroot/images/common/hamburger.svg",
       "PackagePath": "staticwebassets/images/common/hamburger.svg"
     },

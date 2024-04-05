@@ -25,5 +25,8 @@ namespace BoostifySolution.Entities
 
         [Required]
         public string Comment { get; set; }
+
+        [Required]
+        public int Language { get; set; }
     }
 }

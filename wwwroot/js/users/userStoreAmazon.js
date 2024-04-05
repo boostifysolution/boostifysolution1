@@ -12,10 +12,51 @@ var userStoreAmazon = new function () {
     vm.productRating = ko.observable();
     vm.storeName = ko.observable();
     vm.storeThumbnailURL = ko.observable();
-    vm.comments = ko.observableArray();
+    vm.productReviewsList = ko.observableArray();
+    vm.supportItemsList = ko.observableArray();
+    vm.productRatingWidth = ko.observable();
+    vm.ratingCount = ko.observable();
+    vm.deliveryDate = ko.observable();
+    vm.quantity = ko.observable();
+    vm.quantityOptions = ko.observableArray([{ id: 1, text: 1}, { id: 2, text: 2},{ id: 3, text: 3},{ id: 4, text: 4},{ id: 5, text: 5},{ id: 6, text: 6},{ id: 7, text: 7},{ id: 8, text: 8},{ id: 9, text: 9},{ id: 10, text: 10} ])
+    
 
     vm.initialize = function () {
-        loadStoreAmazonTaskDetails();
+        var url = new URL(window.location);
+        userTaskId = url.searchParams.get("tId");
+        demo = url.searchParams.get("demo");
+
+        if (userTaskId != null) {
+            if (demo != null && demo == "true") {
+                demo = true;
+                loadDemoStoreAmazonTaskDetails();
+            } else {
+                loadStoreAmazonTaskDetails();
+            }
+        } else {
+            window.location.href = "/users/home";
+        }
+    }
+
+    function loadDemoStoreAmazonTaskDetails() {
+        window.Global.ShowLoadingSpinner();
+
+        $.ajax({
+            url: "/api/Admin/DemoTasks/" + userTaskId,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            type: "GET",
+        })
+            .done(function (response) {
+                window.Global.HideLoadingSpinner();
+
+                setStoreAmazonTaskDetails(response.data);
+            })
+            .fail(function (response) {
+                window.Global.HideLoadingSpinner();
+
+                vm.errorHandling(jsResx.failedToLoadTask, response);
+            });
     }
 
     function loadStoreAmazonTaskDetails() {
@@ -49,7 +90,12 @@ var userStoreAmazon = new function () {
         vm.productRating(responseData.productRating);
         vm.storeName(responseData.storeName);
         vm.storeThumbnailURL(responseData.storeThumbnailURL);
-        vm.comments(responseData.comments);
+        vm.productReviewsList(responseData.productReviewsList);
+        vm.supportItemsList(responseData.supportItemsList);
+        vm.productRatingWidth(responseData.productRatingWidth);
+        vm.ratingCount(responseData.productRatingCount);
+        moment.locale('ja');
+        vm.deliveryDate(moment().add(4, 'days').format('M月D日'));
     }
 
     vm.updateStoreAmazonTaskClick = function () {
@@ -80,6 +126,19 @@ var userStoreAmazon = new function () {
 
             vm.errorHandling("Failed to save user profile", response);
         });
+    }
+
+    vm.disabledNavigation = function () {
+        Swal.fire({
+            icon: "info",
+            title: jsResx.disabledNavigation,
+            text: jsResx.switchPage,
+            showConfirmButton: true,
+        });
+    }
+
+    vm.productImageHover = function (data) {
+        vm.productMainImageURL(data);
     }
 
 

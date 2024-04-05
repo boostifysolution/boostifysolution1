@@ -49,4 +49,5 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, Identit
 
     public DbSet<Exceptions> Exceptions { get; set; }
 
+    public DbSet<SupportItems> SupportItems { get; set; }
 }

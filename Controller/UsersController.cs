@@ -47,6 +47,12 @@ namespace BoostifySolution.Controllers
         {
             return View("UserStoreLazada");
         }
+
+        [HttpGet("Amazon")]
+        public IActionResult Amazon()
+        {
+            return View("UserStoreAmazon");
+        }
     }
 }
 

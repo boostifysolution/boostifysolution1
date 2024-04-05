@@ -57,7 +57,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasIndex("UserLoginId");
 
-                    b.ToTable("AdminStaffs");
+                    b.ToTable("AdminStaffs", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.Exceptions", b =>
@@ -91,7 +91,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasKey("ExceptionsId");
 
-                    b.ToTable("Exceptions");
+                    b.ToTable("Exceptions", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.ProductReviews", b =>
@@ -109,6 +109,9 @@ namespace boostifysolution1.Migrations
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -119,7 +122,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasKey("ProductReviewId");
 
-                    b.ToTable("ProductReviews");
+                    b.ToTable("ProductReviews", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.Products", b =>
@@ -167,7 +170,48 @@ namespace boostifysolution1.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
+                });
+
+            modelBuilder.Entity("BoostifySolution.Entities.SupportItems", b =>
+                {
+                    b.Property<int>("SupportItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupportItemId"));
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductCurrency")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductImageURL")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int>("ProductLanguage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductRating")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductRatingCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupportItemId");
+
+                    b.ToTable("SupportItems", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.Tasks", b =>
@@ -232,7 +276,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasKey("TaskId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Tasks", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.UserTasks", b =>
@@ -273,7 +317,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserTasks");
+                    b.ToTable("UserTasks", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.Users", b =>
@@ -337,7 +381,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasIndex("UserLoginId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.WalletTransactions", b =>
@@ -379,7 +423,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WalletTransactions");
+                    b.ToTable("WalletTransactions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<int>", b =>
@@ -612,7 +656,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasKey("AdminStaffId", "AssociatedAdminStaffId");
 
-                    b.ToTable("LeaderAdminStaffs");
+                    b.ToTable("LeaderAdminStaffs", (string)null);
                 });
 
             modelBuilder.Entity("boostifysolution1.Entities.UserLeads", b =>
@@ -649,7 +693,7 @@ namespace boostifysolution1.Migrations
 
                     b.HasKey("UserLeadId");
 
-                    b.ToTable("UserLeads");
+                    b.ToTable("UserLeads", (string)null);
                 });
 
             modelBuilder.Entity("BoostifySolution.Entities.UserLogins", b =>

@@ -126,6 +126,9 @@
   <data name="BankName" xml:space="preserve">
     <value>银行名*</value>
   </data>
+  <data name="BoostifySolutionWallet" xml:space="preserve">
+    <value>钱包 Boostify Solution</value>
+  </data>
   <data name="Commission" xml:space="preserve">
     <value>佣金</value>
   </data>
@@ -152,9 +155,6 @@
   </data>
   <data name="PleaseMakeSureWithdraw" xml:space="preserve">
     <value>提交提款前请确保所有信息正确无误</value>
-  </data>
-  <data name="BoostifySolutionWallet" xml:space="preserve">
-    <value>钱包 Boostify Solution</value>
   </data>
   <data name="SubmitWithdraw" xml:space="preserve">
     <value>提交钱包提现</value>

@@ -120,3 +120,15 @@
 /Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.pdb
 /Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.genruntimeconfig.cache
 /Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/ref/boostifysolution1.dll
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/bin/Debug/net7.0/ja-JP/boostifysolution1.resources.dll
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserHome.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserProfile.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserWallet.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/ja-JP/boostifysolution1.resources.cs
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/ja-JP/boostifysolution1.resources.dll
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Home.Index.en-GB.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Home.Index.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Home._Layout.en-GB.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Home._Layout.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserStoreAmazon.en-GB.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserStoreAmazon.ja-JP.resources
