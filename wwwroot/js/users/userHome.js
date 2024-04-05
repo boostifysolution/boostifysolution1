@@ -62,7 +62,7 @@ var userHome = new function () {
                 taskURL = taskURL + "&culture=zh";
                 break;
             case 3:
-                taskURL = taskURL + "&culture=hi";
+                taskURL = taskURL + "&culture=ja-JP";
                 break;
         }
 

@@ -321,7 +321,7 @@ var adminTasks = new function () {
         }else if(vm.platform() == 1){
             window.open("/users/lazada?tId=" + vm.taskId() + "&demo=true", "_blank");
         }else{
-            window.open("/users/amazon?tId=" + vm.taskId() + "&demo=true", "_blank");
+            window.open("/users/amazon?tId=" + vm.taskId() + "&demo=true&culture=ja-JP", "_blank");
         }
     }
 
