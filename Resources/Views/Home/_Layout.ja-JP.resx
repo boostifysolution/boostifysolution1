@@ -121,9 +121,9 @@
     <value>アカウント</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>サインアップ</value>
+    <value>ログイン</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>ログイン</value>
+    <value>サインアップ</value>
   </data>
 </root>

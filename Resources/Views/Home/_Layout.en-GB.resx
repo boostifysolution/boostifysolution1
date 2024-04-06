@@ -121,9 +121,9 @@
     <value>Accounts</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>Sign Up</value>
+    <value>Log In</value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>Log In</value>
+    <value>Sign Up</value>
   </data>
 </root>
