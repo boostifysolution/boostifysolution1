@@ -54,9 +54,9 @@ namespace BoostifySolution.Global
             {
                 [Description("RM")]
                 MYR = 0,
-                [Description("Yen")]
+                [Description("¥")]
                 Yen = 1,
-                [Description("Rupiah")]
+                [Description("Rp")]
                 Rupiah = 2
             }
 

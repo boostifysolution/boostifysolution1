@@ -30,11 +30,17 @@ namespace BoostifySolution.Models.Admin
     [JsonProperty("accounts")]
     public int Accounts { get; set; }
 
-    [JsonProperty("leader")]
-    public string Leader { get; set; }
+    [JsonProperty("adminLeaderStaffId")]
+    public int? AdminLeaderStaffId { get; set; }
 
     [JsonProperty("dateAdded")]
     public string DateAdded { get; set; }
+
+    [JsonProperty("firstTaskId")]
+    public int FirstTaskId { get; set; }
+
+     [JsonProperty("referralCode")]
+    public string ReferralCode { get; set; }
 
     [JsonProperty("usersList")]
     public List<AdminStaffUserListDetails> UsersList { get; set; }

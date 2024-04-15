@@ -134,9 +134,11 @@ Layout = "/Views/Admin/_Layout.cshtml";
                                     <button class="primary-button button me-2"
                                         data-bind="click: resetPasswordClick">Reset
                                         Password</button>
-                                    <button class="primary-button button" data-bind="click: disableAccountClick">Disable
+                                    <button class="primary-button button me-2" data-bind="click: disableAccountClick">Disable
                                         Account</button>
                                     <!-- /ko -->
+                                    <button class="primary-button button"
+                                        data-bind="click: saveStaffDetails">Save</button>
                                 </div>
                                 <div class="row">
                                     <div class="col-12 col-md-4">
@@ -144,33 +146,15 @@ Layout = "/Views/Admin/_Layout.cshtml";
                                             <label>
                                                 Staff Name
                                             </label>
-                                            <input type="text" class="form-control" data-bind="value: name" disabled>
+                                            <input type="text" class="form-control" data-bind="value: name">
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
                                         <div class="input-holder">
                                             <label>
-                                                Leader
+                                                Login Username
                                             </label>
-                                            <input type="text" class="form-control" data-bind="value: leader" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <div class="input-holder">
-                                            <label>
-                                                Admin Type
-                                            </label>
-                                            <select class="form-control form-select"
-                                                data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"
-                                                disabled></select>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <div class="input-holder">
-                                            <label>
-                                                User Accounts
-                                            </label>
-                                            <input type="text" class="form-control" data-bind="value: accounts"
+                                            <input type="text" class="form-control" data-bind="value: loginUsername"
                                                 disabled>
                                         </div>
                                     </div>
@@ -185,9 +169,48 @@ Layout = "/Views/Admin/_Layout.cshtml";
                                     <div class="col-12 col-md-4">
                                         <div class="input-holder">
                                             <label>
-                                                Login Username
+                                                Admin Type
                                             </label>
-                                            <input type="text" class="form-control" data-bind="value: loginUsername"
+                                            <select class="form-control form-select"
+                                                data-bind="value: adminType, options: adminTypeOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select admin type', valueAllowUnset: true"
+                                                disabled></select>
+                                        </div>
+                                    </div>
+                                    <!-- ko if: adminStaffType() == 1 -->
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Staff Leader
+                                            </label>
+                                            <select class="form-control form-select"
+                                                data-bind="value: adminLeaderStaffId, options: adminLeaderOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'No leader', valueAllowUnset: true"
+                                                disabled></select>
+                                        </div>
+                                    </div>
+                                    <!-- /ko -->
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                Referral Code
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: referralCode">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <div class="input-holder">
+                                            <label>
+                                                User First Task (first assigned task when user sign up)
+                                            </label>
+                                            <select class="form-control form-select"
+                                                data-bind="value: firstTaskId, options: taskOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Select task', valueAllowUnset: true"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="input-holder">
+                                            <label>
+                                                User Accounts
+                                            </label>
+                                            <input type="text" class="form-control" data-bind="value: accounts"
                                                 disabled>
                                         </div>
                                     </div>
@@ -203,3 +226,4 @@ Layout = "/Views/Admin/_Layout.cshtml";
             </div>
         </div>
     </div>
+</div>

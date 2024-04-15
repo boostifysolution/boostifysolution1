@@ -36,37 +36,55 @@ var userHome = new function () {
     }
 
     vm.startTaskClick = function (data) {
-        var taskURL = "/users/"
-        switch (data.platform) {
-            case 0:
-                taskURL = taskURL + "shopee?";
-                break;
-            case 1:
-                taskURL = taskURL + "lazada?";
-                break;
-            case 2:
-                taskURL = taskURL + "amazon?";
-                break;
-        }
+        // var taskURL = "/users/"
+        // switch (data.platform) {
+        //     case 0:
+        //         taskURL = taskURL + "shopee?";
+        //         break;
+        //     case 1:
+        //         taskURL = taskURL + "lazada?";
+        //         break;
+        //     case 2:
+        //         taskURL = taskURL + "amazon?";
+        //         break;
+        // }
 
-        taskURL = taskURL + "tId=" + data.userTaskId;
+        // taskURL = taskURL + "tId=" + data.userTaskId;
 
-        switch (data.language) {
-            case 0:
-                taskURL = taskURL + "&culture=en-gb";
-                break;
-            case 1:
-                taskURL = taskURL + "&culture=ms-my";
-                break;
-            case 2:
-                taskURL = taskURL + "&culture=zh";
-                break;
-            case 3:
-                taskURL = taskURL + "&culture=ja-JP";
-                break;
-        }
+        // switch (data.language) {
+        //     case 0:
+        //         taskURL = taskURL + "&culture=en-gb";
+        //         break;
+        //     case 1:
+        //         taskURL = taskURL + "&culture=ms-my";
+        //         break;
+        //     case 2:
+        //         taskURL = taskURL + "&culture=zh";
+        //         break;
+        //     case 3:
+        //         taskURL = taskURL + "&culture=ja-JP";
+        //         break;
+        // }
 
-        window.location.href = taskURL;
+        window.Global.ShowLoadingSpinner();
+
+        $.ajax({
+            url: "/api/Users/" + vm.userId() + "/UserTasks/" + data.userTaskId + "/Start",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            type: "PUT",
+        })
+            .done(function (response) {
+                window.Global.HideLoadingSpinner();
+
+                window.open(data.productLink, "_blank");
+            })
+            .fail(function (response) {
+                window.Global.HideLoadingSpinner();
+
+                vm.errorHandling("Failed to start task", response);
+            });
+
     }
 
     function setHomeDetails(responseData) {

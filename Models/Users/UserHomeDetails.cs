@@ -59,6 +59,9 @@ namespace BoostifySolution.Models.Admin
 
         [JsonProperty("taskAmount")]
         public string TaskAmount { get; set; }
+
+         [JsonProperty("productLink")]
+        public string ProductLink { get; set; }
     }
 
 }

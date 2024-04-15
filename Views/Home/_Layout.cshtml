@@ -11,21 +11,21 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 
 <header>
     <div class="container">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
             <div class="container-fluid ps-0 pe-0">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <a rel="keep-params" class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/logos/boostify.png">
                 </a>
-                <a class="d-flex d-md-none justify-content-center align-items-center" href="/users/signin">
+                <a rel="keep-params" class="d-flex d-md-none justify-content-center align-items-center" href="/users/signin">
                     <button class="button primary-button">@localizer["LogIn"]</button>
                 </a>
                 <div class="navbar-collapse collapse justify-content-end">
                     <ul class="navbar-nav flex-grow-1 justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/users/signin">@localizer["LogIn"]</a>
+                            <a rel="keep-params" class="nav-link text-dark" href="/users/signin">@localizer["LogIn"]</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/users/signup">
+                            <a href="/users/signup" rel="keep-params">
                                 <button class="button primary-button">@localizer["SignUp"]</button>
                             </a>
                         </li>
@@ -52,8 +52,8 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
             <div class="col-12 col-md-9">
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <h5 class="fw-bold">@localizer["Accounts"]</h5>
-                    <a class="fw-bold mb-2" style="color: white; text-decoration: underline;" href="/users/signin">@localizer["LogIn"]</a>
-                    <a class="fw-bold" style="color: white; text-decoration: underline;" href="/users/signup">@localizer["SignUp"]</a>
+                    <a class="fw-bold mb-2" style="color: white; text-decoration: underline;" href="/users/signin" rel="keep-params">@localizer["LogIn"]</a>
+                    <a class="fw-bold" style="color: white; text-decoration: underline;" href="/users/signup" rel="keep-params">@localizer["SignUp"]</a>
                 </div>
             </div>
         </div>

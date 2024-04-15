@@ -117,73 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CarefullyReadInstructions" xml:space="preserve">
-    <value>指示をよく読み、割り当てられたタスクを完了してください</value>
+  <data name="DontHaveAccountYet" xml:space="preserve">
+    <value>还没有帐户？</value>
   </data>
-  <data name="CategorizeProducts" xml:space="preserve">
-    <value>製品を分類する</value>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮件</value>
   </data>
-  <data name="EarnMoneyAnywhere" xml:space="preserve">
-    <value>外出先でも家でリラックスしているときでも、どこでもオンラインでタスクを実行して追加の現金を獲得しましょう</value>
+  <data name="LogIn" xml:space="preserve">
+    <value>登录</value>
   </data>
-  <data name="EarningWillBeCredited" xml:space="preserve">
-    <value>タスクを完了すると収益が入金されます</value>
+  <data name="LogInToYourAccount" xml:space="preserve">
+    <value>登录到您的帐户</value>
   </data>
-  <data name="EasyWithdrawals" xml:space="preserve">
-    <value>さまざまな方法で簡単に出金でき、最低出金額はありません</value>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
   </data>
-  <data name="Flexibility" xml:space="preserve">
-    <value>柔軟性。自由な時間を使ってお金を稼ぐ</value>
-  </data>
-  <data name="GetPaid" xml:space="preserve">
-    <value>短いオンラインタスクを完了すると報酬が得られます</value>
-  </data>
-  <data name="HeroBannerSecondary" xml:space="preserve">
-    <value>いつでもどこでも好きなときにお金を稼ぐことができます。必要なのはインターネットに接続されたデバイスだけです</value>
-  </data>
-  <data name="HeroBannerTitle" xml:space="preserve">
-    <value>オンラインで短いタスクを実行して報酬を得る</value>
-  </data>
-  <data name="HowItWorks" xml:space="preserve">
-    <value>使い方</value>
-  </data>
-  <data name="InstructionsAndTraining" xml:space="preserve">
-    <value>特定のタスクの実行方法については、アカウント マネージャーから指示とトレーニングが行われます。</value>
-  </data>
-  <data name="LocalSupport" xml:space="preserve">
-    <value>当社のサポートチームがあらゆる段階でお手伝いいたします</value>
-  </data>
-  <data name="Opportunity" xml:space="preserve">
-    <value>機会。特別なスキルは必要なく、誰でも参加可能</value>
-  </data>
-  <data name="PerformSurveys" xml:space="preserve">
-    <value>アンケートの実施</value>
-  </data>
-  <data name="PickTask" xml:space="preserve">
-    <value>やりたいタスクを選択してください</value>
-  </data>
-  <data name="RateProducts" xml:space="preserve">
-    <value>製品を評価する</value>
-  </data>
-  <data name="SearchInformation" xml:space="preserve">
-    <value>情報を検索する</value>
-  </data>
-  <data name="SignUp" xml:space="preserve">
-    <value> サインアップ</value>
-  </data>
-  <data name="SignUpAnAccount" xml:space="preserve">
-    <value>アカウントにサインアップしてください。完全に無料です！</value>
-  </data>
-  <data name="StartEarningMoney" xml:space="preserve">
-    <value>お金を稼ぎ始める</value>
-  </data>
-  <data name="TypesOfTasks" xml:space="preserve">
-    <value>タスクの種類</value>
-  </data>
-  <data name="WhyBoostifySolution" xml:space="preserve">
-    <value>なぜ Boostify Solutuion</value>
-  </data>
-  <data name="WithdrawYourEarning" xml:space="preserve">
-    <value> 当社の安全な方法のいずれかを使用して、Boostify Solution からの収益を引き出します。</value>
+  <data name="SignUpHere" xml:space="preserve">
+    <value>在此注册</value>
   </data>
 </root>

@@ -168,6 +168,9 @@
   <data name="SearchInformation" xml:space="preserve">
     <value>Search for information</value>
   </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
   <data name="SignUpAnAccount" xml:space="preserve">
     <value>Sign Up an account with us. It's totally free!</value>
   </data>

@@ -19,7 +19,7 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 
 <div class="navbar navbar-toggleable-sm d-block d-md-none">
     <div class="container">
-        <a href="/users/home" class="navbar-brand">
+        <a href="/users/home" class="navbar-brand" rel="keep-params">
             <img src="~/images/logos/boostify-white.png">
         </a>
         <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
@@ -30,13 +30,13 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
     <div class="navbar-collapse collapse justify-content-end">
         <div class="container">
             <div class="d-flex flex-column pt-2 pb-2">
-                <a class="nav-item" data-bind="attr: { href: '/users/home?culture=' + language  }">
+                <a class="nav-item" href="/users/home" rel="keep-params">
                     @localizer["Home"]
                 </a>
-                <a class="nav-item" data-bind="attr: { href: '/users/wallet?culture=' + language  }">
+                <a class="nav-item" href="/users/wallet" rel="keep-params">
                     @localizer["Wallet"]
                 </a>
-                <a class="nav-item" data-bind="attr: { href: '/users/profile?culture=' + language  }">
+                <a class="nav-item" href="/users/profile" rel="keep-params">
                     @localizer["Profile"]
                 </a>
                 <a class="nav-item" data-bind="click: signOutClick">
@@ -49,17 +49,17 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
 
 <nav class="navbar d-none d-md-block">
     <div class="container">
-        <a class="navbar-brand" asp-area="" data-bind="attr: { href: '/users/home?culture=' + language  }">
+        <a class="navbar-brand" asp-area="" rel="keep-params" href="/users/home">
             <img src="~/images/logos/boostify-white.png">
         </a>
         <div class="d-flex flex-row desktop-navbar">
-            <a class="nav-item" data-bind="attr: { href: '/users/home?culture=' + language  }">
+            <a class="nav-item" rel="keep-params" href="/users/home">
                 Home
             </a>
-            <a class="nav-item" data-bind="attr: { href: '/users/wallet?culture=' + language  }">
+            <a class="nav-item" rel="keep-params" href="/users/wallet">
                 Wallet
             </a>
-            <a class="nav-item" data-bind="attr: { href: '/users/profile?culture=' + language  }">
+            <a class="nav-item" rel="keep-params" href="/users/profile">
                 Profile
             </a>
             <a class="nav-item" data-bind="click: signOutClick">
@@ -82,8 +82,8 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
             </div>
             <div class="col-12 col-md-9">
                 <div class="d-flex flex-column">
-                    <a href="/users/signin">Log In</a>
-                    <a href="/users/signup">Sign Up</a>
+                    <a rel="keep-params" href="/users/signin">Log In</a>
+                    <a rel="keep-params" href="/users/signup">Sign Up</a>
                 </div>
             </div>
         </div>

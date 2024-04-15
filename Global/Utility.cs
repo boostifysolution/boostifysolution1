@@ -361,7 +361,7 @@ namespace BoostifySolution.Global
                 case (int)CurrencyTypes.MYR:
                     return "RM";
                 case (int)CurrencyTypes.Yen:
-                    return "";
+                    return "¥";
                 case (int)CurrencyTypes.Rupiah:
                     return "Rp";
                 default:

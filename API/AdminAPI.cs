@@ -432,7 +432,8 @@ namespace BoostifySolution.API
                 ItemsCount = adminStaffs.Count,
                 CountryOptions = Utility.GetEnumAsDropdownOptions(typeof(Countries)),
                 AdminTypeOptions = Utility.GetEnumAsDropdownOptions(typeof(AdminStaffTypes)),
-                AdminLeaderOptions = new List<DropdownOptions>()
+                AdminLeaderOptions = new List<DropdownOptions>(),
+                TaskOptions = new List<DropdownOptions>()
             };
 
             var adminStaffIds = adminStaffs.Select(x => x.AdminStaffId);
@@ -478,6 +479,38 @@ namespace BoostifySolution.API
                 asl.AdminLeaderOptions.Add(ddo);
             }
 
+            var tasks = await _db.Tasks
+            .OrderBy(x => x.TaskCategory)
+            .ThenBy(x => x.TaskTitle)
+            .ToListAsync();
+
+            foreach (var x in tasks)
+            {
+                var currencyType = "";
+
+                switch (x.Country)
+                {
+                    case (int)Countries.Malaysia:
+                        currencyType = CurrencyTypes.MYR.GetDescription();
+                        break;
+                    case (int)Countries.Indonesia:
+                        currencyType = CurrencyTypes.Rupiah.GetDescription();
+                        break;
+                    case (int)Countries.Japan:
+                        currencyType = CurrencyTypes.Yen.GetDescription();
+                        break;
+                }
+
+
+                var tasksDdo = new DropdownOptions()
+                {
+                    Text = $"({((ShortFormTaskCategories)x.TaskCategory).GetDescription()}-{((ShortFormLanguages)x.Language).GetDescription()}-{$"{currencyType}{x.ProductPrice:N0}"}) {x.TaskTitle}",
+                    Id = x.TaskId
+                };
+
+                asl.TaskOptions.Add(tasksDdo);
+            }
+
             return Ok(new APIJsonReturnObject(asl));
         }
 
@@ -514,7 +547,9 @@ namespace BoostifySolution.API
                 Accounts = staffUsers.Count,
                 DateAdded = staff.DateAdded.ToMalaysiaDateTime().ToString("dd/MM/yyyy"),
                 UsersList = new List<AdminStaffUserListDetails>(),
-                Leader = leader != null ? leader.AdminStaff.FullName : ""
+                AdminLeaderStaffId = leader != null ? leader.AdminStaffId : null,
+                ReferralCode = staff.ReferralCode,
+                FirstTaskId = staff.FirstTaskId
             };
 
             foreach (var x in staffUsers)
@@ -695,20 +730,21 @@ namespace BoostifySolution.API
             var atd = new AdminTaskDetails()
             {
                 TaskTitle = task.TaskTitle,
-                ProductName = task.ProductName,
-                ProductDescription = task.ProductDescription,
-                ProductMainImageURL = task.ProductMainImageURL,
-                ProductImagesURL = task.ProductImagesURL,
-                ProductPrice = task.ProductPrice,
-                ProductRating = task.ProductRating,
-                StoreName = task.StoreName,
-                StoreThumbnailURL = task.StoreThumbnailURL,
+                ProductName = task.ProductName,         
+                ProductPrice = task.ProductPrice,       
                 Status = ((TaskStatuses)task.Status).GetDescription(),
                 StatusId = task.Status,
                 Language = task.Language,
                 Platform = task.Platform,
                 TaskCategory = task.TaskCategory,
-                Country = task.Country
+                Country = task.Country,
+                ProductLink = task.ProductLink
+                // ProductRating = task.ProductRating,
+                // StoreName = task.StoreName,
+                // StoreThumbnailURL = task.StoreThumbnailURL,
+                //  ProductDescription = task.ProductDescription,
+                // ProductMainImageURL = task.ProductMainImageURL,
+                // ProductImagesURL = task.ProductImagesURL,
             };
 
             return Ok(new APIJsonReturnObject(atd));
@@ -860,17 +896,20 @@ namespace BoostifySolution.API
 
                 task.TaskTitle = data.TaskTitle;
                 task.ProductName = data.ProductName;
-                task.ProductDescription = data.ProductDescription;
-                task.ProductMainImageURL = data.ProductMainImageURL;
-                task.ProductImagesURL = data.ProductImagesURL;
-                task.ProductPrice = data.ProductPrice;
-                task.ProductRating = data.ProductRating;
-                task.StoreName = data.StoreName;
-                task.StoreThumbnailURL = data.StoreThumbnailURL;
                 task.Language = data.Language;
                 task.TaskCategory = data.TaskCategory;
                 task.Platform = data.Platform;
                 task.Country = data.Country;
+                task.ProductPrice = data.ProductPrice;
+                task.ProductLink = data.ProductLink;
+
+                // task.ProductDescription = data.ProductDescription;
+                // task.ProductMainImageURL = data.ProductMainImageURL;
+                // task.ProductImagesURL = data.ProductImagesURL;
+                // task.ProductRating = data.ProductRating;
+                // task.StoreName = data.StoreName;
+                // task.StoreThumbnailURL = data.StoreThumbnailURL;
+                
 
                 if (taskId > 0)
                 {
@@ -920,9 +959,25 @@ namespace BoostifySolution.API
             foreach (var x in tasks)
             {
 
+                var currencyType = "";
+
+                switch (x.Country)
+                {
+                    case (int)Countries.Malaysia:
+                        currencyType = CurrencyTypes.MYR.GetDescription();
+                        break;
+                    case (int)Countries.Indonesia:
+                        currencyType = CurrencyTypes.Rupiah.GetDescription();
+                        break;
+                    case (int)Countries.Japan:
+                        currencyType = CurrencyTypes.Yen.GetDescription();
+                        break;
+                }
+
+
                 var ddo = new DropdownOptions()
                 {
-                    Text = $"({((ShortFormTaskCategories)x.TaskCategory).GetDescription()}-{((ShortFormLanguages)x.Language).GetDescription()}-{$"RM{x.ProductPrice:0.00}"}) {x.TaskTitle}",
+                    Text = $"({((ShortFormTaskCategories)x.TaskCategory).GetDescription()}-{((ShortFormLanguages)x.Language).GetDescription()}-{$"{currencyType}{x.ProductPrice:N0}"}) {x.TaskTitle}",
                     Id = x.TaskId
                 };
 
@@ -1452,17 +1507,56 @@ namespace BoostifySolution.API
             }
         }
 
+        [HttpPut("Staffs/{staffId}")]
+        public async Task<IActionResult> UpdateStaffDetails(int staffId, [FromBody] AdminStaffDetails data)
+        {
+            var ca = CurrentAdmin;
+
+            if (ca == null && ca.AdminStaffType == (int)AdminStaffTypes.Staff)
+            {
+                return ReturnUnauthorizedStatus();
+            }
+
+            try
+            {
+                var staff = await _db.AdminStaffs.Where(x => x.AdminStaffId == staffId).FirstAsync();
+
+                staff.FullName = data.Name;
+                staff.ReferralCode = data.ReferralCode.ToUpper();
+                staff.FirstTaskId = data.FirstTaskId;
+
+                _db.AdminStaffs.Update(staff);
+
+                await _db.SaveChangesAsync();
+
+                return Ok(new APIJsonReturnObject(null));
+            }
+            catch (Exception ex)
+            {
+                var inputParamDict = new Dictionary<string, string> {
+                    {"data", JsonConvert.SerializeObject(data)},
+                    {"staffId", staffId.ToString()},
+                };
+
+                await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
+
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to update staff details. Please refresh and try again."));
+            }
+        }
+
         [HttpPost("Staffs")]
         public async Task<IActionResult> AddNewStaff([FromBody] AdminNewStaffRequest data)
         {
+            var ca = CurrentAdmin;
+
+            if (ca == null && ca.AdminStaffType == (int)AdminStaffTypes.Staff)
+            {
+                return ReturnUnauthorizedStatus();
+            }
+
             try
             {
-                var ca = CurrentAdmin;
 
-                if (ca == null && ca.AdminStaffType == (int)AdminStaffTypes.Staff)
-                {
-                    return ReturnUnauthorizedStatus();
-                }
 
                 var existingLogin = await _um.FindByNameAsync(data.LoginUsername);
 
@@ -1487,7 +1581,9 @@ namespace BoostifySolution.API
                     FullName = data.Name,
                     Status = (int)AdminStaffStatuses.Active,
                     DateAdded = DateTime.UtcNow,
-                    RequirePasswordChange = true
+                    RequirePasswordChange = true,
+                    FirstTaskId = data.FirstTaskId,
+                    ReferralCode = data.ReferralCode,
                 };
 
                 if (ca.AdminStaffType == (int)AdminStaffTypes.FullAdmin)
@@ -1531,7 +1627,7 @@ namespace BoostifySolution.API
 
                 await HandleException(ex, JsonConvert.SerializeObject(inputParamDict));
 
-                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to add credit to user. Please refresh and try again."));
+                return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when trying to adding new staff. Please refresh and try again."));
             }
         }
 
@@ -1667,6 +1763,36 @@ namespace BoostifySolution.API
             }
         }
 
+        //PUT: api/Admin/UpdatePassword
+        [HttpPut("UpdatePassword")]
+        public async Task<IActionResult> UpdateStaffPassword([FromBody] UserLoginRequest data)
+        {
+            var ca = CurrentAdmin;
+
+            if (ca == null)
+            {
+                return ReturnUnauthorizedStatus();
+            }
+
+            var adminStaff = await _db.AdminStaffs
+                .Where(x => x.AdminStaffId == ca.AdminStaffId)
+                .FirstAsync();
+
+            var user = await _um.FindByIdAsync(adminStaff.UserLoginId.ToString());
+
+            var passwordResetToken = await _um.GeneratePasswordResetTokenAsync(user);
+
+            var reset = await _um.ResetPasswordAsync(user, passwordResetToken, data.Password);
+
+            adminStaff.RequirePasswordChange = false;
+
+            _db.AdminStaffs.Update(adminStaff);
+
+            await _db.SaveChangesAsync();
+
+            return Ok(new APIJsonReturnObject(null));
+        }
+
         [HttpGet("DemoTasks/{taskId}")]
         public async Task<IActionResult> GetDemoTaskDetails(int taskId)
         {
@@ -1725,7 +1851,7 @@ namespace BoostifySolution.API
 
                 if (task.Country == (int)Countries.Japan)
                 {
-                     productPrice = $"{task.ProductPrice:N0}";
+                    productPrice = $"{task.ProductPrice:N0}";
                 }
 
                 var utd = new UserTaskDetails()
@@ -1799,36 +1925,6 @@ namespace BoostifySolution.API
 
                 return StatusCode((int)HttpStatusCode.InternalServerError, new APIJsonReturnObject("There was a problem when loading demo task. Please refresh and try again."));
             }
-        }
-
-        //PUT: api/Admin/UpdatePassword
-        [HttpPut("UpdatePassword")]
-        public async Task<IActionResult> UpdateAdminPassword([FromBody] UserLoginRequest data)
-        {
-            var ca = CurrentAdmin;
-
-            if (ca == null)
-            {
-                return ReturnUnauthorizedStatus();
-            }
-
-            var adminStaff = await _db.AdminStaffs
-                .Where(x => x.AdminStaffId == ca.AdminStaffId)
-                .FirstAsync();
-
-            var user = await _um.FindByIdAsync(adminStaff.UserLoginId.ToString());
-
-            var passwordResetToken = await _um.GeneratePasswordResetTokenAsync(user);
-
-            var reset = await _um.ResetPasswordAsync(user, passwordResetToken, data.Password);
-
-            adminStaff.RequirePasswordChange = false;
-
-            _db.AdminStaffs.Update(adminStaff);
-
-            await _db.SaveChangesAsync();
-
-            return Ok(new APIJsonReturnObject(null));
         }
 
         //POST: api/Users/SignOut

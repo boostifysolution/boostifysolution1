@@ -302,7 +302,6 @@ a {
   align-items: center;
   min-height: 100vh;
   z-index: 1;
-  margin-top: -75px;
   padding: 1rem;
 }
 
@@ -738,7 +737,6 @@ input::placeholder {
   padding: .75rem;
   color: var(--grey-darker);
   font-weight: 400;
-  height: 45px;
   color: black;
 }
 

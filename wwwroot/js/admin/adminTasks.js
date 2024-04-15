@@ -24,6 +24,8 @@ var adminTasks = new function () {
     vm.taskCategory = ko.observable();
     vm.taskCategoryOptions = ko.observableArray();
 
+    vm.productLink = ko.observable();
+
     //filters
     vm.filterTaskTitle = ko.observable();
     vm.filterProductName = ko.observable();
@@ -96,17 +98,19 @@ var adminTasks = new function () {
         vm.taskId(0);
         vm.taskTitle(null);
         vm.productName(null);
-        vm.productDescription(null);
-        vm.productMainImageURL(null);
-        vm.productImagesURL(null);
+        vm.productLink(null);
         vm.productPrice(null);
-        vm.productRating(null);
-        vm.storeName(null);
-        vm.storeThumbnailURL(null);
         vm.language(null);
         vm.taskCategory(null);
+        vm.country(null);
+        // vm.productDescription(null);
+        // vm.productMainImageURL(null);
+        // vm.productImagesURL(null);
+        // vm.productRating(null);
+        // vm.storeName(null);
+        // vm.storeThumbnailURL(null);
 
-        productDescriptionEditor.setData("");
+        // productDescriptionEditor.setData("");
 
         MicroModal.show("task-details-modal");
     }
@@ -117,17 +121,18 @@ var adminTasks = new function () {
         var data = {
             taskTitle: vm.taskTitle(),
             productName: vm.productName(),
-            productMainImageURL: vm.productMainImageURL(),
-            productImagesURL: vm.productImagesURL(),
-            productPrice: vm.productPrice(),
-            productRating: vm.productRating(),
-            storeName: vm.storeName(),
-            storeThumbnailURL: vm.storeThumbnailURL(),
-            language: vm.language(),
-            productDescription: productDescriptionEditor.getData(),
             taskCategory: vm.taskCategory(),
             platform: vm.platform(),
-            country: vm.country()
+            country: vm.country(),
+            productPrice: vm.productPrice(),
+            language: vm.language(),
+            productLink: vm.productLink()
+            // productRating: vm.productRating(),
+            // storeName: vm.storeName(),
+            // storeThumbnailURL: vm.storeThumbnailURL(),
+            // productDescription: productDescriptionEditor.getData(),
+            // productMainImageURL: vm.productMainImageURL(),
+            // productImagesURL: vm.productImagesURL(),
         }
 
         $.ajax({
@@ -299,18 +304,20 @@ var adminTasks = new function () {
     function setTaskDetails(responseData) {
         vm.taskTitle(responseData.taskTitle);
         vm.productName(responseData.productName);
-        vm.productDescription(responseData.productDescription);
-        vm.productMainImageURL(responseData.productMainImageURL);
-        vm.productImagesURL(responseData.productImagesURL);
+        vm.productLink(responseData.productLink);
         vm.productPrice(responseData.productPrice);
-        vm.productRating(responseData.productRating);
-        vm.storeName(responseData.storeName);
-        vm.storeThumbnailURL(responseData.storeThumbnailURL);
         vm.status(responseData.status);
         vm.language(responseData.language);
         vm.platform(responseData.platform);
         vm.taskCategory(responseData.taskCategory);
         vm.country(responseData.country);
+
+        // vm.productDescription(responseData.productDescription);
+        // vm.productMainImageURL(responseData.productMainImageURL);
+        // vm.productImagesURL(responseData.productImagesURL);
+        // vm.productRating(responseData.productRating);
+        // vm.storeName(responseData.storeName);
+        // vm.storeThumbnailURL(responseData.storeThumbnailURL);
 
         productDescriptionEditor.setData(responseData.productDescription);
     }
@@ -318,9 +325,9 @@ var adminTasks = new function () {
     vm.viewStoreClick = function () {
         if (vm.platform() == 0) {
             window.open("/users/shopee?tId=" + vm.taskId() + "&demo=true", "_blank");
-        }else if(vm.platform() == 1){
+        } else if (vm.platform() == 1) {
             window.open("/users/lazada?tId=" + vm.taskId() + "&demo=true", "_blank");
-        }else{
+        } else {
             window.open("/users/amazon?tId=" + vm.taskId() + "&demo=true&culture=ja-JP", "_blank");
         }
     }

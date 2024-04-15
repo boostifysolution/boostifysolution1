@@ -96,7 +96,7 @@ Layout = "/Views/Admin/_Layout.cshtml";
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-8">
-                            <div class="input-holder">
+                            <div class="input-holder">  
                                 <label>
                                     Task Title*
                                 </label>
@@ -140,9 +140,34 @@ Layout = "/Views/Admin/_Layout.cshtml";
                             </div>
                         </div>
                     </div>
-                    <h5 class="fw-bold mb-3">Product Details</h5>
+                    <hr/>
+                    <h5 class="fw-bold mb-3">Product Details</h5>     
                     <div class="row mb-3">
                         <div class="col-12 col-md-8">
+                            <div class="input-holder">
+                                <label>
+                                    Product Name*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: productName">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-holder">
+                                <label>
+                                    Product Price* (RM/Rp/¥ - Only Number)
+                                </label>
+                                <input type="number" class="form-control" data-bind="value: productPrice">
+                            </div>
+                        </div>        
+                        <div class="col-12 col-md-8">
+                            <div class="input-holder">
+                                <label>
+                                    Product Link*
+                                </label>
+                                <input type="text" class="form-control" data-bind="value: productLink">
+                            </div>
+                        </div>                
+                        <!-- <div class="col-12 col-md-8">
                             <div class="input-holder">
                                 <label>
                                     Product Name*
@@ -220,8 +245,7 @@ Layout = "/Views/Admin/_Layout.cshtml";
                             <div class="store-thumbnail-image-holder">
                                 <img data-bind="attr: { src: storeThumbnailURL}">
                             </div>
-                        </div>
-
+                        </div> -->
                     </div>
                 </div>
             </div>

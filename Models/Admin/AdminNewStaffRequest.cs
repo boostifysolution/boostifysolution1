@@ -18,6 +18,12 @@ namespace BoostifySolution.Models.Admin
     [JsonProperty("password")]
     public string Password { get; set; }
 
+    [JsonProperty("referralCode")]
+    public string ReferralCode { get; set; }
+
+    [JsonProperty("firstTaskId")]
+    public int FirstTaskId { get; set; }
+
     [JsonProperty("adminType")]
     public int? AdminType { get; set; }
 

@@ -24,6 +24,9 @@ namespace BoostifySolution.Models.Admin
         [JsonProperty("productImagesURL")]
         public string ProductImagesURL { get; set; }
 
+         [JsonProperty("productLink")]
+        public string ProductLink { get; set; }
+
         [JsonProperty("productPrice")]
         public decimal ProductPrice { get; set; }
 

@@ -12,10 +12,13 @@ var adminStaffs = new function () {
     vm.accounts = ko.observable();
     vm.adminLeaderOptions = ko.observableArray();
     vm.adminLeaderStaffId = ko.observable();
-    vm.leader = ko.observable();
+    vm.referralCode = ko.observable();
+    vm.firstTaskId = ko.observable();
+    vm.taskOptions = ko.observableArray();
 
     vm.filterAdminLeader = ko.observable();
     vm.filterAdminType = ko.observable();
+
 
     var usersList;
 
@@ -48,6 +51,40 @@ var adminStaffs = new function () {
         vm.adminType(null);
 
         MicroModal.show("new-staff-details-modal");
+    }
+
+    vm.saveStaffDetails = function () {
+        window.Global.ShowLoadingSpinner();
+
+        var data = {
+            name: vm.name(),
+            referralCode: vm.referralCode(),
+            firstTaskId: vm.firstTaskId(),
+        }
+
+        $.ajax({
+            url: "/api/Admin/Staffs/" + vm.adminStaffId(),
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            type: "PUT",
+        })
+            .done(function (response) {
+                Swal.fire({
+                    icon: "success",
+                    title: "Staff Details Updated",
+                    showConfirmButton: true,
+                }).then((result) => {
+                    MicroModal.close("staff-details-modal");
+                })
+
+                $("#staffsGrid").jsGrid("loadData");
+            })
+            .fail(function (response) {
+                window.Global.HideLoadingSpinner();
+
+                vm.errorHandling("Failed to update staff details", response);
+            });
     }
 
     vm.saveNewStaffClick = function () {
@@ -168,6 +205,7 @@ var adminStaffs = new function () {
 
                             vm.adminLeaderOptions(response.data.adminLeaderOptions);
                             vm.adminTypeOptions(response.data.adminTypeOptions);
+                            vm.taskOptions(response.data.taskOptions);
 
                             d.resolve(da);
                             window.Global.HideLoadingSpinner();
@@ -219,7 +257,9 @@ var adminStaffs = new function () {
         vm.adminType(responseData.adminType);
         vm.status(responseData.status);
         vm.accounts(responseData.accounts);
-        vm.leader(responseData.leader);
+        vm.adminLeaderStaffId(responseData.adminLeaderStaffId);
+        vm.firstTaskId(responseData.firstTaskId);
+        vm.referralCode(responseData.referralCode);
 
         $("#staffUsersGrid").jsGrid({
             autoload: false,

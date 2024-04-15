@@ -1,3 +1,5 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
 ViewData["Title"] = "Sign In | Boostify Solution";
 Layout = "/Views/Shared/_EmptyLayout.cshtml";
@@ -13,28 +15,28 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
                     <img class="signin-logo" src="~/images/logos/boostify.png">
                 </div>
                 <div class="h-100 d-flex flex-column text-start">
-                    <span class="text-center mb-3 fw-bold">Log in to your account</span>
+                    <span class="text-center mb-3 fw-bold">@localizer["LogInToYourAccount"]</span>
                     <div class="mb-2">
                         <p class="text-danger" data-bind="text: errorMessage, css: errorMessageClass"></p>
                     </div>
                     <div class="input-holder">
                         <label>
-                            Email*
+                            @localizer["Email"]
                         </label>
                         <input type="text" class="form-control" data-bind="value: username">
                     </div>
                     <div class="input-holder">
                         <label>
-                            Password*
+                            @localizer["Password"]
                         </label>
                         <input id="userPassword" class="form-control" type="password" placeholder="Password"
                             data-bind="value: password, event: { keyup: passwordEnter }" />
                     </div>
                     <button class="primary-button button w-100 mt-2 mb-3" data-bind="click: signInClick">
-                        Sign In
+                        @localizer["LogIn"]
                     </button>
                     <hr>
-                    <span class="text-center">Don't have an account yet? <a href="/users/signup">Sign Up Here</a></span>
+                    <span class="text-center">@localizer["DontHaveAccountYet"] <a rel="keep-params" href="/users/signup">@localizer["SignUpHere"]</a></span>
                 </div>
             </div>
         </div>

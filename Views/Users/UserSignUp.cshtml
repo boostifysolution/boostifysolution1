@@ -1,3 +1,5 @@
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
 @{
 ViewData["Title"] = "Sign Up | Boostify Solution";
 Layout = "/Views/Shared/_EmptyLayout.cshtml";
@@ -13,37 +15,55 @@ Layout = "/Views/Shared/_EmptyLayout.cshtml";
                     <img class="signin-logo" src="~/images/logos/boostify.png">
                 </div>
                 <div class="h-100 d-flex flex-column text-start">
-                    <span class="text-center mb-3 fw-bold">Register today to start earning</span>
+                    <span class="text-center mb-3 fw-bold">@localizer["RegisterStartEarning"]</span>
                     <div class="input-holder">
                         <label>
-                            Your Name*
+                            @localizer["YourName"]
                         </label>
                         <input type="text" class="form-control" data-bind="value: name">
                     </div>
                     <div class="input-holder">
                         <label>
-                            Phone Number*
-                        </label>
-                        <input type="text" class="form-control" data-bind="value: phoneNumber">
-                    </div>
-                    <div class="input-holder">
-                        <label>
-                            Email*
+                            @localizer["Email"]
                         </label>
                         <input type="text" class="form-control" data-bind="value: email">
                     </div>
                     <div class="input-holder">
                         <label>
-                            Country*
+                            @localizer["Password"]
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: password">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            @localizer["ConfirmPassword"]
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: confirmPassword">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            @localizer["PhoneNumber"]
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: phoneNumber">
+                    </div>
+                    <div class="input-holder">
+                        <label>
+                            @localizer["Country"]                            
                         </label>
                         <select class="form-control form-select"
                             data-bind="value: country, options: countryOptions, optionsText: 'text',  optionsValue: 'id', optionsCaption: 'Country', valueAllowUnset: true"></select>
                     </div>
+                    <div class="input-holder">
+                        <label>
+                            @localizer["ReferralCode"] 
+                        </label>
+                        <input type="text" class="form-control" data-bind="value: referralCode">
+                    </div>
                     <button class="primary-button button w-100 mt-2 mb-3" data-bind="click: signUpClick">
-                        Sign Up
+                        @localizer["SignUp"]
                     </button>
                     <hr>
-                    <span class="text-center">Already have an account? <a href="/users/signin">Log In Here</a></span>
+                    <span class="text-center">@localizer["AlreadyHaveAccount"]  <a rel="keep-params" href="/users/signin">@localizer["LogInHere"]</a></span>
                 </div>
             </div>
         </div>

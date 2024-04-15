@@ -31,7 +31,12 @@ namespace BoostifySolution.Entities
         [Required]
         public int AdminStaffType { get; set; }
 
-        public int? Country { get; set; }
+        [Required]
+        [MaxLength(6)]
+        public string ReferralCode { get; set; }
+
+        [Required]
+        public int FirstTaskId { get; set; }
 
         [Required]
         public bool RequirePasswordChange { get; set; }

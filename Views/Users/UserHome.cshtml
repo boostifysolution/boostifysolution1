@@ -140,7 +140,7 @@ Layout = "/Views/Users/_Layout.cshtml";
                         <span class="wallet-last-updated" data-bind="text: walletLastUpdated"></span>
                     </div>
                     <div class="d-flex flex-column justify-content-end">
-                        <a data-bind="attr: { href: '/users/wallet?culture=' + language  }">
+                        <a rel="keep-params" href="/users/wallet">
                             <button class="button secondary-button">@localizer["ViewWalletDetails"]</button>
                         </a>
                     </div>

@@ -31,8 +31,6 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser<int>, Identit
 
     public DbSet<AdminStaffs> AdminStaffs { get; set; }
 
-    public DbSet<Products> Products { get; set; }
-
     public DbSet<ProductReviews> ProductReviews { get; set; }
 
     public DbSet<WalletTransactions> WalletTransactions { get; set; }

@@ -24,6 +24,9 @@ namespace BoostifySolution.Models.Admin
         [JsonProperty("adminLeaderOptions")]
         public List<DropdownOptions> AdminLeaderOptions { get; set; }
 
+        [JsonProperty("taskOptions")]
+        public List<DropdownOptions> TaskOptions { get; set; }
+
     }
 
     public class AdminStaffListDetails

@@ -19,25 +19,19 @@ namespace BoostifySolution.Entities
         [Required]
         public string ProductName { get; set; }
 
-        [Required]
         public string ProductDescription { get; set; }
 
-        [Required]
         public string ProductMainImageURL { get; set; }
 
-        [Required]
         public string ProductImagesURL { get; set; }
 
         [Required]
         public decimal ProductPrice { get; set; }
 
-        [Required]
         public double ProductRating { get; set; }
 
-        [Required]
         public string StoreName { get; set; }
 
-        [Required]
         public string StoreThumbnailURL { get; set; }
 
         [Required]
@@ -54,6 +48,10 @@ namespace BoostifySolution.Entities
 
         [Required]
         public int Country { get; set; }
+
+
+        [Required]
+        public string ProductLink { get; set; }
 
         [Required]
         public DateTime DateAdded { get; set; }

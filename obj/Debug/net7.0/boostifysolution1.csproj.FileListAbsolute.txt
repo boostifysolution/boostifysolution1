@@ -132,3 +132,9 @@
 /Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Home._Layout.ja-JP.resources
 /Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserStoreAmazon.en-GB.resources
 /Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserStoreAmazon.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserSignIn.en-GB.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserSignIn.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserSignIn.zh.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserSignUp.en-GB.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserSignUp.ja-JP.resources
+/Users/gilbertwulff/Documents/GitHub/boostifysolution1/obj/Debug/net7.0/boostifysolution1.Resources.Views.Users.UserSignUp.zh.resources

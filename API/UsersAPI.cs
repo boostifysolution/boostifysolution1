@@ -200,7 +200,8 @@ namespace BoostifySolution.API
                     DateAdded = x.DateAdded.ToLocalTime().ToString("dd/MM/yyyy"),
                     TaskAmount = $"{x.CommissionPercentage:0}%",
                     Platform = x.Task.Platform,
-                    Language = x.Task.Language
+                    Language = x.Task.Language,
+                    ProductLink = x.Task.ProductLink
                 };
 
                 uhd.UserTasks.Add(utld);
@@ -217,7 +218,8 @@ namespace BoostifySolution.API
                     DateAdded = x.DateAdded.ToLocalTime().ToString("dd/MM/yyyy"),
                     TaskAmount = $"{x.CommissionPercentage:0}%",
                     Platform = x.Task.Platform,
-                    Language = x.Task.Language
+                    Language = x.Task.Language,
+                    ProductLink = x.Task.ProductLink
                 };
 
                 uhd.UserSubmittedTasks.Add(utld);
@@ -232,7 +234,8 @@ namespace BoostifySolution.API
                     ProductName = x.Task.ProductName,
                     Status = ((UserTaskStatuses)x.Status).GetDescription(),
                     DateAdded = x.DateAdded.ToLocalTime().ToString("dd/MM/yyyy"),
-                    TaskAmount = $"{x.CommissionPercentage:0}%"
+                    TaskAmount = $"{x.CommissionPercentage:0}%",
+                    ProductLink = x.Task.ProductLink
                 };
 
                 uhd.CompletedUserTasks.Add(utld);
@@ -324,7 +327,7 @@ namespace BoostifySolution.API
 
             await _db.SaveChangesAsync();
 
-            var commentsQuery = _db.ProductReviews   
+            var commentsQuery = _db.ProductReviews
                 .Take(10);
 
             var task = userTask.Task;
@@ -419,6 +422,36 @@ namespace BoostifySolution.API
             }
 
             return Ok(new APIJsonReturnObject(utd));
+        }
+
+        [HttpPut("{userId}/UserTasks/{userTaskId}/Start")]
+        public async Task<IActionResult> StartUserTask(int userId, int userTaskId)
+        {
+            var cu = CurrentUser;
+
+            if (cu == null && cu.UserId != userId)
+            {
+                return ReturnUnauthorizedStatus();
+            }
+
+            var userTask = await _db.UserTasks
+                .Include(x => x.Task)
+                .Include(x => x.User)
+                .Where(x => x.UserId == userId && x.UserTaskId == userTaskId && x.Status == (int)UserTaskStatuses.NewTask)
+                .FirstOrDefaultAsync();
+
+            if (userTask == null)
+            {
+                return BadRequest(new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.BadRequest, "Task has already been completed")));
+            }
+
+            userTask.Status = (int)UserTaskStatuses.Pending;
+
+            _db.UserTasks.Update(userTask);
+
+            await _db.SaveChangesAsync();
+
+            return Ok(new APIJsonReturnObject(null));
         }
 
         [HttpPut("{userId}/UserTasks/{userTaskId}")]
@@ -544,8 +577,8 @@ namespace BoostifySolution.API
             }
         }
 
-        [HttpPost("SignUp")]
-        public async Task<IActionResult> UserSignUp([FromBody] UserSignUpRequest data)
+        [HttpPost("UserLead")]
+        public async Task<IActionResult> AddUserLead([FromBody] UserSignUpRequest data)
         {
             if (data.Name.IsNullOrEmpty() || data.PhoneNumber.IsNullOrEmpty() || data.Email.IsNullOrEmpty())
             {
@@ -570,6 +603,110 @@ namespace BoostifySolution.API
 
         }
 
+        [HttpPost("SignUp")]
+        public async Task<IActionResult> UserSignUp([FromBody] UserSignUpRequest data)
+        {
+            if (data.Name.IsNullOrEmpty() || data.PhoneNumber.IsNullOrEmpty() || data.Email.IsNullOrEmpty() || data.ReferralCode.IsNullOrEmpty())
+            {
+                return BadRequest(new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.BadRequest, "Please make sure all fields are filled before submitting")));
+            }
+
+            var referral = await _db.AdminStaffs
+                .Where(x => x.ReferralCode.Contains(data.ReferralCode.ToUpper()))
+                .FirstOrDefaultAsync();
+
+            if (referral == null)
+            {
+                return BadRequest(new APIJsonReturnObject(null, new APIJsonReturnObject.ErrorObject(HttpStatusCode.BadRequest, "Invalid referral code. Please try again")));
+            }
+
+            var existingLogin = await _um.FindByNameAsync(data.Email);
+
+            if (existingLogin != null)
+            {
+                return StatusCode((int)HttpStatusCode.BadRequest, new APIJsonReturnObject("Email has been used. Please use another."));
+            }
+
+            var newUser = new UserLogins
+            {
+                UserName = data.Email,
+                Email = data.Email
+            };
+
+            var createdUser = await CreateNewUserLoginAsync(newUser, data.Password);
+
+            await AddUserRoleAsync(newUser, UserRoles.User);
+
+            var user = new Users()
+            {
+                UserLoginId = newUser.Id,
+                FullName = data.Name,
+                Email = data.Email,
+                AccountStatus = (int)UserAccountStatuses.Active,
+                DateAdded = DateTime.UtcNow,
+                Language = data.Language,
+                AdminStaffId = referral.AdminStaffId,
+                Country = data.Country
+            };
+
+            switch (data.Country)
+            {
+                case (int)Countries.Malaysia:
+                    user.Currency = (int)CurrencyTypes.MYR;
+                    break;
+                case (int)Countries.Indonesia:
+                    user.Currency = (int)CurrencyTypes.Rupiah;
+                    break;
+                case (int)Countries.Japan:
+                    user.Currency = (int)CurrencyTypes.Yen;
+                    break;
+            }
+
+            _db.Users.Add(user);
+
+            await _db.SaveChangesAsync();
+
+            var newTask = new UserTasks()
+            {
+                UserId = user.UserId,
+                TaskId = referral.FirstTaskId,
+                DateAdded = DateTime.UtcNow,
+                Status = (int)UserTaskStatuses.NewTask,
+                CommissionPercentage = 10
+            };
+
+            _db.UserTasks.Add(newTask);
+
+            await _db.SaveChangesAsync();
+
+            await _sm.SignInAsync(newUser, true);
+
+            CurrentUserObj cu = new()
+            {
+                UserId = user.UserId,
+                UserName = user.FullName,
+                Currency = user.Currency,
+                AccountStatus = user.AccountStatus,
+            };
+
+            switch (user.Language)
+            {
+                case (int)Languages.Malay:
+                    cu.Language = "ms-MY";
+                    break;
+                case (int)Languages.English:
+                    cu.Language = "en-GB";
+                    break;
+                case (int)Languages.Chinese:
+                    cu.Language = "zh";
+                    break;
+                case (int)Languages.Japanese:
+                    cu.Language = "ja-JP";
+                    break;
+            }
+
+            return Ok(new APIJsonReturnObject(cu));
+        }
 
         //POST: api/Users/SignOut
         [HttpPost("SignOut")]
